@@ -1,0 +1,1000 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=auto">
+<meta name="theme-color" content="#071426">
+<title>Dixars SubnetLab — Subnetting &amp; Error Coding Solver</title>
+<script>try{document.documentElement.dataset.theme=localStorage.getItem("dixarsTheme")||"silver"}catch(e){document.documentElement.dataset.theme="silver"}</script>
+<style>
+
+:root{--bg:#071426;--panel:#0d1d33;--panel2:#10243d;--line:#203a59;--text:#eaf3ff;--muted:#91a8c4;--blue:#48a8ff;--cyan:#38d6cf;--green:#48d597;--gold:#ffc76b;--red:#ff7185;--shadow:0 18px 45px #0005}
+*{box-sizing:border-box}body{margin:0;background:radial-gradient(circle at 85% 0%,#12365b 0,transparent 30%),var(--bg);color:var(--text);font:15px/1.5 Inter,ui-sans-serif,system-ui,-apple-system,Segoe UI,sans-serif}
+button,input,select{font:inherit}button{cursor:pointer}.shell{max-width:1440px;margin:auto;padding:26px}.top{display:flex;align-items:center;justify-content:space-between;gap:16px;margin-bottom:28px}.brand{display:flex;align-items:center;gap:13px}.logo{width:45px;height:45px;border-radius:14px;background:linear-gradient(135deg,#48a8ff,#38d6cf);display:grid;place-items:center;color:#061426;font-weight:900;font-size:22px;box-shadow:0 8px 25px #38a8ff44}.brand h1{font-size:19px;margin:0;letter-spacing:.3px}.brand p{margin:1px 0 0;color:var(--muted);font-size:12px}.status{border:1px solid #255276;background:#0b2740;color:#8dd7ff;border-radius:30px;padding:8px 13px;font-size:12px}
+.hero{display:grid;grid-template-columns:1.4fr .8fr;gap:20px;margin-bottom:22px}.hero-copy,.hero-art{background:linear-gradient(135deg,#102945,#0c1b30);border:1px solid var(--line);border-radius:22px;padding:25px;position:relative;overflow:hidden}.eyebrow{color:var(--cyan);font-weight:700;text-transform:uppercase;letter-spacing:1.5px;font-size:11px}.hero h2{font-size:clamp(27px,4vw,42px);line-height:1.12;margin:10px 0}.hero p{color:var(--muted);max-width:660px;margin:0}.hero-art{display:flex;align-items:center;justify-content:center;min-height:170px}.network{width:100%;max-width:330px;height:140px}.layout{display:grid;grid-template-columns:350px minmax(0,1fr);gap:20px;align-items:start}.panel{background:linear-gradient(180deg,#10223a,#0b1a2d);border:1px solid var(--line);border-radius:19px;padding:21px;box-shadow:var(--shadow)}.panel h3{font-size:16px;margin:0 0 5px}.sub{font-size:12px;color:var(--muted);margin:0 0 18px}.field{margin:14px 0}.field label{display:block;color:#b6c9df;font-size:12px;margin-bottom:7px;font-weight:650}.inputwrap{display:flex;gap:8px}.field input,.field select{width:100%;background:#071629;border:1px solid #294766;color:var(--text);border-radius:10px;padding:12px 13px;outline:none}.field input:focus,.field select:focus{border-color:var(--blue);box-shadow:0 0 0 3px #48a8ff1c}.hint{color:var(--muted);font-size:11px;margin-top:6px}.btn{border:0;border-radius:10px;padding:12px 15px;font-weight:750;color:#061426;background:linear-gradient(135deg,#56b5ff,#37d7cd);box-shadow:0 7px 20px #2daaff2b}.btn.secondary{background:#183653;color:#cfe8ff;border:1px solid #315477;box-shadow:none}.btnrow{display:flex;gap:9px;margin-top:18px}.btnrow button{flex:1}.error{color:var(--red);font-size:12px;min-height:18px;margin-top:8px}.right{display:grid;gap:18px}.results-head{display:flex;justify-content:space-between;align-items:center;gap:12px;margin-bottom:15px}.results-head h3{margin:0}.pill{border:1px solid #255b50;color:#8ff0c4;background:#0d302d;border-radius:30px;padding:6px 10px;font-size:11px}.metrics{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:11px}.metric{background:#0a192b;border:1px solid #203a59;border-radius:13px;padding:14px;min-width:0}.metric .label{font-size:11px;color:var(--muted);margin-bottom:7px}.metric .value{font-weight:800;font-size:clamp(14px,1.5vw,19px);overflow-wrap:anywhere}.metric small{display:block;color:#7f9ab8;font-size:10px;margin-top:5px}.blue{color:#71bdff}.green{color:var(--green)}.gold{color:var(--gold)}.cyan{color:var(--cyan)}.visuals{display:grid;grid-template-columns:1fr 1fr;gap:18px}.visual{background:#0a192b;border:1px solid #203a59;border-radius:15px;padding:17px}.visual h4{font-size:13px;margin:0 0 3px}.visual p{font-size:11px;color:var(--muted);margin:0 0 14px}.bar{height:18px;display:flex;border-radius:7px;overflow:hidden;background:#172e49;margin:16px 0 9px}.bar span{display:block;height:100%}.legend{display:flex;flex-wrap:wrap;gap:12px;font-size:10px;color:var(--muted)}.dot{display:inline-block;width:8px;height:8px;border-radius:3px;margin-right:5px}.stats{display:grid;grid-template-columns:repeat(3,1fr);gap:8px;margin-top:12px}.stat{background:#10243c;border-radius:9px;padding:10px}.stat b{display:block;font-size:16px}.stat span{font-size:10px;color:var(--muted)}.subnet-table{width:100%;border-collapse:collapse;font-size:12px;min-width:680px}.subnet-table th{text-align:left;color:#9db4ce;font-weight:650;background:#112a45;position:sticky;top:0}.subnet-table td,.subnet-table th{padding:11px 12px;border-bottom:1px solid #203650;white-space:nowrap}.subnet-table tr:hover td{background:#112944}.table-wrap{overflow:auto;max-height:360px;border:1px solid #203650;border-radius:12px}.table-title{display:flex;justify-content:space-between;align-items:center;margin-bottom:12px;gap:10px}.table-title h3{margin:0}.smallbtn{background:#183653;color:#cce5ff;border:1px solid #315477;border-radius:8px;padding:7px 10px;font-size:11px}.steps{display:grid;grid-template-columns:repeat(3,1fr);gap:10px}.step{padding:12px;background:#0a192b;border:1px solid #203a59;border-radius:12px}.step b{display:block;font-size:12px;color:#d7e9fb;margin-bottom:4px}.step span{font-size:11px;color:var(--muted)}.formula{font-family:ui-monospace,monospace;color:#9bd9ff}.footer{text-align:center;color:#607994;font-size:11px;padding:25px 0 5px}.toast{position:fixed;bottom:20px;right:20px;background:#123d37;border:1px solid #2b8a70;color:#b9ffe4;padding:11px 15px;border-radius:10px;opacity:0;transform:translateY(10px);transition:.25s;pointer-events:none}.toast.show{opacity:1;transform:none}
+@media(max-width:1000px){.layout{grid-template-columns:1fr}.hero{grid-template-columns:1fr}.hero-art{min-height:130px}.metrics{grid-template-columns:repeat(2,1fr)}}@media(max-width:650px){.shell{padding:15px}.top{margin-bottom:18px}.status{display:none}.visuals{grid-template-columns:1fr}.steps{grid-template-columns:1fr}.panel{padding:16px}.metrics{gap:8px}.metric{padding:11px}.hero-copy{padding:20px}}
+
+.navwrap{position:relative}.navtrigger{width:44px;height:44px;border-radius:13px;border:1px solid #315477;background:#102945;color:#9bd9ff;display:grid;place-items:center;font-size:22px;margin-right:2px}.brand{gap:11px}.navmenu{display:none;position:absolute;z-index:20;top:54px;left:0;width:230px;padding:8px;background:#0d2036;border:1px solid #315477;border-radius:14px;box-shadow:0 18px 45px #0009}.navmenu.open{display:block}.navmenu button{width:100%;text-align:left;padding:11px;border:0;border-radius:8px;background:transparent;color:#d9eaff;font-size:13px}.navmenu button:hover,.navmenu button.active{background:#183b5b;color:#70c3ff}.navmenu .navcap{padding:8px 11px;color:#7897b8;text-transform:uppercase;letter-spacing:1px;font-size:9px}.toolview{display:none}.toolview.active{display:block}.toolgrid{display:grid;grid-template-columns:1fr 1fr;gap:14px}.toolresult{padding:14px;background:#091a2d;border:1px solid #203a59;border-radius:12px;margin-top:12px;overflow-wrap:anywhere}.toolresult b{display:block;color:#7bc7ff;margin-bottom:5px}.toolresult code{font-family:ui-monospace,monospace;color:#b6f4e3}.vlsm-row{display:grid;grid-template-columns:1fr 120px 40px;gap:8px;margin:8px 0}.vlsm-row input{min-width:0;background:#071629;border:1px solid #294766;color:var(--text);border-radius:9px;padding:10px}.mini-action{border:1px solid #315477;background:#183653;color:#d6eaff;border-radius:9px;padding:8px}.toolhead{display:flex;align-items:center;justify-content:space-between;gap:12px;margin-bottom:14px}.toolhead h3{margin:0}.backbtn{border:1px solid #315477;background:#183653;color:#cce5ff;border-radius:9px;padding:8px 11px;font-size:12px}
+@media(max-width:650px){.toolgrid{grid-template-columns:1fr}.vlsm-row{grid-template-columns:1fr 95px 38px}}
+.viewhead{margin:0 0 18px}.viewhead h2{margin:0 0 4px;font-size:clamp(22px,3vw,30px)}.viewhead p{margin:0;color:var(--muted);max-width:780px}
+.tabs{display:flex;flex-wrap:wrap;gap:8px;margin-bottom:16px}
+.tab{border:1px solid #315477;background:#102945;color:#b9d3ee;border-radius:30px;padding:8px 14px;font-size:12px;font-weight:650}
+.tab.active,.tab:hover{background:#183b5b;color:#70c3ff;border-color:#48a8ff}
+.tpanel{display:none}.tpanel.active{display:block}
+.fields{display:grid;grid-template-columns:repeat(auto-fit,minmax(220px,1fr));gap:12px;margin-top:6px}
+.fld.wide{grid-column:1/-1}
+.fld label{display:block;font-size:12px;color:#b6c9df;font-weight:650;margin-bottom:6px}
+.fld input,.fld select,.fld textarea{width:100%;background:#071629;border:1px solid #294766;color:var(--text);border-radius:10px;padding:11px 12px;outline:none}
+.fld input:focus,.fld select:focus,.fld textarea:focus{border-color:var(--blue);box-shadow:0 0 0 3px #48a8ff1c}
+.fld textarea{min-height:92px;resize:vertical;font-family:ui-monospace,monospace;font-size:13px}
+.fld .hint{margin-top:5px}
+.chips{display:flex;flex-wrap:wrap;gap:7px;margin:10px 0 2px;align-items:center}.chips .lbl{font-size:11px;color:var(--muted)}
+.sol{margin-top:16px;background:#091a2d;border:1px solid #203a59;border-radius:14px;padding:16px;overflow-wrap:anywhere}
+.sol .stp{margin:11px 0}.sol .stp>b:first-child{color:#7bc7ff}
+.sol .ask{color:#cfe3f8;margin-bottom:6px}
+.sol .ans{color:var(--gold);font-weight:750;margin:14px 0 4px;padding:10px 12px;background:#2a2410;border:1px solid #5b4a1a;border-radius:10px}
+.sol .chk,.sol .note{color:var(--muted);font-size:12.5px;margin:6px 0}.sol .chk{font-style:italic}
+.sol .note{padding:9px 12px;border-left:3px solid #315477;background:#0c2038;border-radius:6px}
+.sol p{margin:6px 0}
+.mono{font-family:ui-monospace,SFMono-Regular,Menlo,monospace}
+pre.mono{background:#071629;border:1px solid #203a59;border-radius:10px;padding:12px;overflow:auto;font-size:12.5px;line-height:1.45;margin:8px 0}
+.ok{color:var(--green)}.bad{color:var(--red)}.gold{color:var(--gold)}.blue{color:#71bdff}.dim{color:#7f9ab8}
+.tw{overflow:auto;margin:8px 0;max-width:100%}
+table.t{border-collapse:collapse;font-size:12.5px}
+table.t th{background:#112a45;color:#9db4ce;text-align:left;font-weight:650}
+table.t td,table.t th{border:1px solid #203650;padding:6px 10px;white-space:nowrap}
+table.t tr.hl td{background:#173a2f}
+table.t tr.hit td{background:#17345a}
+table.t td.c{color:var(--green);background:#0d302d;text-align:center;font-family:ui-monospace,monospace;font-weight:700}
+table.t td.d{color:#8fd0ff;background:#0e2c47;text-align:center;font-family:ui-monospace,monospace;font-weight:700}
+table.t td.e{background:#6a1d2e;color:#ffd0d8;outline:2px solid var(--red)}
+table.t td.na{color:#4d6683;text-align:center}
+table.t sub{font-size:9px;color:#8aa3c0;margin-left:2px}
+.errbox{margin-top:14px;padding:11px 14px;border:1px solid #7a2e3c;background:#33131c;color:#ffb3bf;border-radius:10px}
+.btnrow.inline{margin-top:14px;max-width:360px}
+.exfilter{display:flex;flex-wrap:wrap;gap:8px;margin-bottom:14px}
+.ex{background:#0a192b;border:1px solid #203a59;border-radius:14px;padding:14px 16px;margin-bottom:12px}
+.ex .q b.id{color:var(--cyan);margin-right:6px}
+.ex .exbtns{display:flex;gap:8px;margin-top:10px;flex-wrap:wrap}
+.badge{display:inline-block;margin-top:10px;font-size:12px;padding:6px 10px;border-radius:20px;border:1px solid #255b50;color:#8ff0c4;background:#0d302d}
+.badge.warn{border-color:#7a2e3c;color:#ffb3bf;background:#33131c}
+.refgrid{display:grid;grid-template-columns:repeat(auto-fit,minmax(340px,1fr));gap:18px}
+.refgrid .panel h3{margin-bottom:10px}.refgrid ul{margin:6px 0;padding-left:18px;color:#c9dcf1}
+svg.chart text{fill:#b6c9df;font-size:11px}
+.navmenu{width:260px;max-height:80vh;overflow:auto}
+@media(max-width:650px){.navmenu{width:230px}.fields{grid-template-columns:1fr}}
+
+html{-webkit-text-size-adjust:100%}
+.brand>div:last-child{min-width:0}.brand h1{white-space:nowrap}
+@media(max-width:650px){
+ body{font-size:14.5px}
+ .shell{padding:12px}
+ .brand{gap:9px}.logo{width:38px;height:38px;font-size:19px;border-radius:11px}.navtrigger{width:40px;height:40px}
+ .brand h1{font-size:17px}.brand p{font-size:10px;letter-spacing:.2px}
+ .hero{gap:12px;margin-bottom:14px}.hero-art{display:none}.hero-copy{padding:18px}.hero h2{font-size:25px}
+ .panel{padding:14px;border-radius:15px}
+ .metrics{grid-template-columns:1fr 1fr}.metric .value{font-size:14px}
+ .stats{grid-template-columns:1fr 1fr 1fr}.stat b{font-size:14px}
+ .results-head{flex-wrap:wrap}
+ .fld input,.fld select,.fld textarea,.field input,.field select{font-size:16px;min-height:44px}
+ .btn,.smallbtn,.tab{min-height:40px}
+ .btnrow.inline{max-width:none}.btnrow.inline button{flex:1}
+ .tabs{flex-wrap:nowrap;overflow-x:auto;margin-right:-12px;padding-right:12px;padding-bottom:4px;-webkit-overflow-scrolling:touch}.tab{white-space:nowrap;flex:0 0 auto}
+ .exfilter{flex-wrap:nowrap;overflow-x:auto;padding-bottom:4px}.exfilter .tab,.exfilter .smallbtn{flex:0 0 auto;white-space:nowrap}
+ .sol{padding:12px}pre.mono{font-size:11px;padding:10px}
+ table.t td,table.t th{padding:5px 7px;font-size:12px}
+ .refgrid{grid-template-columns:1fr}
+ .toast{left:12px;right:12px;bottom:12px}
+ .table-title{flex-wrap:wrap}
+ .viewhead h2{font-size:22px}
+}
+@media(max-width:380px){.metrics{grid-template-columns:1fr}.stats{grid-template-columns:1fr 1fr}}
+.layout>*,.right>*,.refgrid>*,.visuals>*{min-width:0}
+.refgrid{grid-template-columns:repeat(auto-fit,minmax(min(340px,100%),1fr))}
+@media(max-width:1000px){.layout{grid-template-columns:minmax(0,1fr)}.visuals{grid-template-columns:minmax(0,1fr)}.right{grid-template-columns:minmax(0,1fr)}}
+.table-wrap{max-width:100%}
+
+.lab .lbtns{display:flex;flex-wrap:wrap;gap:8px;margin:12px 0}.lab .lbtns button:disabled{opacity:.4;cursor:not-allowed}
+.labrow{display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1.2fr);gap:18px;align-items:start}.lh{font-size:12px;color:var(--muted);margin:4px 0}
+.minis{display:grid;grid-template-columns:repeat(auto-fit,minmax(118px,1fr));gap:10px}.mini{border:1px solid #203a59;border-radius:10px;padding:8px;background:#0a192b;transition:box-shadow .3s,border-color .3s}.mini.mf{border-color:var(--red);box-shadow:0 0 14px #ff718544}.mini .mh{font-size:12px;margin-bottom:5px}
+.mini table.t td{padding:3px 0;width:24px;text-align:center;font-size:11px;font-family:ui-monospace,monospace;transition:background .3s}
+table.lgrid td.lc{cursor:pointer;min-width:46px;height:40px;font-size:15px;transition:transform .15s,background .25s}table.lgrid td.lc:hover{transform:scale(1.12)}
+table.lgrid td.hit{outline:3px solid var(--gold);animation:pulse 1.1s ease-in-out infinite}
+table.lgrid td.e{animation:shake .35s}
+@keyframes pulse{0%,100%{box-shadow:0 0 0 0 #ffc76b88}50%{box-shadow:0 0 0 9px #ffc76b00}}
+@keyframes shake{25%{transform:translateX(-3px)}75%{transform:translateX(3px)}}
+@media(max-width:800px){.labrow{grid-template-columns:minmax(0,1fr)}}
+@media(prefers-reduced-motion:reduce){table.lgrid td.hit,table.lgrid td.e{animation:none}}
+
+/* ===== Home screen · sliver / silver styling ===== */
+:root{--silver:#cfd8e3;--hdr:62px}
+.silver{background:linear-gradient(100deg,#ffffff 0%,#aab7c6 28%,#f4f8fc 50%,#8d9bb0 72%,#e6edf5 100%);background-size:220% 100%;-webkit-background-clip:text;background-clip:text;color:transparent;-webkit-text-fill-color:transparent;animation:brushed 7s linear infinite}
+@keyframes brushed{to{background-position:-220% 0}}
+.top{position:sticky;top:0;z-index:40;margin:-26px -26px 22px;padding:12px 26px;background:rgba(7,20,38,.78);backdrop-filter:blur(14px);-webkit-backdrop-filter:blur(14px);border-bottom:1px solid #1d3552;transition:padding .25s,box-shadow .25s}
+.top.compact{padding:7px 26px;box-shadow:0 8px 24px #0007}.top .logo,.top .brand p,.top .brand h1{transition:all .25s}
+.top.compact .brand p{max-height:0;opacity:0;overflow:hidden;margin:0}.top.compact .logo{width:34px;height:34px;font-size:17px}.top.compact .navtrigger{width:38px;height:38px}
+.brand h1{background:linear-gradient(100deg,#fff,#aab7c6 40%,#f4f8fc 60%,#9aa8bb);-webkit-background-clip:text;background-clip:text;color:transparent}
+.toolview.active{animation:viewin .4s cubic-bezier(.2,.8,.2,1)}
+@keyframes viewin{from{opacity:0;transform:translateY(14px)}to{opacity:1;transform:none}}
+@keyframes rise{from{opacity:0;transform:translateY(16px)}to{opacity:1;transform:none}}
+.sol>*{animation:rise .5s cubic-bezier(.2,.8,.2,1) both;animation-delay:calc(var(--i,0)*70ms)}
+.homehero{position:relative;display:grid;grid-template-columns:1.3fr .9fr;gap:20px;align-items:center;padding:26px;border-radius:26px;overflow:hidden;background:radial-gradient(circle at 80% 10%,#1b4a7a55,transparent 45%),linear-gradient(135deg,#112a46,#0a1729);border:1px solid #2a4767;transform:translateY(calc(var(--sy,0)*.18px));opacity:calc(1 - var(--sy,0)/520)}
+.homehero::after{content:"";position:absolute;inset:0;background:linear-gradient(115deg,transparent 40%,#ffffff14 50%,transparent 60%);transform:translateX(-100%);animation:sweep 6s ease-in-out infinite;pointer-events:none}
+@keyframes sweep{60%,100%{transform:translateX(100%)}}
+.homehero h2{font-size:clamp(30px,5vw,50px);line-height:1.08;margin:8px 0 10px}.homehero p{color:var(--muted);margin:0;max-width:520px}
+.homehero svg{width:100%;height:auto;max-height:200px}
+.searchbar{margin:18px 0 0;display:flex;align-items:center;gap:10px;background:#0a1a2d;border:1px solid #2d4c6d;border-radius:30px;padding:4px 16px;max-width:460px;transition:box-shadow .25s,border-color .25s}
+.searchbar:focus-within{border-color:#8fb8e0;box-shadow:0 0 0 4px #8fb8e01f}
+.searchbar input{flex:1;min-width:0;background:none;border:0;color:var(--text);outline:none;padding:11px 0;font-size:15px}
+.livegrid{display:grid;grid-template-columns:1fr 1.4fr;gap:18px;margin:22px 0}.livegrid>*{min-width:0}
+.lw{background:linear-gradient(160deg,#142b46,#0b1a2e);border:1px solid #2a4767;border-radius:22px;padding:18px;box-shadow:var(--shadow);position:relative;overflow:hidden}
+.lw .lwh{font-weight:750;margin-bottom:2px;display:flex;justify-content:space-between;align-items:center;gap:8px}.lw .lws{color:var(--muted);font-size:12px;margin-bottom:12px}
+.lw input[type=range]{width:100%;accent-color:#9fc3e7;height:28px}
+.lbits{display:grid;grid-template-columns:repeat(32,1fr);gap:3px;margin:10px 0}.lbits i{height:22px;border-radius:4px;background:#38d6cf;opacity:.85;transition:background .3s,transform .3s}.lbits i.n{background:#48a8ff;transform:translateY(-3px)}.lbits i:nth-child(8n){margin-right:3px}
+.lstats{display:grid;grid-template-columns:repeat(3,1fr);gap:8px;margin-bottom:10px}.lstats div{background:#091a2d;border:1px solid #203a59;border-radius:10px;padding:8px 10px;min-width:0}.lstats b{display:block;font-size:14px;overflow-wrap:anywhere}.lstats span{font-size:10px;color:var(--muted)}
+.lw canvas{width:100%;height:auto;display:block;background:#071629;border:1px solid #203a59;border-radius:12px}
+.lctl{display:flex;flex-wrap:wrap;gap:8px;align-items:center;margin-top:10px;font-size:12px;color:var(--muted)}.lctl select,.lctl input[type=range]{width:auto}.lctl input[type=range]{flex:1;min-width:90px}
+.lctl select{background:#071629;color:var(--text);border:1px solid #294766;border-radius:8px;padding:6px}
+.sechead{position:sticky;top:var(--hdr);z-index:20;margin:26px -4px 12px;padding:10px 4px;background:linear-gradient(180deg,#071426 70%,#07142600);display:flex;align-items:center;gap:10px;font-weight:800;letter-spacing:.4px}
+.sechead::before{content:"";width:10px;height:10px;border-radius:50%;background:var(--ac);box-shadow:0 0 12px var(--ac)}.sechead small{color:var(--muted);font-weight:500;letter-spacing:0}
+.wgrid{display:grid;grid-template-columns:repeat(auto-fill,minmax(210px,1fr));gap:14px}
+.wcard{position:relative;overflow:hidden;text-align:left;color:var(--text);padding:14px;border-radius:20px;border:1px solid #2c4968;background:linear-gradient(150deg,#16304e,#0c1b2f 70%);box-shadow:0 10px 26px #0005;display:flex;flex-direction:column;gap:8px;min-height:176px;animation:rise .55s cubic-bezier(.2,.8,.2,1) both;animation-delay:calc(var(--i)*45ms);transition:transform .25s cubic-bezier(.2,.8,.2,1),box-shadow .25s,border-color .25s}
+.wcard::before{content:"";position:absolute;inset:0;background:linear-gradient(115deg,transparent 35%,#ffffff1c 50%,transparent 65%);transform:translateX(-120%);transition:transform .7s;pointer-events:none}
+.wcard:hover,.wcard:focus-visible{transform:translateY(-5px);border-color:#b8c7d9;box-shadow:0 16px 34px #0008,0 0 0 1px var(--ac)}.wcard:hover::before{transform:translateX(120%)}
+.wcard:active{transform:scale(.97)}
+.wviz{height:62px;border-radius:12px;background:#0a1a2d;border:1px solid #1f3a58;padding:9px;display:flex;align-items:center;justify-content:center;position:relative;overflow:hidden}
+.wt{font-weight:750;font-size:14px;color:#eef4fb}.wd{font-size:12px;color:var(--muted);line-height:1.35}
+.wcard .tag{position:absolute;top:10px;right:12px;width:8px;height:8px;border-radius:50%;background:var(--ac);box-shadow:0 0 10px var(--ac)}
+.ripple{position:absolute;border-radius:50%;background:#ffffff55;transform:scale(0);animation:rip .6s ease-out forwards;pointer-events:none}@keyframes rip{to{transform:scale(1);opacity:0}}
+.btn,.tab,.smallbtn,.bnav button,.fab{position:relative;overflow:hidden}
+.fab{position:fixed;right:20px;bottom:22px;z-index:45;width:56px;height:56px;border-radius:18px;border:1px solid #c5d2e0;background:linear-gradient(145deg,#f3f7fb,#9aa9bc);color:#0b1a2d;font-size:24px;box-shadow:0 10px 26px #0008;display:none;transition:transform .2s}.fab.show{display:block;animation:rise .4s both}.fab:hover{transform:scale(1.08) rotate(-4deg)}
+.bnav{display:none}
+.nodata{color:var(--muted);padding:20px;text-align:center}
+@media(max-width:1000px){.homehero{grid-template-columns:1fr}.homehero .heroart{display:none}.livegrid{grid-template-columns:minmax(0,1fr)}}
+@media(max-width:650px){
+ .top{margin:-12px -12px 14px;padding:9px 12px}.top.compact{padding:6px 12px}.fab{display:none!important}
+ .homehero{padding:18px;border-radius:20px}
+ .wgrid{grid-template-columns:repeat(2,minmax(0,1fr));gap:10px}.wcard{padding:10px;min-height:150px;border-radius:16px}.wd{display:none}.wviz{height:54px}.sechead{top:54px}
+ .lbits{gap:2px}.lbits i{height:18px}.lstats b{font-size:12px}
+ body{padding-bottom:74px}
+ .bnav{display:flex;position:fixed;left:10px;right:10px;bottom:10px;z-index:50;background:rgba(14,30,50,.9);backdrop-filter:blur(14px);-webkit-backdrop-filter:blur(14px);border:1px solid #3a5a7c;border-radius:22px;padding:6px;box-shadow:0 10px 30px #000a}
+ .bnav button{flex:1;border:0;background:none;color:#9fb6cf;padding:6px 2px;border-radius:16px;font-size:10px;display:flex;flex-direction:column;align-items:center;gap:2px;transition:all .25s}.bnav button b{font-size:19px;line-height:1;font-weight:400}
+ .bnav button.on{background:linear-gradient(145deg,#e9eff6,#a5b3c5);color:#0b1a2d;transform:translateY(-3px);box-shadow:0 6px 14px #0006}
+ .toast{bottom:84px}
+}
+@media(prefers-reduced-motion:reduce){*,*::before,*::after{animation-duration:.01ms!important;animation-iteration-count:1!important;transition-duration:.01ms!important}}
+
+/* mini visuals on cards */
+.v-bits{display:grid;grid-template-columns:repeat(16,1fr);gap:3px;width:100%}.v-bits i{height:12px;border-radius:3px;background:#38d6cf;animation:wave 2.4s ease-in-out infinite;animation-delay:calc(var(--k)*55ms)}.v-bits i.n{background:#48a8ff}
+@keyframes wave{0%,100%{opacity:.35;transform:scaleY(.7)}50%{opacity:1;transform:scaleY(1.15)}}
+.v-bars{display:flex;flex-direction:column;gap:5px;width:100%}.v-bars i{display:block;height:8px;border-radius:4px;background:var(--ac);transform-origin:left;animation:grow 3s ease-in-out infinite;animation-delay:calc(var(--k)*.25s)}
+@keyframes grow{0%{transform:scaleX(.05)}40%,80%{transform:scaleX(1)}100%{transform:scaleX(.05)}}
+.v-merge{display:flex;gap:10px;width:100%;animation:gapm 3s ease-in-out infinite}.v-merge i{flex:1;height:26px;border-radius:5px;background:var(--ac)}.v-merge i:nth-child(odd){opacity:.7}
+@keyframes gapm{0%,100%{gap:12px}50%{gap:0}}
+.v-digits{display:flex;gap:4px;font:700 15px ui-monospace,monospace}.v-digits i{font-style:normal;width:17px;height:28px;display:grid;place-items:center;border-radius:5px;background:#10304f;color:#8fd0ff;animation:flip 3s ease-in-out infinite;animation-delay:calc(var(--k)*.18s)}
+@keyframes flip{0%,60%,100%{transform:rotateX(0)}30%{transform:rotateX(180deg);color:#ffc76b}}
+.v-chips{display:flex;gap:5px;flex-wrap:wrap;justify-content:center}.v-chips i{font-style:normal;font-weight:800;font-size:12px;padding:5px 9px;border-radius:9px;background:#10304f;color:var(--ac);border:1px solid var(--ac);animation:pop 3.2s ease-in-out infinite;animation-delay:calc(var(--k)*.3s)}
+@keyframes pop{0%,100%{transform:scale(.85);opacity:.5}20%,50%{transform:scale(1.12);opacity:1;background:var(--ac);color:#06182b}}
+.v-flow{position:relative;width:100%;height:30px;display:flex;justify-content:space-between;align-items:center}.v-flow b{z-index:1;font-size:10px;padding:5px 7px;border-radius:7px;background:#10304f;border:1px solid #2d557d}.v-flow::before{content:"";position:absolute;left:10%;right:10%;top:50%;border-top:2px dashed #3a6a99}.v-flow u{position:absolute;top:11px;width:8px;height:8px;border-radius:50%;background:var(--ac);box-shadow:0 0 8px var(--ac);animation:travel 2.4s linear infinite}
+@keyframes travel{from{left:12%;opacity:0}15%{opacity:1}85%{opacity:1}to{left:84%;opacity:0}}
+.v-dora{display:flex;gap:7px}.v-dora i{font-style:normal;width:26px;height:26px;border-radius:50%;display:grid;place-items:center;font-weight:800;font-size:12px;background:#10304f;color:#8fb3d6;animation:lit 4s infinite;animation-delay:calc(var(--k)*1s)}
+@keyframes lit{0%,24%,100%{background:#10304f;color:#8fb3d6;transform:none}6%,18%{background:var(--ac);color:#06182b;transform:scale(1.2)}}
+.v-grid{display:grid;grid-template-columns:repeat(4,16px);gap:3px}.v-grid i{height:11px;border-radius:3px;background:#1d5b8f}.v-grid i:nth-child(3n){background:#1f7a62}.v-grid i.h{background:var(--ac);animation:hit 1.4s ease-in-out infinite}
+@keyframes hit{0%,100%{box-shadow:0 0 0 0 var(--ac);transform:scale(1)}50%{box-shadow:0 0 10px 3px var(--ac);transform:scale(1.25)}}
+.v-crc{width:100%;overflow:hidden;position:relative;font:700 13px ui-monospace,monospace;color:#8fd0ff;white-space:nowrap}.v-crc span{display:inline-block;animation:marq 6s linear infinite}.v-crc::after{content:"⊕";position:absolute;left:42%;top:-4px;padding:2px 6px;border-radius:6px;background:var(--ac);color:#06182b;animation:blink 1s infinite}
+@keyframes marq{to{transform:translateX(-50%)}}@keyframes blink{50%{opacity:.4}}
+.v-chk{font:700 11px/1.35 ui-monospace,monospace;color:#8fd0ff;text-align:right}.v-chk b{color:var(--ac);animation:blink 1.6s infinite}
+.v-svg{width:100%;height:100%}.v-svg .dl{stroke-dasharray:6 6;animation:dash 1.2s linear infinite}@keyframes dash{to{stroke-dashoffset:-24}}
+.v-svg .pl{animation:hit2 1.6s ease-in-out infinite;transform-box:fill-box;transform-origin:center}@keyframes hit2{50%{transform:scale(1.7);fill:var(--ac)}}
+.v-track{position:relative;width:100%;height:36px}.v-track i{position:absolute;height:9px;border-radius:3px;background:#48d597;animation:slideR 4s linear infinite}.v-track i.x{background:#ff7185;animation:slideR 4s linear infinite,blink .8s infinite}
+@keyframes slideR{from{transform:translateX(-30px);opacity:0}15%{opacity:1}to{transform:translateX(230px)}}
+.v-list{display:flex;flex-direction:column;gap:5px;width:100%}.v-list i{font-style:normal;font-size:11px;color:#9fb6cf;opacity:0;animation:tick 4s infinite;animation-delay:calc(var(--k)*.6s)}.v-list i::before{content:"✓ ";color:#48d597;font-weight:800}
+@keyframes tick{0%{opacity:0;transform:translateX(-8px)}10%,70%{opacity:1;transform:none}100%{opacity:0}}
+
+/* PWA app-sized layout: use the available viewport without hiding system bars */
+html, body { min-height:100%; }
+body { min-height:100vh; min-height:100dvh; }
+.shell { max-width:none; width:100%; min-height:100vh; min-height:100dvh; margin:0; padding: max(26px, env(safe-area-inset-top)) max(26px, env(safe-area-inset-right)) max(26px, env(safe-area-inset-bottom)) max(26px, env(safe-area-inset-left)); }
+.install-btn {
+ border:1px solid #315477;background:#102945;color:#cfe8ff;
+ border-radius:10px;padding:8px 11px;font-size:12px;font-weight:700;
+}
+.header-actions {display:flex;align-items:center;gap:9px;flex-wrap:wrap;justify-content:flex-end}
+@media(max-width:650px){.shell{padding:max(15px, env(safe-area-inset-top)) max(15px, env(safe-area-inset-right)) max(15px, env(safe-area-inset-bottom)) max(15px, env(safe-area-inset-left))}.header-actions{gap:6px}.install-btn{padding:7px 8px;font-size:11px}}
+
+</style>
+
+<link rel="manifest" href="./manifest.json">
+<meta name="application-name" content="Dixars SubnetLab">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-status-bar-style" content="black">
+<meta name="apple-mobile-web-app-title" content="SubnetLab">
+<meta name="mobile-web-app-capable" content="yes">
+<link rel="apple-touch-icon" href="./icons/icon-192.png">
+<link rel="icon" type="image/png" sizes="192x192" href="./icons/icon-192.png">
+
+</head>
+<body>
+<div class="shell">
+<header class="top"><div class="brand"><div class="navwrap"><button class="navtrigger" id="navTrigger" aria-label="Open network tools menu" title="Network tools"><svg width="23" height="23" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="5" r="2.4"/><circle cx="5" cy="18" r="2.4"/><circle cx="19" cy="18" r="2.4"/><path d="M10.8 7.1 6.2 15.8M13.2 7.1l4.6 8.7M7.5 18h9"/></svg></button><div class="navmenu" id="navMenu"></div></div><div class="logo">⌘</div><div><h1>Dixars SubnetLab</h1><p>SUBNETTING · ERROR DETECTION &amp; CORRECTION</p></div></div><div class="right-tools header-actions"><div class="status">● OFFLINE · READY TO CALCULATE</div><button class="install-btn" id="installBtn" type="button" hidden>＋ Install app</button></div></header>
+<section class="hero" id="hero"><div class="hero-copy"><div class="eyebrow">Network layer · CIDR · Error coding</div><h2>Understand your network.<br><span style="color:#57baff">One step at a time.</span></h2><p>Subnet calculator, VLSM, addressing tools, parity, checksum, CRC, Hamming, Reed-Solomon, LDPC, convolutional codes and ALOHA — every solver shows its working, and the exercise bank solves all 42 exercises and Q1–Q11 of the study guide.</p></div>
+<div class="hero-art"><svg class="network" viewBox="0 0 330 140" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M165 22L75 76L165 76L255 76M75 76L165 125L255 76L165 22M165 22V76V125" stroke="#367cae" stroke-width="2" stroke-dasharray="5 5"/><circle cx="165" cy="22" r="17" fill="#48A8FF"/><circle cx="75" cy="76" r="17" fill="#38D6CF"/><circle cx="165" cy="76" r="17" fill="#FFC76B"/><circle cx="255" cy="76" r="17" fill="#48D597"/><circle cx="165" cy="125" r="12" fill="#ff7185"/><g fill="#071426" font-size="10" font-weight="bold" text-anchor="middle"><text x="165" y="26">IP</text><text x="75" y="80">01</text><text x="165" y="80">NET</text><text x="255" y="80">02</text></g></svg></div></section>
+<div class="toolview active" id="view-dashboard"><div class="layout">
+<aside class="panel"><h3>Subnet calculator</h3><p class="sub">Enter an IPv4 address and CIDR prefix.</p>
+<div class="field"><label for="ip">IPv4 address</label><input id="ip" value="192.168.100.154" placeholder="192.168.1.10" autocomplete="off"><div class="hint">Four octets, each from 0 to 255.</div></div>
+<div class="field"><label for="prefix">Network prefix</label><select id="prefix"></select><div class="hint">/24 = 24 network bits and 8 host bits.</div></div>
+<div class="field"><label for="parent">Original network prefix (for subnet count)</label><select id="parent"></select><div class="hint">Choose the larger network you are dividing. It must be /prefix or smaller.</div></div>
+<div class="btnrow"><button class="btn" id="calculate">Calculate network</button><button class="btn secondary" id="reset">Reset</button></div><div class="error" id="error"></div>
+<div style="margin-top:22px;border-top:1px solid #203a59;padding-top:16px"><h3 style="font-size:13px">Quick examples</h3><div style="display:flex;gap:7px;flex-wrap:wrap;margin-top:10px"><button class="smallbtn example" data-ip="192.168.100.154" data-prefix="27" data-parent="24">Guide /27</button><button class="smallbtn example" data-ip="10.1.1.200" data-prefix="26" data-parent="24">10.1.1.200/26</button><button class="smallbtn example" data-ip="172.16.5.200" data-prefix="27" data-parent="16">172.16.5.200/27</button></div></div>
+</aside>
+<main class="right">
+<section class="panel"><div class="results-head"><div><h3>Calculation results</h3><p class="sub" style="margin:3px 0 0">Your network details at a glance.</p></div><span class="pill" id="networkPill">NETWORK READY</span></div>
+<div class="metrics">
+<div class="metric"><div class="label">Network address</div><div class="value blue" id="network">192.168.100.128</div><small>Network ID</small></div>
+<div class="metric"><div class="label">First usable host</div><div class="value green" id="first">192.168.100.129</div><small>Network + 1</small></div>
+<div class="metric"><div class="label">Last usable host</div><div class="value green" id="last">192.168.100.158</div><small>Broadcast − 1</small></div>
+<div class="metric"><div class="label">Broadcast address</div><div class="value gold" id="broadcast">192.168.100.159</div><small>All host bits set to 1</small></div>
+<div class="metric"><div class="label">Subnet mask / prefix mask</div><div class="value cyan" id="mask">255.255.255.224</div><small id="prefixLabel">/27 · 27 network bits</small></div>
+<div class="metric"><div class="label">Maximum usable hosts</div><div class="value" id="hosts">30</div><small id="hostBits">5 host bits · 32 total addresses</small></div>
+<div class="metric"><div class="label">Number of subnets</div><div class="value" id="subnetCount">8</div><small id="subnetBits">3 borrowed bits</small></div>
+<div class="metric"><div class="label">Address range</div><div class="value" style="font-size:14px" id="range">.128 – .159</div><small>Network through broadcast</small></div>
+</div></section>
+<div class="visuals">
+<section class="visual"><h4>Subnet address allocation</h4><p>How the address block is divided.</p><div class="bar"><span id="networkBar" style="width:84%;background:#48a8ff"></span><span id="broadcastBar" style="width:3%;background:#ffc76b"></span><span id="hostBar" style="width:13%;background:#38d6cf"></span></div><div class="legend"><span><i class="dot" style="background:#48a8ff"></i>Network ID</span><span><i class="dot" style="background:#38d6cf"></i>Usable host range</span><span><i class="dot" style="background:#ffc76b"></i>Broadcast</span></div><div class="stats"><div class="stat"><b id="totalAddresses">32</b><span>Total addresses</span></div><div class="stat"><b id="usablePercent">93.8%</b><span>Usable capacity</span></div><div class="stat"><b id="hostBitsStat">5</b><span>Host bits</span></div></div></section>
+<section class="visual"><h4>32-bit prefix visualizer</h4><p>Blue = network bits · cyan = host bits.</p><div id="bitGrid" style="display:grid;grid-template-columns:repeat(32,1fr);gap:3px;margin:18px 0 12px"></div><div class="legend"><span><i class="dot" style="background:#48a8ff"></i>Network prefix</span><span><i class="dot" style="background:#38d6cf"></i>Host portion</span></div><div style="font-size:11px;color:#8fa9c6;margin-top:12px">Binary mask: <span class="formula" id="binaryMask">11111111.11111111.11111111.11100000</span></div></section>
+</div>
+<section class="panel"><div class="table-title"><div><h3>Subnet breakdown</h3><p class="sub" style="margin:3px 0 0">All subnets inside your selected original network.</p></div><button class="smallbtn" id="export">Export CSV ↓</button></div><div class="table-wrap"><table class="subnet-table"><thead><tr><th>#</th><th>Network ID</th><th>First host</th><th>Last host</th><th>Broadcast</th><th>Usable hosts</th></tr></thead><tbody id="subnetRows"></tbody></table></div><div class="hint" id="tableHint" style="margin-top:10px">Showing available subnets.</div></section>
+<section class="panel"><h3>How this result is calculated</h3><p class="sub">The formulas used in the study guide's CIDR subnetting section.</p><div class="steps"><div class="step"><b>1 · Host bits</b><span class="formula" id="formulaHost">32 − 27 = 5</span></div><div class="step"><b>2 · Usable hosts</b><span class="formula" id="formulaUsable">2⁵ − 2 = 30</span></div><div class="step"><b>3 · Subnet count</b><span class="formula" id="formulaSubnets">2³ = 8</span></div></div><p class="hint" style="margin-top:13px">Network ID = IP address AND subnet mask. Broadcast = network ID with all host bits set to 1. First host = network + 1; last host = broadcast − 1.</p></section>
+<section class="panel"><details open><summary style="cursor:pointer;font-weight:700">Full working (study-guide style)</summary><div id="workings" class="sol"></div></details></section>
+</main></div></div>
+<div id="views"></div>
+<div class="footer">Dixars SubnetLab · Subnetting &amp; error detection/correction solver · Built for learning and practical network planning</div>
+</div><div class="toast" id="toast">CSV exported successfully</div>
+<script>
+'use strict';
+const $=id=>document.getElementById(id);
+class UErr extends Error{}
+const fail=m=>{throw new UErr(m)};
+const esc=s=>String(s).replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;');
+const fmt=n=>Number(n).toLocaleString('en-US');
+const C=(c,t)=>`<span class="${c}">${t}</span>`;
+const gold=t=>C('gold',t),bad=t=>C('bad',t),ok=t=>C('ok',t),blue=t=>C('blue',t),mono=t=>C('mono',t);
+function tbl(head,rows){let h='<div class="tw"><table class="t">';if(head&&head.length)h+='<thead><tr>'+head.map(x=>`<th>${x}</th>`).join('')+'</tr></thead>';
+ h+='<tbody>'+rows.map(r=>{const o=Array.isArray(r)?{c:r}:r;return `<tr${o.cls?` class="${o.cls}"`:''}>`+o.c.map(x=>`<td>${x}</td>`).join('')+'</tr>'}).join('')+'</tbody></table></div>';return h}
+const STEP=(n,h)=>`<div class="stp"><b>Step ${n}.</b> ${h}</div>`;
+const ASK=h=>`<div class="ask"><b>What is asked:</b> ${h}</div>`;
+const ANS=h=>`<div class="ans">Answer: ${h}</div>`;
+const CHK=h=>`<div class="chk">Check: ${h}</div>`;
+const NOTE=h=>`<div class="note">${h}</div>`;
+const PRE=h=>`<pre class="mono">${h}</pre>`;
+const sup=n=>`<sup>${n}</sup>`;
+const ones=s=>[...s].filter(c=>c==='1').length;
+const xorS=(a,b)=>[...a].map((c,i)=>c===b[i]?'0':'1').join('');
+function getBits(s,name,min=1){const c=String(s).replace(/[\s_,]/g,'');if(!/^[01]+$/.test(c)||c.length<min)fail(`${name} must be a binary string of 0s and 1s${min>1?` (at least ${min} bits)`:''}.`);return c}
+const spaced=s=>[...s].join(' ');
+/* ---------- IPv4 ---------- */
+function ipToInt(ip){const a=String(ip).trim().split('.');if(a.length!==4||a.some(x=>!/^\d{1,3}$/.test(x)))fail('Enter a valid IPv4 address (example: 192.168.1.10).');
+ if(a.some(x=>+x>255))fail(`${a.find(x=>+x>255)} is not a valid octet: an octet can never exceed 255 (11111111).`);return a.reduce((n,x)=>((n*256)+Number(x))>>>0,0)>>>0}
+function intToIp(n){return [n>>>24,(n>>>16)&255,(n>>>8)&255,n&255].join('.')}
+function maskInt(p){return p===0?0:(0xffffffff<<(32-p))>>>0}
+function bin32(n){return [24,16,8,0].map(s=>((n>>>s)&255).toString(2).padStart(8,'0')).join('.')}
+function bin32c(n,p){let out='',cur=null;for(let i=0;i<32;i++){if(i&&i%8===0)out+='.';const net=i<p;if(cur!==net){if(cur!==null)out+='</span>';out+=`<span class="${net?'blue':'gold'}">`;cur=net}out+=(n>>>(31-i))&1}return out+'</span>'}
+function parsePrefix(s){const t=String(s).trim().replace(/^\//,'');if(!/^\d{1,2}$/.test(t)||+t>32)fail('Prefix must be a whole number from 0 to 32 (for example /27).');return +t}
+function parseCidr(s){const m=String(s).trim().match(/^([\d.]+)\s*\/\s*(\d{1,2})$/);if(!m)fail(`"${s}" is not in CIDR form (example: 192.168.10.0/24).`);const p=parsePrefix(m[2]);return {n:ipToInt(m[1]),p}}
+function classInfo(o1){if(o1<128)return{c:'A',lead:'0',mask:'255.0.0.0',pre:8,range:'1–126'};if(o1<192)return{c:'B',lead:'10',mask:'255.255.0.0',pre:16,range:'128–191'};
+ if(o1<224)return{c:'C',lead:'110',mask:'255.255.255.0',pre:24,range:'192–223'};if(o1<240)return{c:'D',lead:'1110',range:'224–239'};return{c:'E',lead:'1111',range:'240–255'}}
+function classifyIp(s){const a=String(s).trim().split('.');if(a.length!==4||a.some(x=>!/^\d{1,3}$/.test(x)))return{v:'Invalid',r:'not four numbers separated by dots'};
+ const b=a.find(x=>+x>255);if(b!==undefined)return{v:'Invalid',r:`octet ${b} exceeds 255 (11111111)`};const [o1,o2]=a.map(Number);
+ if(o1===10)return{v:'Private',r:'first octet 10 → inside 10.0.0.0/8'};
+ if(o1===172&&o2>=16&&o2<=31)return{v:'Private',r:`second octet ${o2} → inside 16–31 → 172.16.0.0/12`};
+ if(o1===192&&o2===168)return{v:'Private',r:'starts with 192.168 → inside 192.168.0.0/16'};
+ if(o1===127)return{v:'Special',r:'loopback (the device itself), neither private nor public'};
+ if(o1===169&&o2===254)return{v:'Special',r:'link-local (self-assigned when DHCP fails), not routed'};
+ if(o1===0)return{v:'Special',r:'"this network" (0.0.0.0/8)'};
+ if(o1>=224&&o1<=239)return{v:'Special',r:'multicast (class D)'};
+ if(o1>=240)return{v:'Special',r:a.every(x=>x==='255')?'limited broadcast':'reserved (class E)'};
+ if(o1===172)return{v:'Public',r:`second octet ${o2} is outside 16–31`};
+ if(o1===192)return{v:'Public',r:`second octet ${o2} ≠ 168`};
+ return{v:'Public',r:`first octet ${o1} is not 10, 172.16–31 or 192.168`}}
+/* ---------- subnet step-by-step ---------- */
+function subnetSteps(ipStr,p,parent){
+ const addr=ipToInt(ipStr),mask=maskInt(p),net=(addr&mask)>>>0,total=2**(32-p),bc=(net+total-1)>>>0,h=32-p;
+ const usable=p>=31?(p===31?2:1):total-2;
+ const on=[0,1,2,3].map(i=>Math.max(0,Math.min(8,p-8*i)));const mo=on.map(o=>o===0?0:256-2**(8-o));
+ const part=on.findIndex(o=>o>0&&o<8);
+ let out=ASK(`mask, network address, broadcast, hosts for ${mono(esc(ipStr.trim()))}/${p}`);
+ out+=STEP(1,`<b>Mask.</b> /${p} means ${p} ones: ${mono(on.map(o=>'1'.repeat(o)+'0'.repeat(8-o)).join('.'))} = <b>${intToIp(mask)}</b> (${on.join(' + ')}). `+(part>=0?`Block size in octet ${part+1}: 256 − ${mo[part]} = <b>${256-mo[part]}</b>.`:'All mask octets are 255 or 0, so subnets begin exactly on octet borders.'));
+ out+=STEP(2,`<b>Network address</b> = address AND mask (keep the ${blue('network bits')}, zero the ${gold('host bits')}):`+PRE(`Address  ${bin32c(addr,p)}  = ${intToIp(addr)}\nMask     ${bin32c(mask,p)}  = ${intToIp(mask)}\nAND      ${bin32c(net,p)}  = <b>${intToIp(net)}</b>`));
+ out+=STEP(3,`<b>Broadcast</b>: keep the ${p} network bits and set all ${h} host bits to 1:`+PRE(`${bin32c(bc,p)}  = <b>${intToIp(bc)}</b>`));
+ out+=STEP(4,p>=31?`<b>Hosts.</b> A /${p} is a special case: ${p===31?'2 addresses (point-to-point link)':'1 address (a single host)'}.`:`<b>Hosts.</b> ${h} host bits → 2${sup(h)} = ${fmt(total)} addresses − network − broadcast = <b>${fmt(usable)} usable hosts</b> (first host = network + 1 = ${intToIp(net+1)}, last host = broadcast − 1 = ${intToIp(bc-1)}).`);
+ if(parent!==null&&parent!==undefined&&parent!==''&&+parent<=p){
+  const par=+parent,s=p-par,cnt=2**s,base=(addr&maskInt(par))>>>0,idx=Math.floor((net-base)/total);
+  out+=STEP(5,`<b>Subnets.</b> Original /${par}, new /${p}: borrowed bits s = ${p} − ${par} = ${s} → 2${sup(s)} = <b>${fmt(cnt)} subnets</b>. Your address is in subnet <b>#${fmt(idx+1)}</b> (${intToIp(net)}/${p}). Quick check: block size ${fmt(total)}; ${fmt(net-base)} ÷ ${fmt(total)} = ${idx} whole blocks before it.`);
+  const show=new Set();if(cnt<=64)for(let i=0;i<cnt;i++)show.add(i);else{for(let i=0;i<8;i++)show.add(i);for(let i=idx-1;i<=idx+1;i++)if(i>=0&&i<cnt)show.add(i);show.add(cnt-1)}
+  const rows=[];let prev=-1;[...show].sort((a,b)=>a-b).forEach(i=>{if(i>prev+1)rows.push({c:['…','','','','',''],cls:''});const n=(base+i*total)>>>0,b=(n+total-1)>>>0;
+   rows.push({cls:i===idx?'hit':'',c:[(i+1)+(i===0?' ◀ first':'')+(i===idx?' ◀ contains your IP':''),intToIp(n),p>=31?'—':intToIp(n+1),p>=31?'—':intToIp(b-1),intToIp(b),fmt(usable)]});prev=i});
+  out+=tbl(['Subnet','Network id','First host','Last host','Broadcast','Usable'],rows)}
+ const ci=classInfo(+String(ipStr).trim().split('.')[0]),pv=classifyIp(ipStr);
+ out+=NOTE(`${esc(ipStr.trim())} is in <b>class ${ci.c}</b> (first octet ${String(ipStr).trim().split('.')[0]}) and ${pv.v==='Private'?'<b>private</b>':pv.v==='Public'?'<b>public</b>':'a <b>special</b>-purpose address'}. Class and privacy are different questions.`);
+ out+=ANS(`mask ${intToIp(mask)} (/${p}) · network ${intToIp(net)} · broadcast ${intToIp(bc)} · ${p>=31?'':`first host ${intToIp(net+1)} · last host ${intToIp(bc-1)} · `}${fmt(usable)} usable hosts`);
+ return out}
+/* ---------- dashboard ---------- */
+for(let p=0;p<=32;p++){$('prefix').add(new Option('/'+p,p));$('parent').add(new Option('/'+p,p))}
+$('prefix').value='27';$('parent').value='24';
+let currentRows=[];
+function calculate(){try{
+ const ip=$('ip').value.trim(),addr=ipToInt(ip),p=+$('prefix').value,parent=+$('parent').value;
+ if(parent>p)throw new UErr('Original network prefix must be equal to or smaller than the selected subnet prefix.');
+ const mask=maskInt(p),network=(addr&mask)>>>0,broadcast=(network|(~mask>>>0))>>>0,total=2**(32-p),hosts=p>=31?(p===31?2:1):total-2;
+ const first=p>=31?network:network+1,last=p>=31?broadcast:broadcast-1;
+ const base=(addr&maskInt(parent))>>>0,subnets=2**(p-parent),maxRows=512,block=total;
+ $('network').textContent=intToIp(network);$('first').textContent=p===32?'N/A (single address)':intToIp(first);$('last').textContent=p===32?'N/A (single address)':intToIp(last);$('broadcast').textContent=intToIp(broadcast);$('mask').textContent=intToIp(mask);$('prefixLabel').textContent=`/${p} · ${p} network bits`;$('hosts').textContent=hosts.toLocaleString();$('hostBits').textContent=`${32-p} host bits · ${total.toLocaleString()} total addresses`;$('subnetCount').textContent=subnets.toLocaleString();$('subnetBits').textContent=`${p-parent} borrowed bits`;$('range').textContent=`${intToIp(network)} – ${intToIp(broadcast)}`;
+ $('totalAddresses').textContent=total.toLocaleString();$('usablePercent').textContent=(100*hosts/total).toFixed(1)+'%';$('hostBitsStat').textContent=32-p;
+ $('formulaHost').textContent=`32 − ${p} = ${32-p}`;$('formulaUsable').textContent=p>=31?`${total} address${total===1?'':'es'} · /${p} special case`:`2^${32-p} − 2 = ${hosts}`;$('formulaSubnets').textContent=`2^(${p} − ${parent}) = ${subnets.toLocaleString()}`;
+ $('networkPill').textContent=`/${p} SUBNET · ${hosts.toLocaleString()} HOSTS`;
+ $('binaryMask').textContent=Array.from({length:32},(_,i)=>i<p?'1':'0').join('').match(/.{8}/g).join('.');
+ $('bitGrid').innerHTML=Array.from({length:32},(_,i)=>`<span title="Bit ${i+1}: ${i<p?'network':'host'}" style="height:18px;border-radius:3px;background:${i<p?'#48a8ff':'#38d6cf'};opacity:${i%8===7?1:.78}"></span>`).join('');
+ const netPct=100/total,hostPct=Math.max(0,100-2*netPct);
+ $('networkBar').style.width=netPct+'%';$('broadcastBar').style.width=netPct+'%';$('hostBar').style.width=hostPct+'%';
+ const shown=Math.min(subnets,maxRows),hitIdx=Math.floor((network-base)/block);currentRows=[];
+ const mk=i=>{const n=(base+i*block)>>>0,b=(n+block-1)>>>0;return{i:i+1,network:intToIp(n),first:p>=31?'—':intToIp(n+1),last:p>=31?'—':intToIp(b-1),broadcast:intToIp(b),hosts:p>=31?(p===31?2:1):block-2}};
+ for(let i=0;i<shown;i++)currentRows.push(mk(i));
+ const row=(r,i)=>`<tr${i===hitIdx?' class="hit"':''}><td>${r.i}${i===0?' ◀ first':''}${i===hitIdx?' ◀ contains your IP':''}</td><td class="blue">${r.network}/${p}</td><td class="green">${r.first}</td><td class="green">${r.last}</td><td class="gold">${r.broadcast}</td><td>${r.hosts.toLocaleString()}</td></tr>`;
+ let html=currentRows.map((r,i)=>row(r,i)).join('');if(hitIdx>=shown)html+=`<tr><td colspan="6" class="dim">…</td></tr>`+row(mk(hitIdx),hitIdx);
+ $('subnetRows').innerHTML=html;
+ $('tableHint').textContent=subnets>maxRows?`Showing first ${maxRows} of ${subnets.toLocaleString()} subnets to keep the page responsive (plus the subnet holding your IP). Export CSV contains the first ${maxRows}.`:`Showing all ${subnets.toLocaleString()} subnet${subnets===1?'':'s'}.`;
+ $('workings').innerHTML=subnetSteps(ip,p,parent);
+ $('error').textContent='';
+}catch(e){if(!(e instanceof UErr))console.error(e);$('error').textContent=e.message}}
+$('calculate').addEventListener('click',calculate);
+$('reset').addEventListener('click',()=>{$('ip').value='192.168.100.154';$('prefix').value='27';$('parent').value='24';calculate()});
+document.querySelectorAll('.example').forEach(b=>b.addEventListener('click',()=>{$('ip').value=b.dataset.ip;$('prefix').value=b.dataset.prefix;$('parent').value=b.dataset.parent;calculate()}));
+$('export').addEventListener('click',()=>{if(!currentRows.length)return;const headers=['Subnet','Network ID','First host','Last host','Broadcast','Usable hosts'];const csv=[headers,...currentRows.map(r=>[r.i,r.network,r.first,r.last,r.broadcast,r.hosts])].map(row=>row.map(v=>'"'+String(v).replaceAll('"','""')+'"').join(',')).join('\n');const blob=new Blob([csv],{type:'text/csv'}),url=URL.createObjectURL(blob),a=document.createElement('a');a.href=url;a.download='subnetlab-subnets.csv';a.click();URL.revokeObjectURL(url);$('toast').classList.add('show');setTimeout(()=>$('toast').classList.remove('show'),1800)});
+$('ip').addEventListener('keydown',e=>{if(e.key==='Enter')calculate()});$('prefix').addEventListener('change',calculate);$('parent').addEventListener('change',calculate);
+/* ---------- tool registry ---------- */
+const TOOLS={};const f=(k,label,def='',o={})=>({k,label,def,...o});
+const T=s=>{TOOLS[s.id]=s};
+const PAR=[['even','Even parity'],['odd','Odd parity']];
+/* ===== IP / CIDR tools ===== */
+const octWork=x=>{if(x===0)return'0';const w=[];for(let i=7;i>=0;i--)if(x&(1<<i))w.push(2**i);return w.join(' + ')};
+T({id:'subnet',view:'cidr',tab:'Subnet step-by-step',title:'Subnet working, step by step',desc:'Mask, network, broadcast, host range and hosts — with every calculation shown like the study guide.',
+ fields:[f('ip','IPv4 address','10.20.30.141'),f('prefix','Prefix length','/27'),f('parent','Original network prefix (optional, for subnet count)','')],
+ ex:[{l:'0B.4 · 192.168.10.77 /26',v:{ip:'192.168.10.77',prefix:'26',parent:''}},{l:'0C.13 · 192.168.100.154 /27',v:{ip:'192.168.100.154',prefix:'27',parent:'24'}}],
+ run:v=>subnetSteps(v.ip,parsePrefix(v.prefix),v.parent.trim()===''?null:parsePrefix(v.parent))});
+T({id:'hostsprefix',view:'cidr',tab:'Hosts → prefix',title:'Hosts needed → prefix and mask',desc:'Smallest host-bit count h with 2^h − 2 ≥ hosts; compares classful waste with CIDR.',
+ fields:[f('hosts','Usable hosts needed','3000'),f('claimed','Prefix someone claimed (optional, to spot a mistake)','')],
+ ex:[{l:'0C.12 · 14,047 hosts',v:{hosts:'14047',claimed:'16'}},{l:'0C.11 · 500 hosts',v:{hosts:'500',claimed:''}}],
+ run:v=>{const need=parseInt(String(v.hosts).replace(/,/g,''),10);if(!(need>=1)||need>2**31-2)fail('Enter a number of hosts from 1 to 2,147,483,646.');
+  let h=1;const rows=[];for(;;h++){const u=2**h-2;rows.push({cls:u>=need?'hl':'',c:[h,fmt(2**h),fmt(u),u>=need?ok('✓ yes'):'no']});if(u>=need)break}
+  const p=32-h,u=2**h-2,mk=maskInt(p);let out=ASK(`the most efficient mask for ${fmt(need)} usable hosts`);
+  out+=STEP(1,`<b>Host bits.</b> Smallest h with 2${sup('h')} − 2 ≥ ${fmt(need)} (round <u>up</u>):`+tbl(['h','2^h','2^h − 2','Enough?'],rows));
+  out+=STEP(2,`<b>Prefix</b> = 32 − h = 32 − ${h} = <b>${p}</b>.`);
+  out+=STEP(3,`<b>Mask</b>: ${p} ones then ${h} zeros: ${mono(bin32(mk))} = <b>${intToIp(mk)}</b>.`);
+  out+=STEP(4,`<b>Waste (CIDR)</b> = ${fmt(u)} − ${fmt(need)} = <b>${fmt(u-need)}</b> addresses.`);
+  const cls=[['C',254,'/24'],['B',65534,'/16'],['A',16777214,'/8']].find(c=>c[1]>=need);
+  if(cls)out+=STEP(5,`<b>Classful</b> would force class ${cls[0]} (${cls[2]}): ${fmt(cls[1])} hosts → waste ${fmt(cls[1])} − ${fmt(need)} = <b>${fmt(cls[1]-need)}</b> (${(100*(cls[1]-need)/cls[1]).toFixed(1)} % of the block).`);
+  else out+=STEP(5,'Classful addressing has no class large enough.');
+  if(String(v.claimed).trim()!==''){const cp=parsePrefix(v.claimed),cu=cp>=31?0:2**(32-cp)-2;out+=STEP(6,`<b>Checking the claimed /${cp}.</b> `+(cp===p?ok('Correct.'):cu<need?`${bad('Too small')}: a /${cp} gives only ${fmt(cu)} hosts.`:`A /${cp} gives ${fmt(cu)} hosts — it works but wastes ${fmt(cu-need)} addresses, so it is not the most efficient. The slip: 32 − ${h} = <b>${p}</b>, not ${cp}.`))}
+  return out+ANS(`/${p} = ${intToIp(mk)} (${fmt(u)} usable hosts, ${fmt(u-need)} wasted)`+(cls?` · classful: class ${cls[0]}, ${fmt(cls[1]-need)} wasted`:''))}});
+T({id:'split',view:'cidr',tab:'Equal subnets',title:'Split a network into equal subnets',desc:'Borrow s bits so that 2^s ≥ number of subnets.',
+ fields:[f('net','Network (CIDR)','172.16.0.0/16'),f('count','Number of subnets','8')],
+ ex:[{l:'E39 · 172.16.0.0/16 into 8',v:{net:'172.16.0.0/16',count:'8'}}],
+ run:v=>{const {n,p}=parseCidr(v.net),want=parseInt(v.count,10);if(!(want>=1))fail('Number of subnets must be at least 1.');
+  const s=Math.ceil(Math.log2(want)),np=p+s;if(np>32)fail('Not enough host bits for that many subnets.');
+  const base=(n&maskInt(p))>>>0,cnt=2**s,size=2**(32-np),mk=maskInt(np),hosts=np>=31?(np===31?2:1):size-2;
+  let out=ASK(`split ${intToIp(base)}/${p} into ${want} equal subnets`);
+  out+=STEP(1,`<b>Subnet bits.</b> 2${sup(s)} = ${cnt} ≥ ${want} → s = ${s}${cnt!==want?` (rounded up, so ${cnt} subnets)`:''}. New prefix = ${p} + ${s} = <b>/${np}</b>.`);
+  out+=STEP(2,`<b>Mask.</b> /${np} = <b>${intToIp(mk)}</b>; block size = ${fmt(size)} addresses.`);
+  out+=STEP(3,`<b>Hosts.</b> Host bits = 32 − ${np} = ${32-np} → 2${sup(32-np)} − 2 = <b>${fmt(hosts)}</b> per subnet.`);
+  const idx=cnt<=16?[...Array(cnt).keys()]:[0,1,2,cnt-1];const rows=[];let pr=-1;idx.forEach(i=>{if(i>pr+1)rows.push(['…','','','','']);const a=(base+i*size)>>>0,b=(a+size-1)>>>0;rows.push([i+1,intToIp(a),np>=31?'—':intToIp(a+1),np>=31?'—':intToIp(b-1),intToIp(b)]);pr=i});
+  out+=STEP(4,'<b>List.</b>'+tbl(['Subnet','Network id','First host','Last host','Broadcast'],rows));
+  return out+ANS(`/${np}, ${intToIp(mk)}, ${fmt(hosts)} hosts per subnet; first ${intToIp(base)}, second ${intToIp(base+size)}, third ${intToIp(base+2*size)}, last ${intToIp(base+(cnt-1)*size)}`)}});
+T({id:'vlsm',view:'cidr',tab:'VLSM planner',title:'VLSM planner',desc:'Largest network first; each gets the smallest block that fits, placed right after the previous one.',
+ fields:[f('net','Parent network (CIDR)','192.168.10.0/24'),f('list','Networks (one per line: name, hosts needed)','Sales 100\nAdmin 50\nIT 25\nGuests 10',{t:'area',wide:1})],
+ ex:[{l:'0C.14 · four departments',v:{net:'192.168.10.0/24',list:'Sales 100\nAdmin 50\nIT 25\nGuests 10'}},{l:'E40 · LANs + link',v:{net:'192.168.50.0/24',list:'LAN-1 60\nLAN-2 28\nLAN-3 12\nRouter link 2'}}],
+ run:v=>{const {n,p}=parseCidr(v.net),base=(n&maskInt(p))>>>0,total=2**(32-p);
+  const reqs=v.list.split('\n').map(l=>l.trim()).filter(Boolean).map((l,i)=>{const m=l.match(/^(.*?)[\s,:;]*(\d[\d,]*)$/);if(!m)fail(`Line "${l}" needs a hosts number at the end.`);return{name:m[1].trim()||'Net '+(i+1),need:parseInt(m[2].replace(/,/g,''),10),i}});
+  if(!reqs.length)fail('Add at least one network.');reqs.sort((a,b)=>b.need-a.need||a.i-b.i);
+  let cur=base,rows=[],used=0;const alloc=[];
+  for(const r of reqs){let h=2;while(2**h-2<r.need)h++;const size=2**h;cur=Math.ceil((cur-base)/size)*size+base;
+   if(cur+size>base+total)fail(`Out of space: "${r.name}" (${r.need} hosts) needs a /${32-h} but the parent /${p} has no room left.`);
+   const net=cur>>>0,bc=(net+size-1)>>>0;alloc.push({name:r.name,net,pre:32-h});
+   rows.push([esc(r.name),r.need,`${h} (2^${h} − 2 = ${2**h-2})`,'/'+(32-h),intToIp(net),`${intToIp(net+1)} – ${intToIp(bc-1)}`,intToIp(bc),intToIp(maskInt(32-h))]);cur+=size;used+=size}
+  let out=ASK(`variable-length subnets inside ${intToIp(base)}/${p}`);
+  out+=STEP(1,'<b>Sort largest first</b> and give each the smallest block with 2<sup>h</sup> − 2 ≥ need (minimum h = 2). Each block must start where its own size divides the address.');
+  out+=STEP(2,'<b>Allocation.</b>'+tbl(['Network','Need','Host bits h','Prefix','Network id','Usable','Broadcast','Mask'],rows));
+  out+=STEP(3,`<b>Check.</b> Addresses used = ${fmt(used)} ≤ ${fmt(total)}; no ranges overlap. Free space: ${cur<base+total?`${intToIp(cur)} – ${intToIp(base+total-1)} (${fmt(base+total-cur)} addresses)`:'none'}.`);
+  return out+ANS(alloc.map(a=>`${esc(a.name)} ${intToIp(a.net)}/${a.pre}`).join(' · '))}});
+T({id:'aggr',view:'cidr',tab:'Route aggregation',title:'Aggregate networks into one route',desc:'Find the longest common prefix (supernet) and check whether it is exact.',
+ fields:[f('list','Networks (CIDR, separated by commas or lines)','192.168.0.0/24, 192.168.1.0/24, 192.168.2.0/24, 192.168.3.0/24',{t:'area',wide:1})],
+ ex:[{l:'0C.15 · four /24s',v:{list:'192.168.0.0/24, 192.168.1.0/24, 192.168.2.0/24, 192.168.3.0/24'}},{l:'E41 · eight /24s',v:{list:'10.4.0.0/24 10.4.1.0/24 10.4.2.0/24 10.4.3.0/24 10.4.4.0/24 10.4.5.0/24 10.4.6.0/24 10.4.7.0/24'}},{l:'Not aggregable (1–4)',v:{list:'192.168.1.0/24, 192.168.2.0/24, 192.168.3.0/24, 192.168.4.0/24'}}],
+ run:v=>{const items=v.list.split(/[\s,;]+/).filter(Boolean).map(s=>parseCidr(s));if(items.length<2)fail('Enter at least two networks.');
+  const nets=items.map(i=>({n:(i.n&maskInt(i.p))>>>0,p:i.p}));let c=Math.min(...nets.map(x=>x.p));
+  while(c>0&&nets.some(x=>((x.n^nets[0].n)&maskInt(c))>>>0!==0))c--;
+  const agg=(nets[0].n&maskInt(c))>>>0,cover=2**(32-c),sum=nets.reduce((a,x)=>a+2**(32-x.p),0),exact=sum===cover;
+  let out=ASK(`one route covering ${nets.length} networks`);
+  out+=STEP(1,'<b>Binary</b> of each network (common prefix in blue, the rest in gold):'+PRE(nets.map(x=>`${bin32c(x.n,c)}  ${intToIp(x.n)}/${x.p}`).join('\n')));
+  out+=STEP(2,`<b>Common prefix length</b> = <b>${c}</b> bits (the first ${c} bits are identical in every network).`);
+  out+=STEP(3,`<b>One route:</b> ${intToIp(agg)}/${c}, mask ${intToIp(maskInt(c))}. It spans ${intToIp(agg)} – ${intToIp(agg+cover-1)} = ${fmt(cover)} addresses; your networks hold ${fmt(sum)}.`);
+  out+=exact?CHK('the networks fill the supernet exactly ✓ (a power-of-two count, starting on a boundary).'):NOTE(`${bad('Not exact:')} the supernet also covers ${fmt(cover-sum)} addresses that are not in your list. Only a power-of-two number of networks starting on a boundary can be aggregated into one entry.`);
+  return out+ANS(`${intToIp(agg)}/${c} (${intToIp(maskInt(c))})${exact?'':' — covers extra addresses'}`)}});
+T({id:'numconv',view:'ip',tab:'Binary ↔ decimal ↔ hex',title:'Binary ↔ decimal ↔ hexadecimal',desc:'Place-value working for any number up to 32 bits.',
+ fields:[f('val','Value','10101100'),f('base','Value is written in',  'bin',{t:'sel',opts:[['bin','Binary'],['dec','Decimal'],['hex','Hexadecimal']]})],
+ ex:[{l:'0B.1 · 10101100',v:{val:'10101100',base:'bin'}},{l:'0B.3 · 172',v:{val:'172',base:'dec'}},{l:'0xAC',v:{val:'AC',base:'hex'}}],
+ run:v=>{let s=String(v.val).trim().replace(/[\s_]/g,''),n,bits;
+  if(v.base==='bin'){if(!/^[01]+$/.test(s))fail('Binary numbers use only 0 and 1.');if(s.length>32)fail('Up to 32 bits please.');n=parseInt(s,2);bits=s}
+  else if(v.base==='dec'){if(!/^\d+$/.test(s))fail('Enter a whole number.');n=Number(s);if(n>4294967295)fail('Up to 4,294,967,295 (32 bits).')}
+  else{s=s.replace(/^0x/i,'');if(!/^[0-9a-f]{1,8}$/i.test(s))fail('Hex uses digits 0–9 and A–F (up to 8 digits).');n=parseInt(s,16)}
+  const w=v.base==='bin'?s.length:Math.max(8,Math.ceil(Math.max(1,n.toString(2).length)/8)*8);bits=n.toString(2).padStart(w,'0');
+  let out=ASK(`convert ${mono(esc(s))} (${v.base==='bin'?'binary':v.base==='dec'?'decimal':'hex'}) to the other bases`);
+  if(v.base==='bin'){const pv=[...bits].map((b,i)=>2**(w-1-i));
+   if(w<=16)out+=STEP(1,'<b>Write the place values</b> above the bits:'+tbl(['Place value',...pv],[['Bit',...[...bits].map(b=>`<b class="blue">${b}</b>`)],['Counts?',...[...bits].map((b,i)=>b==='1'?ok(pv[i]):'–')]]));
+   const on=pv.filter((_,i)=>bits[i]==='1');out+=STEP(w<=16?2:1,`<b>Add the place values above a 1:</b> ${on.length?on.join(' + '):'0'} = <b>${n}</b>.`)}
+  else if(v.base==='dec'){let left=n;const rows=[];for(let i=w-1;i>=0;i--){const pv=2**i,fit=left>=pv;rows.push([pv,fit?`${left} ≥ ${pv}: yes`:`${left} < ${pv}: no`,`<b>${fit?1:0}</b>`,fit?`${left} − ${pv} = ${left-pv}`:left]);if(fit)left-=pv}
+   out+=STEP(1,'<b>Method 1 — subtract place values</b> (does the place value fit into what is left?):'+tbl(['Place value','Fits?','Bit','Left after this step'],rows));
+   let q=n;const dv=[],qq=[],rr=[];do{dv.push(`${q} ÷ 2`);const r=q%2;q=(q-r)/2;qq.push(q);rr.push(r)}while(q>0);
+   out+=STEP(2,'<b>Method 2 — divide by 2, keep the remainders:</b>'+tbl(['Division',...dv],[['Quotient',...qq],['Remainder',...rr]])+`Read the remainders from the right (bottom) up: ${gold(rr.slice().reverse().join(''))}; pad with leading zeros to ${w} bits.`)}
+  else{const d=[...s.toUpperCase()];out+=STEP(1,'<b>Each hex digit is one nibble (4 bits):</b>'+tbl(['Hex digit','Binary','Decimal'],d.map(x=>[x,parseInt(x,16).toString(2).padStart(4,'0'),parseInt(x,16)])));
+   out+=STEP(2,`<b>Decimal</b> = ${d.map((x,i)=>`${parseInt(x,16)}×${16**(d.length-1-i)}`).join(' + ')} = <b>${n}</b>.`)}
+  const grp=bits.replace(/(.{4})(?=.)/g,'$1 ');const hx=n.toString(16).toUpperCase();
+  out+=tbl(['Binary','Decimal','Hexadecimal'],[[mono(grp),`<b>${fmt(n)}</b>`,`<b>0x${hx.length%2?'0'+hx:hx}</b>`]]);
+  return out+ANS(v.base==='bin'?`${n}`:v.base==='dec'?`${bits} (hex ${hx})`:`${bits} = ${n}`)}});
+T({id:'ipconv',view:'ip',tab:'IPv4 ↔ binary',title:'IPv4 address ↔ binary',desc:'Convert each octet separately with place values.',
+ fields:[f('dir','Direction','d2b',{t:'sel',opts:[['d2b','Dotted decimal → binary'],['b2d','Binary → dotted decimal']]}),f('val','Address','192.0.2.130')],
+ ex:[{l:'0C.2 · 192.168.100.154 → binary',v:{dir:'d2b',val:'192.168.100.154'}},{l:'0C.1 · binary → decimal',v:{dir:'b2d',val:'11011011.11000110.11100101.00000001'}}],
+ run:v=>{if(v.dir==='d2b'){const p=v.val.trim().split('.');if(p.length!==4||p.some(x=>!/^\d{1,3}$/.test(x)))fail('Enter four numbers separated by dots, e.g. 192.168.10.1.');
+   p.forEach(x=>{if(+x>255)fail(`${x} is not a valid octet: an octet can never exceed 255 (11111111).`)});
+   const b=p.map(x=>(+x).toString(2).padStart(8,'0'));return ASK(`write ${mono(p.join('.'))} in binary`)+STEP(1,'Convert <b>each octet separately</b> (place values 128, 64, 32, 16, 8, 4, 2, 1):'+tbl(['Octet','Place values used','Bits'],p.map((x,i)=>[x,`${x} = ${octWork(+x)}`,blue(b[i])])))+ANS(b.join('.'))}
+  let s=v.val.trim().replace(/\s+/g,'');let g=s.includes('.')?s.split('.'):(s.length===32?s.match(/.{8}/g):[s]);
+  if(g.length!==4||g.some(x=>!/^[01]{8}$/.test(x)))fail('Enter 32 bits as four octets of exactly 8 bits (pad with leading zeros).');
+  const d=g.map(x=>parseInt(x,2));return ASK(`convert ${mono(g.join('.'))} to dotted decimal`)+STEP(1,'Convert <b>each octet separately</b>:'+tbl(['Octet','Bits','Place values that are 1','Decimal'],g.map((x,i)=>[i+1,blue(x),octWork(d[i]),`<b>${d[i]}</b>`])))+ANS(d.join('.'))}});
+T({id:'maskconv',view:'ip',tab:'Mask ↔ prefix',title:'Subnet mask ↔ prefix length',desc:'Enter /n, n, or a dotted mask such as 255.255.240.0.',
+ fields:[f('val','Prefix or mask','255.255.240.0')],ex:[{l:'T4 · 255.255.240.0',v:{val:'255.255.240.0'}},{l:'/27',v:{val:'/27'}}],
+ run:v=>{const s=v.val.trim();let p;let out='';
+  if(s.includes('.')){const n=ipToInt(s);const inv=(~n)>>>0;if(((inv+1)&inv)!==0)fail(`${s} is not a valid mask: the 1s must be one unbroken run from the left (${bin32(n)}).`);
+   const oc=s.split('.').map(Number);p=oc.reduce((a,x)=>a+ones(x.toString(2)),0);
+   out=ASK(`prefix length of ${mono(s)}`)+STEP(1,'Count the ones in each octet:'+tbl(['Octet','Binary','Ones'],oc.map(x=>[x,mono(x.toString(2).padStart(8,'0')),ones(x.toString(2))])))+STEP(2,`Total = ${oc.map(x=>ones(x.toString(2))).join(' + ')} = <b>${p}</b>.`)}
+  else{p=parsePrefix(s);const on=[0,1,2,3].map(i=>Math.max(0,Math.min(8,p-8*i)));out=ASK(`mask for /${p}`)+STEP(1,`${p} ones = ${on.join(' + ')}: ${mono(bin32(maskInt(p)))} = <b>${intToIp(maskInt(p))}</b>.`)}
+  const h=32-p;return out+STEP(3,`Host bits = 32 − ${p} = ${h}; addresses per subnet = 2${sup(h)} = ${fmt(2**h)}${p<31?`; usable hosts = ${fmt(2**h-2)}`:''}.`)+ANS(`/${p} = ${intToIp(maskInt(p))}`)}});
+T({id:'classify',view:'ip',tab:'Private / public',title:'Private, public or invalid?',desc:'Checks validity first, then the three private ranges (10/8, 172.16/12, 192.168/16) and special ranges.',
+ fields:[f('list','Addresses (commas, spaces or lines)','172.15.1.1, 172.16.1.1, 172.31.255.255, 172.32.0.1, 192.168.256.1, 10.255.0.9',{t:'area',wide:1})],
+ ex:[{l:'0C.4 · nine addresses',v:{list:'10.200.1.1 172.16.0.1 172.31.255.254 172.32.0.1 192.168.0.1 192.169.1.1 8.8.8.8 127.0.0.1 169.254.10.3'}}],
+ run:v=>{const l=v.list.split(/[\s,;]+/).filter(Boolean);if(!l.length)fail('Enter at least one address.');const col={Private:'ok',Public:'blue',Special:'gold',Invalid:'bad'};
+  const r=l.map(a=>({a,...classifyIp(a)}));const by=k=>r.filter(x=>x.v===k).map(x=>x.a);
+  return ASK('classify each address')+STEP(1,'<b>Method:</b> check each octet is 0–255, then (1) first octet 10? (2) first octet 172 and second 16–31? (3) first two octets 192.168? Any yes → private; otherwise public unless it is a special range.')+tbl(['Address','Verdict','Reason'],r.map(x=>[mono(esc(x.a)),C(col[x.v],'<b>'+x.v+'</b>'),x.r]))+ANS(['Private','Public','Special','Invalid'].filter(k=>by(k).length).map(k=>`${k.toLowerCase()}: ${by(k).join(', ')}`).join(' · '))}});
+T({id:'classful',view:'ip',tab:'Classful (A–E)',title:'Class, default mask, network id, host id',desc:'Classful addressing from the first octet.',
+ fields:[f('list','Addresses','141.20.77.9',{t:'area',wide:1})],
+ ex:[{l:'E36 · 141.20.77.9',v:{list:'141.20.77.9'}},{l:'0C.10 · five addresses',v:{list:'10.20.30.40 130.5.6.7 192.168.1.5 224.0.0.5 240.1.1.1'}},{l:'E35 · five addresses',v:{list:'99.1.2.3, 150.150.0.1, 200.5.5.5, 230.1.1.1, 250.0.0.1'}}],
+ run:v=>{const l=v.list.split(/[\s,;]+/).filter(Boolean);if(!l.length)fail('Enter at least one address.');
+  const rows=l.map(a=>{const n=ipToInt(a),o=a.trim().split('.').map(Number),ci=classInfo(o[0]),b=o[0].toString(2).padStart(8,'0');
+   if(!ci.mask)return{a,ci,b,r:[mono(a),mono(b),`<b>${ci.c}</b>`,ci.c==='D'?'none (multicast)':'none (reserved)','–','–','–','–']};
+   const m=maskInt(ci.pre),net=(n&m)>>>0,bc=(net|(~m>>>0))>>>0;
+   return{a,ci,b,net,bc,m,r:[mono(a),mono(b),`<b>${ci.c}</b>`,ci.mask,intToIp(net),intToIp((n&~m)>>>0),intToIp(bc),fmt(2**(32-ci.pre)-2)]}});
+  let out=ASK('class, default mask, network id, host id, broadcast and usable hosts');
+  out+=STEP(1,'<b>Method:</b> convert the first octet to 8 bits and read the leading bits (0 → A, 10 → B, 110 → C, 1110 → D, 1111 → E); take the default mask; keep the network octets and zero the host octets.');
+  out+=tbl(['Address','First octet','Class','Default mask','Network id','Host id','Broadcast','Usable hosts'],rows.map(x=>x.r));
+  if(rows.length===1&&rows[0].ci.mask){const x=rows[0];out+=STEP(2,`${x.a.split('.')[0]} = ${x.b} → leading bits <b>${x.ci.lead}</b> → <b>class ${x.ci.c}</b>, mask ${x.ci.mask} (/${x.ci.pre}).`)+STEP(3,`Network id = ${intToIp(x.net)}; broadcast = all ${32-x.ci.pre} host bits set to 1 = ${intToIp(x.bc)}; usable hosts = 2${sup(32-x.ci.pre)} − 2 = ${fmt(2**(32-x.ci.pre)-2)}.`)}
+  return out+ANS(rows.map(x=>x.ci.mask?`${x.a}: class ${x.ci.c}, network ${intToIp(x.net)}, host id ${x.r[5]}, broadcast ${intToIp(x.bc)}, ${x.r[7]} hosts`:`${x.a}: class ${x.ci.c}`).join('<br>'))}});
+T({id:'privblock',view:'ip',tab:'Block size',title:'Size of a CIDR block',desc:'How many addresses and how many smaller networks does a block contain?',
+ fields:[f('block','Block (CIDR)','172.16.0.0/12'),f('sub','Size of the inner networks (prefix)','16')],
+ ex:[{l:'E32 · 172.16.0.0/12 of /16s',v:{block:'172.16.0.0/12',sub:'16'}},{l:'192.168.0.0/16 of /24s',v:{block:'192.168.0.0/16',sub:'24'}}],
+ run:v=>{const {n,p}=parseCidr(v.block),sp=parsePrefix(v.sub);if(sp<p)fail('The inner prefix must be at least as long as the block prefix.');
+  const base=(n&maskInt(p))>>>0,tot=2**(32-p),inner=2**(32-sp),cnt=2**(sp-p),last=(base+(cnt-1)*inner)>>>0;
+  return ASK(`size of ${intToIp(base)}/${p} and how many /${sp} networks it contains`)+STEP(1,`<b>Free bits</b> = 32 − ${p} = ${32-p} → addresses = 2${sup(32-p)} = <b>${fmt(tot)}</b>.`)+STEP(2,`One /${sp} network has 32 − ${sp} = ${32-sp} host bits → ${fmt(inner)} addresses.`)+STEP(3,`<b>Divide:</b> ${fmt(tot)} ÷ ${fmt(inner)} = <b>${fmt(cnt)}</b> (same as 2${sup(sp-p)}).`)+ANS(`${fmt(tot)} addresses = ${fmt(cnt)} networks of /${sp} (${intToIp(base)} to ${intToIp(last)})`)}});
+T({id:'nat',view:'ip',tab:'NAT',title:'NAT translation',desc:'Outgoing rewrite and the reverse lookup for the reply.',
+ fields:[f('pip','Private source address','10.0.0.7'),f('pport','Source port','4000'),f('pub','Public address of NAT box','41.0.0.9'),f('pubport','Port chosen by NAT','7001')],
+ ex:[{l:'E33',v:{pip:'10.0.0.7',pport:'4000',pub:'41.0.0.9',pubport:'7001'}},{l:'0C.5',v:{pip:'10.0.0.1',pport:'5544',pub:'198.60.42.12',pubport:'3344'}}],
+ run:v=>{ipToInt(v.pip);ipToInt(v.pub);const a=+v.pport,b=+v.pubport;if(!(a>=0&&a<=65535&&b>=0&&b<=65535))fail('Ports are 0–65535.');
+  return ASK('source after translation, and what happens to the reply')+STEP(1,`<b>Outgoing.</b> Before: ${mono(v.pip+' : '+a)}. The NAT box swaps the private pair for its own public address and a free port → <b>${v.pub} : ${b}</b>, and stores <i>${v.pip}:${a} ↔ ${v.pub}:${b}</i> in its table.`)+STEP(2,`<b>Returning.</b> The reply is addressed to ${v.pub} : ${b}. The NAT box finds that entry, rewrites the destination back to <b>${v.pip} : ${a}</b> and forwards it inside.`)+NOTE(`Why ports? Without them the box could not tell which inside host a reply to ${v.pub} belongs to. A 16-bit port gives 2${sup(16)} = 65,536 port numbers per public address.`)+ANS(`(a) ${v.pub} : ${b} · (b) rewritten to ${v.pip} : ${a}`)}});
+const hrs=h=>Number.isInteger(h)?`${h} h`:`${h} h (${Math.floor(h)} h ${Math.round((h%1)*60)} min)`;
+T({id:'dhcp',view:'ip',tab:'DHCP',title:'DHCP pool and lease timers',desc:'Pool size, shortage, renew (T1 = 50 %) and rebind (T2 = 87.5 %).',
+ fields:[f('net','Network (CIDR)','192.168.5.0/24'),f('first','Pool first address','192.168.5.20'),f('last','Pool last address','192.168.5.99'),f('lease','Lease (hours)','12'),f('dev','Devices connecting at once','95')],
+ ex:[{l:'E34',v:{net:'192.168.5.0/24',first:'192.168.5.20',last:'192.168.5.99',lease:'12',dev:'95'}},{l:'0C.6/0C.7 office',v:{net:'192.168.1.0/24',first:'192.168.1.100',last:'192.168.1.200',lease:'8',dev:'120'}}],
+ run:v=>{const {n,p}=parseCidr(v.net),a=ipToInt(v.first),b=ipToInt(v.last),L=parseFloat(v.lease),D=parseInt(v.dev,10);
+  if(b<a)fail('Pool last address must not be below the first.');if(!(L>0))fail('Lease must be a positive number of hours.');if(!(D>=0))fail('Devices must be 0 or more.');
+  const base=(n&maskInt(p))>>>0,top=base+2**(32-p)-1;if(a<=base||b>=top)fail('The pool must lie inside the network, excluding its network and broadcast addresses.');
+  const pool=b-a+1,short=Math.max(0,D-pool),usable=2**(32-p)-2;
+  return ASK('lease timers, pool size, shortage')+STEP(1,`<b>Renew (T1)</b> = 50 % × ${L} h = <b>${hrs(L/2)}</b>. <b>Rebind (T2)</b> = 87.5 % × ${L} h = <b>${hrs(L*.875)}</b>. The lease expires at ${L} h; then the address returns to the pool.`)+STEP(2,`<b>Pool size</b> = last − first + 1 = ${b-a+1}: (${v.last} − ${v.first} + 1) = <b>${pool}</b> addresses (both ends count). The network has ${fmt(usable)} usable addresses; keep static ones outside the pool.`)+STEP(3,`<b>Demand:</b> ${D} − ${pool} = <b>${short}</b> device${short===1?'':'s'} ${short?'left without an address (widen the pool or shorten the lease)':'— the pool is large enough'}.`)+STEP(4,'<b>Type:</b> addresses leased by DHCP are <b>temporary</b> (they return to the pool when the lease ends); hand-configured ones are persistent.')+ANS(`(a) renew ${hrs(L/2)}, rebind ${hrs(L*.875)} · (b) ${pool} addresses · (c) ${short} left without an address · (d) temporary`)}});
+/* ===== Error detection ===== */
+const needPar=(c,even)=>even?c%2===0:c%2===1;
+T({id:'parity1',view:'detect',ord:3,tab:'Parity (1-D)',title:'Single parity bit',desc:'Generate the parity bit for data, or check a received frame.',
+ fields:[f('mode','Task','gen',{t:'sel',opts:[['gen','Find the parity bit (sender)'],['chk','Check a received frame (receiver)']]}),f('type','Parity','even',{t:'sel',opts:PAR}),f('bits','Bits (data, or the whole received frame)','1100101')],
+ ex:[{l:'Q1 · 1100101 even',v:{mode:'gen',type:'even',bits:'1100101'}},{l:'Q2 · check 10110110',v:{mode:'chk',type:'even',bits:'10110110'}}],
+ run:v=>{const b=getBits(v.bits,'Bits'),ev=v.type==='even',c=ones(b);
+  if(v.mode==='gen'){const pb=ev?c%2:(c%2?0:1);return ASK(`${v.type}-parity bit for ${mono(b)}`)+STEP(1,`<b>Count the 1s:</b> ${[...b].join(' + ')} → <b>${c}</b> (${c%2?'odd':'even'}).`)+STEP(2,`${ev?'Even':'Odd'} parity needs the total number of 1s (data + parity bit) to be ${v.type}, so the parity bit is <b>${pb}</b>.`)+STEP(3,`<b>Send:</b> ${mono(b+ok(pb))}.`)+ANS(`parity bit ${pb}, frame ${b}${pb}`)+NOTE('Single parity detects any <b>odd</b> number of flipped bits but misses every even number, and cannot tell which bit is wrong.')}
+  return ASK(`is there an error in ${mono(b)} (${v.type} parity, last bit is the parity bit)?`)+STEP(1,`<b>Count the 1s in the whole frame:</b> ${[...b].join('+')} = <b>${c}</b> (${c%2?'odd':'even'}).`)+STEP(2,`${ev?'Even':'Odd'} parity requires an ${v.type} count. ${needPar(c,ev)?'The rule holds.':'The rule is broken.'}`)+ANS(needPar(c,ev)?'no error detected (accepted) — an even number of flips could still hide an error':'yes, an error is detected (an odd number of bits changed)')}});
+function grid2(rows,kind,err){return '<div class="tw"><table class="t">'+rows.map((r,i)=>'<tr>'+[...r].map((x,j)=>{const k=kind(i,j);const e=err&&err[0]===i&&err[1]===j;return `<td class="${k}${e?' e':''}">${x}</td>`}).join('')+'</tr>').join('')+'</table></div>'}
+T({id:'parity2',view:'detect',ord:4,tab:'Parity (2-D)',title:'Two-dimensional parity',desc:'Row and column parity; a single error is found at the intersection of the failing row and column.',
+ fields:[f('mode','Task','enc',{t:'sel',opts:[['enc','Encode data rows (add parity)'],['chk','Check a received grid (find & fix error)']]}),f('type','Parity','even',{t:'sel',opts:PAR}),f('rows','Rows of bits (one row per line)','1010\n0111\n1100',{t:'area',wide:1,hint:'Encode: data rows only. Check: the full grid including the parity column and parity row.'})],
+ ex:[{l:'E7a · encode',v:{mode:'enc',type:'even',rows:'1010\n0111\n1100'}},{l:'E7b · check grid',v:{mode:'chk',type:'even',rows:'10100\n01011\n11000\n00011'}},{l:'Example 2 · 4×4',v:{mode:'enc',type:'even',rows:'1011\n0110\n1100\n0001'}}],
+ run:v=>{const R=v.rows.split('\n').map(l=>l.trim()).filter(Boolean).map(l=>getBits(l,'Each row'));if(R.length<2)fail('Enter at least two rows.');if(R.some(r=>r.length!==R[0].length))fail('All rows must have the same length.');
+  const ev=v.type==='even',par=c=>ev?c%2:(c%2?0:1);
+  if(v.mode==='enc'){const rp=R.map(r=>par(ones(r))),W=R[0].length,cp=[...Array(W)].map((_,j)=>par(R.reduce((a,r)=>a+(+r[j]),0))),corner=par(rp.reduce((a,x)=>a+x,0));
+   const full=R.map((r,i)=>r+rp[i]).concat([cp.join('')+corner]);
+   return ASK(`row, column and corner parity for ${R.length} rows (${v.type} parity)`)+STEP(1,'<b>Row parity:</b> '+R.map((r,i)=>`row ${i+1} has ${ones(r)} one${ones(r)===1?'':'s'} → ${rp[i]}`).join('; ')+'.')+STEP(2,'<b>Column parity:</b> '+cp.map((x,j)=>`col ${j+1} → ${x}`).join('; ')+'.')+STEP(3,`<b>Corner bit</b> = parity of the row-parity bits ${rp.join(', ')} → <b>${corner}</b>.`)+STEP(4,'<b>Grid</b> (blue = data, green = parity):'+grid2(full,(i,j)=>(i<R.length&&j<W)?'d':'c'))+ANS(`row parity ${rp.join(', ')} · column parity ${cp.join(', ')} · corner bit ${corner}`)}
+  const M=R.length,N=R[0].length;if(M<3||N<3)fail('A checked grid needs at least 3 rows and 3 columns (data + parity).');
+  const rf=R.map(r=>!needPar(ones(r),ev)),cf=[...Array(N)].map((_,j)=>!needPar(R.reduce((a,r)=>a+(+r[j]),0),ev));
+  const rI=rf.map((x,i)=>x?i:-1).filter(i=>i>=0),cI=cf.map((x,j)=>x?j:-1).filter(j=>j>=0);
+  let out=ASK(`find and fix the error in the ${M}×${N} grid (${v.type} parity)`);
+  out+=STEP(1,'<b>Recount every row:</b>'+tbl(['Row','Bits','Ones','Result'],R.map((r,i)=>[i+1,mono(r),ones(r),rf[i]?bad('✗ fails'):ok('✓')])));
+  out+=STEP(2,'<b>Recount every column:</b>'+tbl(['Column','Bits','Ones','Result'],cf.map((x,j)=>{const col=R.map(r=>r[j]).join('');return[j+1,mono(col),ones(col),x?bad('✗ fails'):ok('✓')]})));
+  if(!rI.length&&!cI.length)return out+ANS('no error detected (an even number of corner-pattern errors could still hide)');
+  if(rI.length===1&&cI.length===1){const [i,j]=[rI[0],cI[0]],old=R[i][j],nw=old==='1'?'0':'1';const fx=R.map(r=>r.split(''));fx[i][j]=nw;
+   out+=STEP(3,`<b>Intersection:</b> row ${i+1} and column ${j+1} fail → the wrong bit is at <b>row ${i+1}, column ${j+1}</b> (${old}${(i===M-1||j===N-1)?', a parity bit':', a data bit'}).`);
+   out+=STEP(4,'<b>Fix</b> it (flip '+old+' → '+nw+'):'+grid2(R,(a,b)=>(a<M-1&&b<N-1)?'d':'c',[i,j]));
+   if(i<M-1&&j<N-1)out+=CHK(`corrected data row ${i+1}: ${fx[i].slice(0,N-1).join('')}`);
+   return out+ANS(`row ${i+1}, column ${j+1} → flip ${old} to ${nw}`)}
+  return out+ANS(`${rI.length} row(s) and ${cI.length} column(s) fail: more than one error — detected, but 2-D parity can only correct a single error`)}});
+function csAdd(a,b,w){const M=2**w,raw=a+b,carry=raw>=M;return{raw,carry,low:raw%M,res:carry?(raw%M)+1:raw}}
+const pb=(n,w)=>n.toString(2).padStart(w,'0');
+T({id:'checksum',view:'detect',tab:'Checksum',title:'Internet-style checksum (1\'s complement)',desc:'Add the words with wrap-around carry, then flip every bit.',
+ fields:[f('mode','Task','gen',{t:'sel',opts:[['gen','Compute the checksum'],['chk','Verify (last word = received checksum)']]}),f('words','Words (binary, same length, separated by spaces)','11110000 00111100 10101010',{wide:1})],
+ ex:[{l:'Q3',v:{mode:'gen',words:'11110000 00111100 10101010'}},{l:'Example 3 (4 words)',v:{mode:'gen',words:'10110011 01101010 11001100 00110101'}},{l:'E9 · verify',v:{mode:'chk',words:'11001100 00110011 11110000 00001011'}}],
+ run:v=>{const W=v.words.split(/[\s,;]+/).filter(Boolean).map(x=>getBits(x,'Each word'));if(W.length<2)fail('Enter at least two words.');const w=W[0].length;if(W.some(x=>x.length!==w))fail('All words must have the same length.');if(w>32)fail('Words up to 32 bits.');
+  const gen=v.mode==='gen',use=gen?W:W;const nums=use.map(x=>parseInt(x,2));let acc=nums[0],lines=[],k=1;
+  for(let i=1;i<nums.length;i++){const r=csAdd(acc,nums[i],w);const nb=pb(r.low,w);
+   lines.push(`Step ${k++}:   ${pb(acc,w)}   (${acc})\n        + ${pb(nums[i],w)}   (${nums[i]})\n        ${'-'.repeat(w+2)}\n        ${r.carry?'1 ':'  '}${nb}   = ${r.raw}${r.carry?` : a ${w+1}th bit (carry) appeared!\n        wrap the carry: ${nb} + 1 = ${pb(r.res,w)}   (${r.res})`:'   no carry'}`);acc=r.res}
+  const sum=acc,all=2**w-1;let out=ASK(gen?`${w}-bit checksum of ${W.length} words`:`does the receiver accept these words (last = checksum)?`)+STEP(1,'<b>Add with wrap-around carry</b> (a carry out of the left end is added back at the right end):'+PRE(lines.join('\n\n')));
+  if(gen){const cs=all-sum;return out+STEP(2,`<b>SUM</b> = ${mono(pb(sum,w))}. <b>Checksum</b> = flip every bit = <b>${pb(cs,w)}</b> (${cs}).`)+CHK(`sum + checksum = ${pb(sum,w)} + ${pb(cs,w)} = ${pb(all,w)} (all ones) ✓`)+STEP(3,`<b>Transmit:</b> ${W.join(' ')} ${ok(pb(cs,w))}`)+ANS(`checksum ${pb(cs,w)}`)}
+  const good=sum===all;return out+STEP(2,`<b>Result</b> = ${mono(pb(sum,w))}. A good frame gives all ones (${pb(all,w)}). Flipping gives ${pb(all-sum,w)}${good?' = 0':' ≠ 0'}.`)+ANS(good?'accepted — no error detected':'rejected — error detected (ask for a re-send)')}});
+function parsePoly(s){const t=String(s).trim();if(/^[01\s]+$/.test(t))return t.replace(/\s/g,'');
+ const sm={'²':'^2','³':'^3','⁴':'^4','⁵':'^5','⁶':'^6','⁷':'^7','⁸':'^8','⁹':'^9'};const u=t.toLowerCase().replace(/[²³⁴⁵⁶⁷⁸⁹]/g,c=>sm[c]).replace(/\s+/g,'').replace(/\*\*/g,'^');
+ const ex=new Set();for(const term of u.split('+')){let m;if(term==='1')ex.add(0);else if(term==='0')continue;else if((m=term.match(/^x(?:\^(\d+))?$/)))ex.add(m[1]===undefined?1:+m[1]);else fail(`Cannot read "${term}" in the polynomial. Use bits (10011) or terms like x^4 + x + 1.`)}
+ const d=Math.max(...ex);if(d>32)fail('Generator degree up to 32.');return [...Array(d+1)].map((_,i)=>ex.has(d-i)?'1':'0').join('')}
+const polyStr=g=>{const d=g.length-1,t=[];[...g].forEach((b,i)=>{if(b==='1'){const e=d-i;t.push(e===0?'1':e===1?'x':`x${sup(e)}`)}});return t.join(' + ')};
+function longDiv(D,G){const r=G.length-1,L=D.length,st=[];let win=D.slice(0,r+1),q='';for(let k=0;k<L-r;k++){const lead=win[0];q+=lead;const sub=lead==='1'?G:'0'.repeat(r+1),res=xorS(win,sub).slice(1),bring=k<L-r-1?D[r+1+k]:'';st.push({win,lead,sub,res,bring});win=res+bring}return{st,q,rem:st[st.length-1].res}}
+function drawDiv(D,G,d){const r=G.length-1,off=' '.repeat(2*(r+1)+2),ind=k=>'  '.repeat(k);let o=off+'  '.repeat(r)+spaced(d.q)+'\n';
+ o+=`<span class="ok">${spaced(G)}</span> | ${spaced(D)}\n`;o+=off+'-'.repeat(2*D.length-1)+'\n';
+ d.st.forEach((s,k)=>{o+=off+ind(k)+(s.lead==='1'?`<span class="ok">${spaced(s.sub)}</span>`:`<span class="dim">${spaced(s.sub)}</span>`)+'\n'+off+ind(k)+'-'.repeat(2*(r+1)-1)+'\n';
+  o+=off+ind(k+1)+(k===d.st.length-1?`<b class="gold">${spaced(s.res)}</b>`:spaced(s.res)+(s.bring?` <span class="blue">${s.bring}</span>`:''))+'\n'});return o}
+T({id:'crc',view:'detect',tab:'CRC',title:'Cyclic redundancy check (long division)',desc:'Generator as bits (10011) or polynomial (x^4 + x + 1). Same remainder as the XOR-stack method.',
+ fields:[f('mode','Task','gen',{t:'sel',opts:[['gen','Find the CRC (sender)'],['chk','Check a received frame (receiver)']]}),f('data','Data bits (or received frame)','1101011011'),f('gen','Generator','10011',{hint:'bits or polynomial'})],
+ ex:[{l:'Example 4 · 1101011011 / 10011',v:{mode:'gen',data:'1101011011',gen:'10011'}},{l:'E11 · polynomial',v:{mode:'gen',data:'100101',gen:'x^4 + x^2 + 1'}},{l:'E12 · check 1100001',v:{mode:'chk',data:'1100001',gen:'1011'}},{l:'E13 · theory',v:{mode:'gen',data:'',gen:'x^5 + x^2 + 1'}}],
+ run:v=>{const G=parsePoly(v.gen);if(G.length<2||G[0]!=='1'||G[G.length-1]!=='1')fail('A generator needs at least 2 bits and always starts and ends with 1.');const r=G.length-1;
+  let out=ASK(v.mode==='gen'?`CRC and transmitted frame for ${v.data.trim()?mono(esc(v.data.trim())):'(theory only)'} with G = ${mono(G)}`:`does the frame ${mono(esc(v.data.trim()))} pass the CRC check with G = ${mono(G)}?`);
+  out+=STEP(1,`<b>Generator</b> G = ${mono(G)} = ${polyStr(G)} has r + 1 = ${G.length} bits, so r = <b>${r}</b>: append ${r} zeros, the CRC has exactly ${r} bits.`);
+  if(v.mode==='gen'&&v.data.trim()===''){return out+ANS(`${r} zeros appended · ${r} CRC bits sent · every burst error up to ${r} bits is detected (longer bursts missed with probability 2^−${r} = 1/${2**r}, i.e. detected ${(100*(1-2**-r)).toFixed(1)} %)`)}
+  const d=getBits(v.data,'Data');let D=v.mode==='gen'?d+'0'.repeat(r):d;if(D.length<=r)fail(`The ${v.mode==='gen'?'data':'frame'} must be longer than ${r} bits.`);
+  out+=STEP(2,v.mode==='gen'?`<b>Dividend</b> = data + ${r} zeros = ${mono(d)}${ok('0'.repeat(r))}.`:`<b>Dividend</b> = the received frame as it is (the receiver does not append zeros).`);
+  const dv=longDiv(D,G);out+=STEP(3,'<b>Long division</b> (“subtract” means XOR; blue = bit brought down):'+PRE(drawDiv(D,G,dv)));
+  out+=STEP(4,'<b>Steps in a table:</b>'+tbl(['Step','Window','Leading bit → quotient','XOR with','Result (r bits)','Bring down'],dv.st.map((s,i)=>[i+1,mono(s.win),`${s.lead} → <b>${s.lead}</b>`,mono(s.sub)+(s.lead==='1'?' (G)':' (zeros)'),mono(s.res),s.bring?blue(s.bring):'–'])));
+  if(v.mode==='gen')return out+STEP(5,`<b>Remainder</b> = ${gold(dv.rem)} (quotient ${dv.q} is thrown away). Frame = data + CRC = ${mono(d)}${gold(dv.rem)}.`)+CHK(`dividing ${d+dv.rem} by ${G} must give ${'0'.repeat(r)}.`)+ANS(`CRC ${dv.rem}, frame ${d+dv.rem}`);
+  const z=/^0+$/.test(dv.rem);return out+ANS(z?`remainder ${dv.rem} → accepted (no error detected)`:`remainder ${dv.rem} ≠ ${'0'.repeat(r)} → rejected, error detected`)}});
+/* ===== Hamming ===== */
+const isP2=x=>(x&(x-1))===0;
+const hamR=m=>{let r=0;while(2**r<m+r+1)r++;return r};
+const hamGroup=(k,n)=>{const o=[];for(let i=1;i<=n;i++)if(i&(1<<k))o.push(i);return o};
+function posRow(cw,n,errs=[]){let h='<div class="tw"><table class="t"><tr><th>Pos</th>';for(let i=1;i<=n;i++)h+=`<th>${i}</th>`;h+='</tr><tr><th>Bit</th>';for(let i=1;i<=n;i++)h+=`<td class="${isP2(i)?'c':'d'}${errs.includes(i)?' e':''}">${cw[i]}</td>`;return h+'</tr></table></div>'}
+function hamGrid(cw,n,r,errs=[]){const rows=2**Math.max(0,r-2);let h='<div class="tw"><table class="t"><tr><th></th>'+[0,1,2,3].map(c=>`<th>c${c}</th>`).join('')+'</tr>';
+ for(let ro=0;ro<rows;ro++){h+=`<tr><th>r${ro}</th>`;for(let c=0;c<4;c++){const p=4*ro+c;h+=p===0?'<td class="na">·</td>':p>n?'<td class="na">–</td>':`<td class="${isP2(p)?'c':'d'}${errs.includes(p)?' e':''}">${cw[p]}<sub>${p}</sub></td>`}h+='</tr>'}return h+'</table></div>'}
+T({id:'hamming',view:'correct',ord:4,tab:'Hamming encode / decode',title:'Hamming code — encode and decode',desc:'Any data length: (7,4), (12,8), (11,7), (17,12)… with even or odd parity.',
+ fields:[f('mode','Task','enc',{t:'sel',opts:[['enc','Encode data bits'],['dec','Decode a received word (find & fix the error)']]}),f('par','Parity','even',{t:'sel',opts:PAR}),f('bits','Data bits (encode) or received word (decode)','1011'),f('sent','Word really sent (optional, decode only — to show what two errors do)','')],
+ ex:[{l:'Ex 5 · encode 1011',v:{mode:'enc',par:'even',bits:'1011',sent:''}},{l:'Ex 6 · decode 0110111',v:{mode:'dec',par:'even',bits:'0110111',sent:''}},{l:'4C.2 · (12,8) byte',v:{mode:'enc',par:'even',bits:'10110010',sent:''}},{l:'4D.1 · (11,7)',v:{mode:'enc',par:'even',bits:'1011001',sent:''}},{l:'4D.5 · two errors',v:{mode:'dec',par:'even',bits:'10001111001',sent:'10100111001'}}],
+ run:v=>{const ev=v.par==='even',pn=ev?'even':'odd';
+  if(v.mode==='enc'){const d=getBits(v.bits,'Data');if(d.length>26)fail('Up to 26 data bits.');const m=d.length,r=hamR(m),n=m+r,cw=Array(n+1).fill('?');
+   const dp=[];for(let i=1;i<=n;i++)if(!isP2(i))dp.push(i);dp.forEach((p,i)=>cw[p]=+d[i]);
+   const rr=[];for(let t=1;t<=r;t++)rr.push([t,2**t,m+t+1,2**t>=m+t+1?ok('✓'):'no']);
+   let out=ASK(`Hamming code word for ${mono(d)} (${pn} parity)`)+STEP(1,`<b>Check bits:</b> need 2${sup('r')} ≥ m + r + 1 with m = ${m}:`+tbl(['r','2^r','m + r + 1','Enough?'],rr)+`So r = <b>${r}</b>, codeword has ${m} + ${r} = <b>${n}</b> bits: a (${n},${m}) code.`);
+   out+=STEP(2,`<b>Place the data</b> at the non-power-of-2 positions ${dp.join(', ')}; positions ${[...Array(r)].map((_,k)=>1<<k).join(', ')} are check bits.`+posRow(cw,n));
+   const rows=[];for(let k=0;k<r;k++){const pos=1<<k,g=hamGroup(k,n).filter(x=>x!==pos),c=g.reduce((a,x)=>a+cw[x],0);const bit=ev?c%2:(c%2===0?1:0);cw[pos]=bit;
+    rows.push([`P${pos}`,hamGroup(k,n).join(', '),g.map(x=>'D'+x).join(' + ')+' = '+g.map(x=>cw[x]).join(' + '),`${c} (${c%2?'odd':'even'})`,`<b>${bit}</b> (${ev?(c%2?'odd → 1':'even → 0'):(c%2?'odd → 0':'even → 1')})`])}
+   out+=STEP(3,`<b>Compute each check bit</b> so its group (check bit included) has an ${pn} number of 1s:`+tbl(['Check bit','Watches','Data bits in the group','Count of 1s','Check bit'],rows));
+   const word=cw.slice(1).join('');out+=STEP(4,'<b>Codeword</b> (green = check bits, blue = data):'+posRow(cw,n));
+   if(r>=3&&r<=5)out+=STEP(5,'<b>Grid view</b> (position = 4 × row + column):'+hamGrid(cw,n,r));
+   return out+CHK('re-checking every group gives syndrome 0 ✓')+ANS(`codeword ${word}`)}
+  const w=getBits(v.bits,'Received word',3),n=w.length;if(n>31)fail('Up to 31 bits.');const r=Math.floor(Math.log2(n))+1,cw=[0,...[...w].map(Number)];
+  let sent=null;if(v.sent.trim()!==''){sent=getBits(v.sent,'Sent word');if(sent.length!==n)fail('The sent word must have the same length as the received word.')}
+  const realErr=sent?[...w].map((c,i)=>c!==sent[i]?i+1:0).filter(Boolean):[];
+  let out=ASK(`find and fix the error in ${mono(w)} (${pn} parity, (${n},${n-r}) code)`)+STEP(1,`<b>Positions</b> 1–${n}: ${r} check bits (${[...Array(r)].map((_,k)=>1<<k).join(', ')}) and ${n-r} data bits.`+posRow(cw,n,realErr));
+  const rows=[],fails=[];for(let k=0;k<r;k++){const pos=1<<k,g=hamGroup(k,n),c=g.reduce((a,x)=>a+cw[x],0),fl=!needPar(c,ev);if(fl)fails.push(pos);
+   rows.push([`P${pos} group`,g.join(', '),g.map(x=>realErr.includes(x)?bad(cw[x]):cw[x]).join(', '),`${c} (${c%2?'odd':'even'})`,fl?bad('FAIL → write 1'):'OK → write 0'])}
+  out+=STEP(2,`<b>Re-check every group, including the check bit itself</b> (a group fails when its count is not ${pn}):`+tbl(['Check','Positions','Bits received','Count of 1s','Result'],rows));
+  const syn=fails.reduce((a,x)=>a+x,0);
+  if(syn===0)return out+STEP(3,'<b>Syndrome</b> = 0 → every check passes → no error detected.')+ANS(`no error; data ${[...Array(n)].map((_,i)=>i+1).filter(i=>!isP2(i)).map(i=>cw[i]).join('')}`);
+  out+=STEP(3,`<b>Syndrome</b> = failed checks added up: ${fails.map(x=>'P'+x).join(' + ')} = ${fails.join(' + ')} = <b>${syn}</b>.`);
+  if(syn>n)return out+ANS(`syndrome ${syn} is larger than ${n}: it cannot come from a single error, so two or more bits are wrong — detected but not correctable`);
+  const kind=isP2(syn)?'check bit':'data bit';const fx=cw.slice();fx[syn]=1-fx[syn];const word=fx.slice(1).join(''),data=[...Array(n)].map((_,i)=>i+1).filter(i=>!isP2(i)).map(i=>fx[i]).join('');
+  out+=STEP(4,`<b>Correct:</b> position ${syn} (a ${kind}) is wrong; flip it ${cw[syn]} → ${fx[syn]}: ${mono(word)}. Data = positions ${[...Array(n)].map((_,i)=>i+1).filter(i=>!isP2(i)).join(', ')} = <b>${data}</b>.`+(isP2(syn)?' The data itself was never damaged.':''));
+  if(r>=3&&r<=5){const row=syn>>2,col=syn&3;out+=STEP(5,`<b>Trace the intersection</b> (grid): row = ${row}, column = ${col} → position 4 × ${row} + ${col} = <b>${syn}</b>.`+hamGrid(cw,n,r,[syn]))}
+  if(sent){const sentFix=[...word].map((c,i)=>c!==sent[i]?i+1:0).filter(Boolean);
+   out+=NOTE(`The channel really flipped position${realErr.length>1?'s':''} <b>${realErr.join(', ')}</b>. After “correction” the word differs from what was sent in position${sentFix.length===1?'':'s'} <b>${sentFix.join(', ')||'none'}</b>. `+(sentFix.length?`${bad('Hamming corrects exactly one error')}: with ${realErr.length} errors the syndrome points at an innocent bit and the decoder delivers wrong data.`:'The word was repaired correctly.'))}
+  return out+ANS(`error at position ${syn} (${kind}); corrected word ${word}; data ${data}`)}});
+T({id:'hamr',view:'correct',tab:'Check bits needed',title:'How many Hamming check bits?',desc:'Smallest r with 2^r ≥ m + r + 1.',
+ fields:[f('m','Data bits m (one or several, comma separated)','12, 57')],ex:[{l:'E16 · 12 and 57',v:{m:'12, 57'}},{l:'Q5 · 7',v:{m:'7'}},{l:'T3 · 20',v:{m:'20'}}],
+ run:v=>{const ms=v.m.split(/[\s,;]+/).filter(Boolean).map(Number);if(!ms.length||ms.some(x=>!Number.isInteger(x)||x<1||x>1000))fail('Enter whole numbers of data bits from 1 to 1000.');
+  let out=ASK('the number of check bits r for each m: smallest r with 2^r ≥ m + r + 1'),ans=[];
+  ms.forEach(m=>{const rows=[];let r=1;for(;;r++){const ok2=2**r>=m+r+1;rows.push({cls:ok2?'hl':'',c:[r,fmt(2**r),m+r+1,ok2?ok('✓ yes'):'no']});if(ok2)break}
+   out+=STEP(ms.indexOf(m)+1,`<b>m = ${m}</b>`+tbl(['Try r','2^r','m + r + 1','Enough?'],rows)+`r = ${r} → ${r} check bits, code (${m+r},${m}).`);ans.push(`m = ${m}: ${r} check bits, (${m+r},${m})`)});
+  return out+ANS(ans.join(' · '))}});
+T({id:'hamsyn',view:'correct',tab:'Syndrome ↔ grid cell',title:'Failed checks ↔ wrong position',desc:'Add the failed checks, or give a position to see which checks fail.',
+ fields:[f('failed','Failed checks (e.g. P1, P4)','P1, P4'),f('pos','…or a position (leave the other blank)','')],ex:[{l:'Q7 · P1 + P4',v:{failed:'P1, P4',pos:''}},{l:'Position 11',v:{failed:'',pos:'11'}}],
+ run:v=>{let syn,fl;if(v.failed.trim()){fl=[...v.failed.matchAll(/\d+/g)].map(m=>+m[0]);if(!fl.length||fl.some(x=>!isP2(x)||x>16))fail('Use check bits P1, P2, P4, P8 (or P16).');syn=fl.reduce((a,x)=>a+x,0)}
+  else if(v.pos.trim()){syn=parseInt(v.pos,10);if(!(syn>=1&&syn<=31))fail('Position 1–31.');fl=[16,8,4,2,1].filter(b=>syn&b).reverse()}else fail('Enter failed checks or a position.');
+  const row=syn>>2,col=syn&3;let out=ASK('which position is wrong?')+STEP(1,`<b>Add the failed checks:</b> ${fl.map(x=>'P'+x).join(' + ')} = ${fl.join(' + ')} = <b>${syn}</b> (binary ${syn.toString(2)}).`);
+  out+=STEP(2,`<b>Way 2 (square grid, position = 4 × row + column):</b> P8/P4 choose the row, P2/P1 the column. P8 ${fl.includes(8)?'failed → bottom half (rows 2–3)':'passed → top half (rows 0–1)'}; P4 ${fl.includes(4)?'failed → odd row (1 or 3)':'passed → even row (0 or 2)'} → <b>row ${row}</b>. P2 ${fl.includes(2)?'failed → columns 2–3':'passed → columns 0–1'}; P1 ${fl.includes(1)?'failed → odd column':'passed → even column'} → <b>column ${col}</b>.`);
+  const meaning=syn===0?'no error':isP2(syn)?`the check bit P${syn} itself is wrong`:`data bit at position ${syn}`;
+  return out+ANS(`position ${syn} = row ${row}, column ${col} (${meaning})`)}});
+/* ===== Reed-Solomon ===== */
+const isPrime=n=>{if(n<2)return false;for(let i=2;i*i<=n;i++)if(n%i===0)return false;return true};
+const mod=(a,p)=>((a%p)+p)%p;const pw=(b,e,p)=>{let r=1;b=mod(b,p);while(e>0){if(e&1)r=r*b%p;b=b*b%p;e>>=1}return r};
+const lineStr=(a,b)=>`y = ${a} + ${b}x`;
+T({id:'rstoy',view:'correct',tab:'Reed-Solomon (toy)',title:'Reed-Solomon toy example (lines mod p)',desc:'Encode a message as a line over mod-p arithmetic; decode by voting over all pairs of points.',
+ fields:[f('mode','Task','dec',{t:'sel',opts:[['enc','Encode message (a, b) → p(x) = a + b·x'],['dec','Decode received values']]}),f('p','Modulus p (prime)','7'),f('msg','Message (encode): a b','3 2'),f('n','Points sent n (encode)','5'),f('recv','Received values (decode), x = 0, 1, 2…','3, 5, 6, 2, 4',{wide:1})],
+ ex:[{l:'Ex 8 · decode 3,5,6,2,4',v:{mode:'dec',p:'7',msg:'3 2',n:'5',recv:'3, 5, 6, 2, 4'}},{l:'Ex 8 · encode (3,2)',v:{mode:'enc',p:'7',msg:'3 2',n:'5',recv:''}},{l:'E23 · decode 1,5,2,0,3',v:{mode:'dec',p:'7',msg:'1 4',n:'5',recv:'1, 5, 2, 0, 3'}}],
+ run:v=>{const p=parseInt(v.p,10);if(!isPrime(p))fail('The modulus p must be a prime number (for example 7).');
+  if(v.mode==='enc'){const c=v.msg.split(/[\s,;]+/).filter(Boolean).map(Number),n=parseInt(v.n,10);if(c.length<1||c.some(x=>!Number.isInteger(x)||x<0||x>=p))fail(`Message symbols must be whole numbers 0 … ${p-1}.`);if(!(n>c.length&&n<=p))fail(`n must be larger than the message length and at most ${p}.`);
+   const rows=[],sent=[];for(let x=0;x<n;x++){const val=c.reduce((a,cc,i)=>a+cc*x**i,0);sent.push(val%p);rows.push([x,c.map((cc,i)=>i?`${cc}·${x}${i>1?sup(i):''}`:cc).join(' + ')+' = '+val,`<b>${val%p}</b>`])}
+   const t=Math.floor((n-c.length)/2);return ASK(`encode message (${c.join(', ')}) with ${n} points mod ${p}`)+STEP(1,`<b>Build the polynomial</b> p(x) = ${c.map((cc,i)=>i?`${cc}x${i>1?sup(i):''}`:cc).join(' + ')}.`)+STEP(2,'<b>Evaluate mod '+p+'</b> at x = 0 … '+(n-1)+':'+tbl(['x','p(x)','mod '+p+' (sent)'],rows))+NOTE(`k = ${c.length} data symbols, n = ${n}, so n − k = ${n-c.length} parity symbols and t = ⌊(n − k)/2⌋ = ${t} wrong symbol(s) can be corrected.`)+ANS(`sent values ${sent.join(', ')}`)}
+  const y=v.recv.split(/[\s,;]+/).filter(Boolean).map(Number);const n=y.length;if(n<3||n>p)fail(`Enter between 3 and ${p} received values.`);if(y.some(x=>!Number.isInteger(x)||x<0||x>=p))fail(`Values must be whole numbers 0 … ${p-1}.`);
+  const rows=[],lines=new Map();for(let i=0;i<n;i++)for(let j=i+1;j<n;j++){const b=mod((y[j]-y[i])*pw(j-i,p-2,p),p),a=mod(y[i]-b*i,p),m=[];for(let x=0;x<n;x++)if(mod(a+b*x,p)===y[x])m.push(x);
+   rows.push({c:[`x=${i}, x=${j}`,lineStr(a,b),m.join(', '),`${m.length} of ${n}`],m:m.length,k:`${a},${b}`});const key=`${a},${b}`;if(!lines.has(key))lines.set(key,{a,b,m,votes:0});lines.get(key).votes++}
+  const best=Math.max(...rows.map(r=>r.m)),win=[...lines.values()].filter(l=>l.m.length===best);
+  let out=ASK(`decode the received values ${mono(y.join(', '))} (mod ${p}) by voting`)+STEP(1,`Any 2 points define a line y = a + b·x (mod ${p}). Try every pair (${rows.length} pairs) and count how many of the ${n} points lie on it:`)+tbl(['Pair','Line found','Points on this line','Matches'],rows.map(r=>({cls:r.m===best?'hl':'',c:r.c})));
+  if(win.length!==1||best<=n/2)return out+ANS('no single line wins the vote: more errors than this code can correct (t = '+Math.floor((n-2)/2)+')');
+  const L=win[0],bad_=[...Array(n).keys()].filter(x=>!L.m.includes(x));
+  out+=STEP(2,`<b>Winner:</b> ${lineStr(L.a,L.b)} — found by ${L.votes} of ${rows.length} pairs and matching ${best} of ${n} points. Message = (${L.a}, ${L.b}).`);
+  out+=STEP(3,bad_.length?`<b>Repair:</b> ${bad_.map(x=>`at x = ${x} the value ${y[x]} is wrong; the correct value is ${L.a} + ${L.b}·${x} = ${L.a+L.b*x} mod ${p} = ${mod(L.a+L.b*x,p)}`).join('; ')}.`:'No received value disagrees with the line: no error.');
+  return out+ANS(`line ${lineStr(L.a,L.b)} (mod ${p}); ${bad_.length?`wrong position x = ${bad_.join(', ')} (should be ${bad_.map(x=>mod(L.a+L.b*x,p)).join(', ')})`:'no wrong position'}`)}});
+T({id:'rscalc',view:'correct',tab:'RS(n, k) capacity',title:'Reed-Solomon RS(n, k) capability',desc:'Parity symbols, correctable errors and erasures.',
+ fields:[f('n','n (symbols per block)','255'),f('k','k (data symbols)','223')],ex:[{l:'Q8 · RS(255,223)',v:{n:'255',k:'223'}},{l:'E21 · RS(255,239)',v:{n:'255',k:'239'}},{l:'E22 · RS(15,9)',v:{n:'15',k:'9'}}],
+ run:v=>{const n=+v.n,k=+v.k;if(!(Number.isInteger(n)&&Number.isInteger(k)&&k>=1&&n>k))fail('Need whole numbers with n > k ≥ 1.');const par=n-k,t=Math.floor(par/2);
+  return ASK(`capability of RS(${n}, ${k})`)+STEP(1,`<b>Parity symbols</b> = n − k = ${n} − ${k} = <b>${par}</b>.`)+STEP(2,`<b>Wrong symbols at unknown positions:</b> t = (n − k)/2 = ${par}/2 = <b>${t}</b> (the decoder spends 2 parity symbols per error: one for where, one for what).`)+STEP(3,`<b>Erasures</b> (positions known): only the value is missing, 1 parity symbol each → <b>${par}</b> erasures; up to ${par} wrong symbols can be detected.`)+NOTE(`A burst of ${t*8} bits in ${t} neighbouring bytes still counts as only ${t} symbol errors.`)+ANS(`${par} parity symbols · corrects ${t} wrong symbols · or ${par} erasures`)}});
+/* ===== LDPC ===== */
+const LH=[[1,1,0,1,0,0],[0,1,1,0,1,0],[1,0,1,0,0,1]];
+const lpChecks=w=>LH.map((row,i)=>{const idx=row.map((x,j)=>x?j:-1).filter(j=>j>=0),vals=idx.map(j=>w[j]),x=vals.reduce((a,b)=>a^b,0);return{i,idx,vals,x}});
+T({id:'ldpc',view:'correct',tab:'LDPC (tiny code)',title:'LDPC tiny code — encode and bit-flipping decode',desc:'6 bits, 3 checks: c1 = b1⊕b2⊕b4, c2 = b2⊕b3⊕b5, c3 = b1⊕b3⊕b6.',
+ fields:[f('mode','Task','dec',{t:'sel',opts:[['enc','Encode 3 data bits b1 b2 b3'],['dec','Decode a received 6-bit word']]}),f('bits','Bits','100110')],
+ ex:[{l:'Q10 · decode 100110',v:{mode:'dec',bits:'100110'}},{l:'Ex 10 · encode 101',v:{mode:'enc',bits:'101'}},{l:'Ex 10 · decode 111110',v:{mode:'dec',bits:'111110'}}],
+ run:v=>{const hn='b1 b2 b3 b4 b5 b6'.split(' ');
+  if(v.mode==='enc'){const d=getBits(v.bits,'Data');if(d.length!==3)fail('Enter exactly 3 data bits.');const b=[...d].map(Number);b[3]=b[0]^b[1];b[4]=b[1]^b[2];b[5]=b[0]^b[2];
+   return ASK(`codeword for data ${mono(d)}`)+STEP(1,`<b>b4</b> = b1⊕b2 = ${b[0]}⊕${b[1]} = ${b[3]}; <b>b5</b> = b2⊕b3 = ${b[1]}⊕${b[2]} = ${b[4]}; <b>b6</b> = b1⊕b3 = ${b[0]}⊕${b[2]} = ${b[5]}.`)+ANS(`codeword ${b.join('')}`)}
+  const w=getBits(v.bits,'Word');if(w.length!==6)fail('Enter exactly 6 bits.');let cur=[...w].map(Number),out=ASK(`repair ${mono(w)} by bit flipping`),round=1;
+  for(;round<=6;round++){const ck=lpChecks(cur),fl=ck.filter(c=>c.x);
+   out+=STEP(round,`<b>Recompute every check</b> (word ${mono(cur.join(''))}):`+tbl(['Check','Bits it contains','Values','XOR','Result'],ck.map(c=>[`c${c.i+1}`,c.idx.map(j=>hn[j]).join(', '),c.vals.join(', '),c.x,c.x?bad('FAIL'):ok('OK')])));
+   if(!fl.length){return out+ANS(`all checks pass; ${round===1?'no error':`corrected codeword ${cur.join('')}`}, data ${cur.slice(0,3).join('')}`)}
+   const cnt=cur.map((_,j)=>fl.filter(c=>c.idx.includes(j)).length),mx=Math.max(...cnt),cand=cnt.map((c,j)=>c===mx?j:-1).filter(j=>j>=0);
+   out+=tbl(['Bit','Checks it belongs to','How many FAIL'],cur.map((_,j)=>[hn[j],ck.filter(c=>c.idx.includes(j)).map(c=>`c${c.i+1} (${c.x?'fail':'ok'})`).join(', '),cnt[j]===mx?`<b class="bad">${cnt[j]} ← most</b>`:cnt[j]]));
+   if(cand.length>1)return out+ANS(`tie: ${cand.map(j=>hn[j]).join(', ')} are each accused by ${mx} failed check(s) — this tiny code cannot choose (real LDPC codes rarely tie)`);
+   cur[cand[0]]^=1;out+=NOTE(`Flip <b>${hn[cand[0]]}</b> (accused by the most failed checks) → ${mono(cur.join(''))}; re-check…`);lastFlip=hn[cand[0]]}
+  return out+ANS('not repaired after 6 rounds')}});
+let lastFlip='';
+/* ===== Convolutional ===== */
+const GS=[['7','7 = 111'],['5','5 = 101'],['3','3 = 011'],['6','6 = 110'],['1','1 = 001'],['2','2 = 010'],['4','4 = 100']];
+const ST=['00','10','01','11'];
+function cStep(state,b,g1,g2){const s1=+state[0],s2=+state[1],o=g=>((g&4?b:0)^(g&2?s1:0)^(g&1?s2:0));return{o1:o(g1),o2:o(g2),next:''+b+s1,t1:[g1&4?b:null,g1&2?s1:null,g1&1?s2:null].filter(x=>x!==null),t2:[g2&4?b:null,g2&2?s1:null,g2&1?s2:null].filter(x=>x!==null)}}
+const taps=g=>[g&4?'b':null,g&2?'s1':null,g&1?'s2':null].filter(Boolean).join('⊕');
+const gparse=(s,n)=>{const g=parseInt(s,8);if(!(g>=1&&g<=7)||!/^[0-7]$/.test(String(s).trim()))fail(`${n} must be one octal digit 1–7 (K = 3).`);return g};
+T({id:'convenc',view:'correct',tab:'Convolutional encoder',title:'Convolutional encoder (K = 3, rate 1/2)',desc:'Two tail zeros are added automatically to flush the memory back to state 00.',
+ fields:[f('bits','Message bits','1011'),f('g1','Generator 1 (octal)','7',{t:'sel',opts:GS}),f('g2','Generator 2 (octal)','5',{t:'sel',opts:GS.slice(1).concat([GS[0]])})],
+ ex:[{l:'Ex 11 · 1011',v:{bits:'1011',g1:'7',g2:'5'}},{l:'Q11 · 11',v:{bits:'11',g1:'7',g2:'5'}},{l:'E25 · 1001',v:{bits:'1001',g1:'7',g2:'5'}}],
+ run:v=>{const m=getBits(v.bits,'Message'),g1=gparse(v.g1,'g1'),g2=gparse(v.g2,'g2');if(m.length>40)fail('Up to 40 message bits.');const inp=m+'00';let s='00',sent=[],rows=[];
+  [...inp].forEach((c,i)=>{const b=+c,r=cStep(s,b,g1,g2);rows.push([i<m.length?i+1:`${i+1} (tail)`,b,mono(s),`${r.t1.join('⊕')} = ${r.o1}`,`${r.t2.join('⊕')} = ${r.o2}`,`<b>${r.o1}${r.o2}</b>`,mono(r.next)]);sent.push(''+r.o1+r.o2);s=r.next});
+  return ASK(`encode ${mono(m)} (plus 2 tail zeros)`)+STEP(1,`<b>Encoder:</b> out1 = ${taps(g1)} (generator ${g1.toString(2).padStart(3,'0')}), out2 = ${taps(g2)} (generator ${g2.toString(2).padStart(3,'0')}); b = input bit, s1 s2 = memory. After each bit the memory shifts: new s1 = b, new s2 = old s1.`)+STEP(2,`<b>Start in state 00</b>, input stream ${mono(inp)}:`+tbl(['Step','Input b','State before','out1','out2','Sent','State after'],rows))+CHK(`after the tail the encoder is back in state ${s} ${s==='00'?'✓':''}`)+ANS(`${sent.join(' ')} (${sent.length*2} bits for ${m.length} data bits)`)}});
+T({id:'convdec',view:'correct',tab:'Viterbi decoder',title:'Viterbi decoding',desc:'Keep the best path into each of the 4 states; trace back from state 00.',
+ fields:[f('recv','Received bit pairs','11 10 10 01 01 11',{wide:1}),f('tail','Message ends with 2 tail zeros?','y',{t:'sel',opts:[['y','Yes (decoder ends in state 00)'],['n','No (pick the best end state)']]}),f('g1','Generator 1 (octal)','7',{t:'sel',opts:GS}),f('g2','Generator 2 (octal)','5',{t:'sel',opts:GS.slice(1).concat([GS[0]])})],
+ ex:[{l:'Ex 12 · one wrong bit',v:{recv:'11 10 10 01 01 11',tail:'y',g1:'7',g2:'5'}},{l:'Clean 11 10 00 01 01 11',v:{recv:'11 10 00 01 01 11',tail:'y',g1:'7',g2:'5'}}],
+ run:v=>{const g1=gparse(v.g1,'g1'),g2=gparse(v.g2,'g2'),b=getBits(v.recv,'Received sequence');if(b.length%2)fail('The received sequence needs an even number of bits (pairs).');const P=b.match(/../g),tail=v.tail==='y';if(P.length<(tail?3:1))fail('Too few pairs.');if(P.length>60)fail('Up to 60 pairs.');
+  let M={'00':0,'10':Infinity,'01':Infinity,'11':Infinity};const hist=[],rows=[['start','–',...ST.map(s=>s==='00'?'0':'∞')]];
+  P.forEach((pr,t)=>{const N={'00':Infinity,'10':Infinity,'01':Infinity,'11':Infinity},S={};
+   ST.forEach(s=>{if(M[s]===Infinity)return;[0,1].forEach(bi=>{const r=cStep(s,bi,g1,g2),cost=(r.o1!==+pr[0])+(r.o2!==+pr[1]),c=M[s]+cost;if(c<N[r.next]){N[r.next]=c;S[r.next]={from:s,b:bi}}})});
+   hist.push(S);M=N;const fin=ST.map(s=>N[s]).filter(x=>x!==Infinity),mn=Math.min(...fin);rows.push([t+1,mono(pr),...ST.map(s=>N[s]===Infinity?'∞':`${N[s]===mn?'<b>'+N[s]+'</b>':N[s]} <span class="dim">(from ${S[s].from})</span>`)])});
+  let end=tail?'00':ST.reduce((a,s)=>M[s]<M[a]?s:a,'00');if(M[end]===Infinity)fail('This sequence cannot end in state 00 with that generator pair.');
+  const path=[end],inps=[];let cur=end;for(let t=P.length-1;t>=0;t--){const s=hist[t][cur];inps.unshift(s.b);cur=s.from;path.unshift(cur)}
+  const msg=inps.join('').slice(0,tail?P.length-2:P.length);let st='00',exp=[];inps.forEach(bi=>{const r=cStep(st,bi,g1,g2);exp.push(''+r.o1+r.o2);st=r.next});
+  const diff=[];exp.forEach((e,i)=>{[0,1].forEach(k=>{if(e[k]!==P[i][k])diff.push(`pair ${i+1}, ${k?'second':'first'} bit`)})});
+  return ASK(`decode ${mono(P.join(' '))}`)+STEP(1,'<b>Path metrics</b> (branch cost = bits that differ from the expected output; each state keeps the cheaper incoming branch):'+tbl(['Step','Received','State 00','State 10','State 01','State 11'],rows))+STEP(2,`<b>Trace back</b> from state ${end} (metric ${M[end]}): path ${mono(path.join(' → '))}; inputs ${mono(inps.join(', '))}${tail?' (last two are the tail)':''}.`)+STEP(3,`<b>Expected output</b> of that path: ${mono(exp.join(' '))}. It differs from the received sequence in <b>${diff.length}</b> bit${diff.length===1?'':'s'}${diff.length?` (${diff.join('; ')})`:''}.`)+ANS(`decoded message ${msg}; the decoder believes ${M[end]} bit error${M[end]===1?'':'s'} happened`)}});
+T({id:'convbr',view:'correct',tab:'Viterbi branch costs',title:'Viterbi branch metrics for one state',desc:'The two branches leaving a state, their costs and next states.',
+ fields:[f('state','Current state (s1 s2)','10',{t:'sel',opts:ST.map(s=>[s,s])}),f('recv','Received pair','01'),f('g1','g1 (octal)','7',{t:'sel',opts:GS}),f('g2','g2 (octal)','5',{t:'sel',opts:GS.slice(1).concat([GS[0]])})],
+ ex:[{l:'E26 · state 10, pair 01',v:{state:'10',recv:'01',g1:'7',g2:'5'}}],
+ run:v=>{const r0=getBits(v.recv,'Received pair');if(r0.length!==2)fail('A pair has exactly 2 bits.');const g1=gparse(v.g1,'g1'),g2=gparse(v.g2,'g2');
+  const br=[0,1].map(b=>{const r=cStep(v.state,b,g1,g2),o=''+r.o1+r.o2,cost=(o[0]!==r0[0])+(o[1]!==r0[1]);return{b,o,cost,next:r.next}});
+  return ASK(`branches leaving state ${v.state} when the pair ${r0} is received`)+STEP(1,'<b>Look up</b> both branches in the state table, then count the bits that differ from the received pair:'+tbl(['Input','Expected output','Received','Cost','Next state'],br.map(x=>[x.b,mono(x.o),mono(r0),`<b>${x.cost}</b>`,mono(x.next)])))+STEP(2,'<b>Add</b> the cost to the path metric M of this state; each next state keeps the smaller total.')+ANS(br.map(x=>`input ${x.b}: cost ${x.cost} → state ${x.next}`).join(' · '))}});
+/* ===== ALOHA ===== */
+function parseRate(s){const m=String(s).trim().toLowerCase().replace(/\s|bps|b\/s/g,'').match(/^([\d.]+)([kmg]?)$/);if(!m)fail('Rate like 200000, 200k or 1M (bits per second).');return parseFloat(m[1])*({'':1,k:1e3,m:1e6,g:1e9}[m[2]])}
+function alohaChart(pts){const W=560,H=250,L=44,R=90,Tp=12,B=34,gx=g=>L+(W-L-R)*g/3,sy=s=>H-B-(H-B-Tp)*s/0.4;
+ const path=fn=>{let d='';for(let i=0;i<=60;i++){const g=3*i/60;d+=(i?'L':'M')+gx(g).toFixed(1)+','+sy(fn(g)).toFixed(1)}return d};
+ let s=`<svg class="chart" viewBox="0 0 ${W} ${H}" role="img" aria-label="Throughput S against offered load G for pure and slotted ALOHA" style="width:100%;max-width:640px;background:#071629;border:1px solid #203a59;border-radius:10px">`;
+ [0,.1,.2,.3,.4].forEach(y=>s+=`<line x1="${L}" x2="${W-R}" y1="${sy(y)}" y2="${sy(y)}" stroke="#203a59"/><text x="${L-6}" y="${sy(y)+4}" text-anchor="end">${y}</text>`);
+ [0,1,2,3].forEach(g=>s+=`<text x="${gx(g)}" y="${H-B+16}" text-anchor="middle">${g}</text>`);
+ s+=`<text x="${(L+W-R)/2}" y="${H-6}" text-anchor="middle">offered load G (attempts per frame time)</text><text x="12" y="${(Tp+H-B)/2}" transform="rotate(-90 12 ${(Tp+H-B)/2})" text-anchor="middle">throughput S</text>`;
+ s+=`<path d="${path(g=>g*Math.exp(-2*g))}" fill="none" stroke="#48a8ff" stroke-width="2.5"/><path d="${path(g=>g*Math.exp(-g))}" fill="none" stroke="#ffc76b" stroke-width="2.5" stroke-dasharray="7 4"/>`;
+ s+=`<circle cx="${gx(.5)}" cy="${sy(.184)}" r="4" fill="#48a8ff"/><text x="${gx(.5)+8}" y="${sy(.184)-8}">0.184</text><circle cx="${gx(1)}" cy="${sy(.368)}" r="4" fill="#ffc76b"/><text x="${gx(1)+8}" y="${sy(.368)-6}">0.368</text>`;
+ s+=`<text x="${gx(3)+6}" y="${sy(3*Math.exp(-3))+4}" style="fill:#ffc76b">Slotted</text><text x="${gx(3)+6}" y="${sy(3*Math.exp(-6))+4}" style="fill:#71bdff">Pure</text>`;
+ pts.forEach(g=>{if(g>=0&&g<=3)s+=`<line x1="${gx(g)}" x2="${gx(g)}" y1="${Tp}" y2="${H-B}" stroke="#ff7185" stroke-dasharray="3 3"/>`});return s+'</svg>'}
+T({id:'aloha',view:'aloha',tab:'ALOHA',title:'ALOHA throughput',desc:'Frame time, vulnerable time, throughput S = G·e^(−2G) (pure) and S = G·e^(−G) (slotted).',
+ fields:[f('len','Frame length (bits, optional)','1000'),f('rate','Channel rate (bits/s, optional; 200k, 1M…)','1M'),f('g','Offered load G values (optional, comma separated)','2')],
+ ex:[{l:'E27 · 1000 bits, 1 Mbps',v:{len:'1000',rate:'1M',g:''}},{l:'E28 · G = 2',v:{len:'',rate:'',g:'2'}},{l:'Q9 · G = 1',v:{len:'',rate:'',g:'1'}},{l:'Ex 9 · 200 bits, 200 kbps, G 0.5, 1, 2',v:{len:'200',rate:'200k',g:'0.5, 1, 2'}}],
+ run:v=>{const L=v.len.trim()?parseFloat(v.len):null,Rt=v.rate.trim()?parseRate(v.rate):null,gs=v.g.split(/[\s,;]+/).filter(Boolean).map(Number);
+  if(gs.some(x=>!(x>=0)))fail('G must be 0 or more.');if(L!==null&&!(L>0))fail('Frame length must be positive.');if((L===null)!==(Rt===null)&&!gs.length)fail('Give both frame length and rate.');
+  const T0=(L!==null&&Rt!==null)?L/Rt:null;if(T0===null&&!gs.length)fail('Enter a frame length + rate, a load G, or both.');
+  const ms=t=>t>=1?`${+t.toFixed(3)} s`:`${+(t*1000).toFixed(4)} ms`;let out=ASK('frame time, vulnerable time and throughput'),k=1;
+  if(T0!==null){out+=STEP(k++,`<b>Frame time</b> T = ${fmt(L)} bits ÷ ${fmt(Rt)} bits/s = <b>${ms(T0)}</b> → ${fmt(Math.round(1/T0))} frame times per second.`);out+=STEP(k++,`<b>Vulnerable time:</b> pure = 2T = <b>${ms(2*T0)}</b>; slotted = T = <b>${ms(T0)}</b>.`)}
+  const S1=g=>g*Math.exp(-2*g),S2=g=>g*Math.exp(-g);
+  gs.forEach(g=>{out+=STEP(k++,`<b>G = ${g}.</b> Pure: S = G·e<sup>−2G</sup> = ${g}·e<sup>−${2*g}</sup> = <b>${S1(g).toFixed(3)}</b> (${(100*S1(g)).toFixed(1)} %)${T0!==null?` → ${Math.round(S1(g)/T0)} frames/s`:''}. Slotted: S = G·e<sup>−G</sup> = ${g}·e<sup>−${g}</sup> = <b>${S2(g).toFixed(3)}</b> (${(100*S2(g)).toFixed(1)} %)${T0!==null?` → ${Math.round(S2(g)/T0)} frames/s`:''}.`)});
+  out+=STEP(k++,`<b>Best values:</b> pure at G = 0.5: S = 0.5·e<sup>−1</sup> = <b>0.184</b>${T0!==null?` → ${Math.round(S1(.5)/T0)} frames/s`:''}; slotted at G = 1: S = e<sup>−1</sup> = <b>0.368</b>${T0!==null?` → ${Math.round(S2(1)/T0)} frames/s`:''} (exactly double).`);
+  out+='<div class="tw">'+alohaChart(gs)+'</div>'+NOTE('G counts <b>all</b> attempts (new + retransmissions), S only <b>successful</b> frames. Beyond the peak, more traffic means <i>fewer</i> successes.');
+  return out+ANS([T0!==null?`T = ${ms(T0)} · vulnerable ${ms(2*T0)} / ${ms(T0)} · best ${Math.round(S1(.5)/T0)} and ${Math.round(S2(1)/T0)} frames per second`:null,...gs.map(g=>`G = ${g}: pure S = ${S1(g).toFixed(3)}, slotted S = ${S2(g).toFixed(3)}`)].filter(Boolean).join('<br>'))}});
+/* ===== Square-table labs (interactive) ===== */
+function hamEnc(d,ev){const m=d.length,r=hamR(m),n=m+r,cw=Array(n+1).fill(0);let i=0;for(let p=1;p<=n;p++)if(!isP2(p))cw[p]=+d[i++];
+ for(let k=0;k<r;k++){const pos=1<<k,c=hamGroup(k,n).filter(x=>x!==pos).reduce((a,x)=>a+cw[x],0);cw[pos]=ev?c%2:(c%2===0?1:0)}return{cw,r,n}}
+const PC=['#48a8ff','#48d597','#ffc76b','#ff7185','#c79bff'];
+function labG(el){const d=el.dataset.bits,ev=el.dataset.par==='even',{cw,r,n}=hamEnc(d,ev),fl=el._f||(el._f=new Set());
+ const rx=cw.map((b,i)=>i&&fl.has(i)?1-b:b),fails=[];
+ for(let k=0;k<r;k++){const c=hamGroup(k,n).reduce((a,x)=>a+rx[x],0);if(!needPar(c,ev))fails.push(k)}
+ const syn=fails.reduce((a,k)=>a+(1<<k),0),rows=2**Math.max(0,r-2);
+ const cell=p=>p===0?'<td class="na">·</td>':p>n?'<td class="na">–</td>':`<td data-cell="${p}" class="lc ${isP2(p)?'c':'d'}${fl.has(p)?' e':''}${syn===p?' hit':''}">${rx[p]}<sub>${p}</sub></td>`;
+ let main='<div class="tw"><table class="t lgrid"><tr><th></th>'+[0,1,2,3].map(c=>`<th>c${c}</th>`).join('')+'</tr>';
+ for(let ro=0;ro<rows;ro++)main+=`<tr><th>r${ro}</th>`+[0,1,2,3].map(c=>cell(4*ro+c)).join('')+'</tr>';main+='</table></div>';
+ let minis='<div class="minis">';
+ for(let k=0;k<r;k++){const g=hamGroup(k,n),f=fails.includes(k);let t=`<div class="mini ${f?'mf':'mo'}"><div class="mh"><b style="color:${PC[k]}">P${1<<k}</b> ${f?bad('FAIL'):ok('OK')}</div><table class="t">`;
+  for(let ro=0;ro<rows;ro++){t+='<tr>';for(let c=0;c<4;c++){const p=4*ro+c,inG=p>=1&&p<=n&&g.includes(p);t+=`<td class="${p>n||p===0?'na':''}" style="${inG?`background:${PC[k]}${f?'88':'33'};color:#fff`:''}">${p>=1&&p<=n?rx[p]:''}</td>`}t+='</tr>'}minis+=t+'</table></div>'}minis+='</div>';
+ const wrong=[...fl].sort((a,b)=>a-b);
+ let msg;if(!fails.length)msg=wrong.length?`${bad('All checks pass')} but ${wrong.length} bits are wrong — the errors went unnoticed.`:`${ok('All checks pass')} → syndrome 0 → no error. Click any cell to add noise.`;
+ else if(syn>n)msg=`Failed checks ${fails.map(k=>'P'+(1<<k)).join(' + ')} = ${syn} — larger than ${n}: cannot be one error (detected only).`;
+ else msg=`Failed checks <b>${fails.map(k=>'P'+(1<<k)).join(' + ')}</b> = ${fails.map(k=>1<<k).join(' + ')} = <b>${syn}</b> → row ${syn>>2}, column ${syn&3} (4 × ${syn>>2} + ${syn&3}) → position <b>${syn}</b> is accused (${isP2(syn)?'a check bit':'a data bit'}).`;
+ if(wrong.length>1)msg+=`<br>${bad('Warning:')} ${wrong.length} cells were really flipped (${wrong.join(', ')}). Hamming corrects only one error, so “correcting” position ${syn} gives wrong data.`;
+ else if(wrong.length===1&&syn===wrong[0])msg+=`<br>${ok('✓ The accused position is the cell you flipped.')}`;
+ el.innerHTML=`<div class="note">${msg}</div><div class="lbtns"><button class="smallbtn" data-lab-act="rand">🎲 Random error</button><button class="smallbtn" data-lab-act="two">Two errors</button><button class="btn secondary smallbtn" data-lab-act="fix"${syn>=1&&syn<=n?'':' disabled'}>Correct position ${syn||'–'}</button><button class="smallbtn" data-lab-act="reset">Reset noise</button></div><div class="labrow"><div><div class="lh">Received grid — click a cell to flip it</div>${main}</div><div><div class="lh">The four halves (shaded = watched by that check)</div>${minis}</div></div>`;
+ el._syn=syn;el._n=n}
+function labP(el){const rowsIn=el.dataset.rows.split('|'),ev=el.dataset.par==='even',par=c=>ev?c%2:(c%2?0:1),fl=el._f||(el._f=new Set());
+ const M0=rowsIn.length,N0=rowsIn[0].length,G=rowsIn.map(r=>[...r].map(Number));G.forEach((r,i)=>r.push(par(ones(rowsIn[i]))));
+ G.push([...Array(N0+1)].map((_,j)=>par(G.reduce((a,r)=>a+r[j],0))));const M=M0+1,N=N0+1;
+ const rx=G.map((r,i)=>r.map((b,j)=>fl.has(i+','+j)?1-b:b)),rf=rx.map(r=>!needPar(r.reduce((a,x)=>a+x,0),ev)),cf=[...Array(N)].map((_,j)=>!needPar(rx.reduce((a,r)=>a+r[j],0),ev));
+ const rI=rf.map((x,i)=>x?i:-1).filter(i=>i>=0),cI=cf.map((x,j)=>x?j:-1).filter(j=>j>=0),one=rI.length===1&&cI.length===1;
+ let t='<div class="tw"><table class="t lgrid"><tr><th></th>'+cf.map((f,j)=>`<th>${f?bad('✗'):ok('✓')}</th>`).join('')+'</tr>';
+ rx.forEach((r,i)=>{t+=`<tr><th>${rf[i]?bad('✗'):ok('✓')}</th>`+r.map((b,j)=>`<td data-cell="${i},${j}" class="lc ${i<M0&&j<N0?'d':'c'}${fl.has(i+','+j)?' e':''}${one&&rI[0]===i&&cI[0]===j?' hit':''}">${b}</td>`).join('')+'</tr>'});t+='</table></div>';
+ const w=[...fl];let msg=!rI.length&&!cI.length?(w.length?`${bad('All rows and columns pass')} but ${w.length} bits are wrong (an even pattern slipped through).`:`${ok('Every row and column passes')} → no error. Click any cell to add noise.`):one?`Row ${rI[0]+1} and column ${cI[0]+1} fail → the error is at their <b>intersection</b>${w.length===1&&w[0]===rI[0]+','+cI[0]?` ${ok('✓ the cell you flipped')}`:''}.`:`${rI.length} row(s) and ${cI.length} column(s) fail → more than one error: detected, but 2-D parity can only correct a single error.`;
+ el.innerHTML=`<div class="note">${msg}</div><div class="lbtns"><button class="smallbtn" data-lab-act="rand">🎲 Random error</button><button class="btn secondary smallbtn" data-lab-act="fix"${one?'':' disabled'}>Correct the cell</button><button class="smallbtn" data-lab-act="reset">Reset noise</button></div><div class="lh">Blue = data, green = parity. ✓/✗ = row and column checks. Click a cell to flip it.</div>${t}`;el._one=one?[rI[0],cI[0]]:null;el._dims=[M,N]}
+function labRender(el){el.dataset.lab==='g'?labG(el):labP(el)}
+function initLabs(root){root.querySelectorAll('.lab').forEach(el=>{el._f=new Set();labRender(el)})}
+document.addEventListener('click',ev=>{const c=ev.target.closest('td[data-cell]'),b=ev.target.closest('button[data-lab-act]');const el=(c||b)&&(c||b).closest('.lab');if(!el)return;
+ if(c){const k=el.dataset.lab==='g'?+c.dataset.cell:c.dataset.cell;el._f.has(k)?el._f.delete(k):el._f.add(k)}
+ else{const a=b.dataset.labAct,g=el.dataset.lab==='g';
+  if(a==='reset')el._f.clear();
+  else if(a==='rand'||a==='two'){el._f.clear();const cnt=a==='two'?2:1;const pool=g?[...Array(el._n).keys()].map(x=>x+1):[...Array(el._dims[0]*el._dims[1]).keys()].map(x=>Math.floor(x/el._dims[1])+','+x%el._dims[1]);
+   while(el._f.size<cnt)el._f.add(pool[Math.floor(Math.random()*pool.length)])}
+  else if(a==='fix'){const k=g?el._syn:el._one.join(',');el._f.has(k)?el._f.delete(k):el._f.add(k)}}
+ labRender(el)});
+T({id:'gridlab',view:'correct',ord:4.5,auto:true,tab:'Square-table lab',title:'Square-table (grid) Hamming lab',desc:'The 4×4 square method, interactive: flip any cell, watch the four halves pass or fail, and see the wrong cell at the intersection.',
+ fields:[f('bits','Data bits (4–26)','10110100110',{hint:'11 bits fill the 4×4 square exactly.'}),f('par','Parity','even',{t:'sel',opts:PAR})],
+ ex:[{l:'Ex 7 · 11 data bits',v:{bits:'10110100110',par:'even'}},{l:'(7,4) · 1011',v:{bits:'1011',par:'even'}},{l:'(11,7) · 1011001',v:{bits:'1011001',par:'even'}}],
+ run:v=>{const d=getBits(v.bits,'Data',4);if(d.length>26)fail('Up to 26 data bits.');return `<div class="lab" data-lab="g" data-bits="${d}" data-par="${v.par}"></div>`}});
+T({id:'gridlab2',view:'detect',ord:4.5,auto:true,tab:'2-D parity lab',title:'2-D parity square-table lab',desc:'Interactive square table: flip a cell and watch the failing row and column meet at the error.',
+ fields:[f('rows','Data rows (one per line)','1011\n0110\n1100\n0001',{t:'area',wide:1}),f('par','Parity','even',{t:'sel',opts:PAR})],
+ ex:[{l:'Guide example 2',v:{rows:'1011\n0110\n1100\n0001',par:'even'}},{l:'E7 data',v:{rows:'1010\n0111\n1100',par:'even'}}],
+ run:v=>{const R=v.rows.split('\n').map(l=>l.trim()).filter(Boolean).map(l=>getBits(l,'Each row'));if(R.length<2)fail('Enter at least two rows.');if(R.some(r=>r.length!==R[0].length))fail('All rows must have the same length.');if(R.length>8||R[0].length>12)fail('Up to 8 rows × 12 columns.');return `<div class="lab" data-lab="p" data-rows="${R.join('|')}" data-par="${v.par}"></div>`}});
+/* ===== Exercise bank ===== */
+const X=[];const E=(id,sec,q,runs,expect,key)=>X.push({id,sec,q,runs,expect,key});
+const R=(t,v)=>({t,v});
+E('E1','A','Convert the binary number <code>10010110</code> to decimal.',[R('numconv',{val:'10010110',base:'bin'})],['= <b>150</b>'.replace(/<\/?b>/g,'')],'150');
+E('E2','A','Convert the decimal number <b>247</b> to 8-bit binary.',[R('numconv',{val:'247',base:'dec'})],['11110111'],'11110111');
+E('E3','A','Write the IPv4 address <code>192.0.2.130</code> in binary.',[R('ipconv',{dir:'d2b',val:'192.0.2.130'})],['11000000.00000000.00000010.10000010'],'11000000.00000000.00000010.10000010');
+E('E4','A','A host has the address <code>10.20.30.141</code> and the prefix <b>/27</b>. Find the subnet mask, the network address, the broadcast address and the number of usable hosts.',[R('subnet',{ip:'10.20.30.141',prefix:'27',parent:''})],['255.255.255.224','network 10.20.30.128','broadcast 10.20.30.159','30 usable hosts'],'255.255.255.224 · 10.20.30.128 · 10.20.30.159 · 30 hosts');
+E('E5','B','Find the even-parity bit for the data <code>1011010</code> and write the frame to send.',[R('parity1',{mode:'gen',type:'even',bits:'1011010'})],['parity bit 0, frame 10110100'],'parity bit 0, frame 10110100');
+E('E6','B','A sender uses <b>odd parity</b> (the last bit is the parity bit). The receiver gets <code>10110100</code>. Is an error detected?',[R('parity1',{mode:'chk',type:'odd',bits:'10110100'})],['yes, an error is detected'],'yes, an error is detected');
+E('E7','B','(a) Using <b>2-D even parity</b>, find the row-parity bits, the column-parity bits and the corner bit for the data rows 1010, 0111, 1100. (b) The 4×5 grid <code>10100 / 01011 / 11000 / 00011</code> (last column = row parity, last row = column parity) is received. Find and fix the error.',[R('parity2',{mode:'enc',type:'even',rows:'1010\n0111\n1100'}),R('parity2',{mode:'chk',type:'even',rows:'10100\n01011\n11000\n00011'})],['row parity 0, 1, 0','column parity 0, 0, 0, 1','corner bit 1','row 2, column 3 → flip 0 to 1'],'rows 0,1,0 · columns 0,0,0,1 · corner 1 · row 2, column 3 → flip 0 to 1');
+E('E8','C','Compute the 8-bit checksum of the words <code>01010101</code>, <code>11001100</code>, <code>00001111</code>.',[R('checksum',{mode:'gen',words:'01010101 11001100 00001111'})],['checksum 11001110'],'11001110');
+E('E9','C','The receiver gets the words <code>11001100</code>, <code>00110011</code>, <code>11110000</code> and the checksum <code>00001011</code>. Does it accept the data?',[R('checksum',{mode:'chk',words:'11001100 00110011 11110000 00001011'})],['rejected'],'no, the data is rejected');
+E('E10','D','Find the CRC for the data <code>1110</code> with the generator <code>1011</code> and write the frame that is sent.',[R('crc',{mode:'gen',data:'1110',gen:'1011'})],['CRC 100, frame 1110100'],'CRC 100, frame 1110100');
+E('E11','D','The generator is the polynomial x<sup>4</sup> + x<sup>2</sup> + 1. Find the CRC of the data <code>100101</code> and the frame that is sent.',[R('crc',{mode:'gen',data:'100101',gen:'x^4 + x^2 + 1'})],['CRC 1100, frame 1001011100'],'CRC 1100, frame 1001011100');
+E('E12','D','G = <code>1011</code>. Two frames arrive: <code>1101001</code> and <code>1100001</code>. Which one is accepted?',[R('crc',{mode:'chk',data:'1101001',gen:'1011'}),R('crc',{mode:'chk',data:'1100001',gen:'1011'})],['remainder 000 → accepted','remainder 011 ≠ 000 → rejected'],'1101001 accepted; 1100001 rejected');
+E('E13','D','A CRC uses the generator x<sup>5</sup> + x<sup>2</sup> + 1. (a) How many zeros are appended? (b) How many CRC bits are sent? (c) What burst length is guaranteed to be detected?',[R('crc',{mode:'gen',data:'',gen:'x^5 + x^2 + 1'})],['5 zeros appended','5 CRC bits sent','up to 5 bits'],'5 zeros · 5 CRC bits · bursts up to 5 bits');
+E('E14','E','Encode the data <code>1110</code> with Hamming (7,4), even parity.',[R('hamming',{mode:'enc',par:'even',bits:'1110',sent:''})],['codeword 0010110'],'0010110');
+E('E15','E','A Hamming (7,4) code with even parity receives <code>0101110</code>. Find the error position, correct it and give the 4 data bits.',[R('hamming',{mode:'dec',par:'even',bits:'0101110',sent:''})],['error at position 5','corrected word 0101010','data 0010'],'position 5; 0101010; data 0010');
+E('E16','E','How many Hamming check bits are needed for (a) m = 12 data bits, (b) m = 57 data bits? Give the code name (n, m).',[R('hamr',{m:'12, 57'})],['m = 12: 5 check bits, (17,12)','m = 57: 6 check bits, (63,57)'],'(a) 5, (17,12) · (b) 6, (63,57)');
+E('E17','E','Encode the 7 data bits <code>1101001</code> with Hamming (11,7), even parity.',[R('hamming',{mode:'enc',par:'even',bits:'1101001',sent:''})],['codeword 01101011001'],'01101011001');
+E('E18','E','A Hamming (11,7) code (even parity) receives <code>10001100111</code>. Find the error, correct it and give the 7 data bits.',[R('hamming',{mode:'dec',par:'even',bits:'10001100111',sent:''})],['error at position 10','corrected word 10001100101','data 0110101'],'position 10, data 0110101');
+E('E19','E','Encode <code>1010110</code> with Hamming (11,7) using <b>odd</b> parity.',[R('hamming',{mode:'enc',par:'odd',bits:'1010110',sent:''})],['codeword 10100101110'],'10100101110');
+E('E20','E','The Hamming (7,4) codeword <code>0110011</code> is sent, but positions 1 and 2 are both damaged. What does the receiver do and what is the result?',[R('hamming',{mode:'dec',par:'even',bits:'1010011',sent:'0110011'})],['syndrome','= <b>3</b>'.replace(/<\/?b>/g,''),'corrected word 1000011','data 0011'],'it “corrects” innocent position 3 and delivers 0011 instead of 1011');
+E('E21','F','A Reed-Solomon code RS(255, 239) is used. How many parity symbols does it add and how many wrong symbols per block can it correct?',[R('rscalc',{n:'255',k:'239'})],['16 parity symbols · corrects 8 wrong symbols'],'16 parity symbols, 8 correctable');
+E('E22','F','For RS(15, 9) find (a) how many wrong symbols can be corrected and (b) how many <b>erasures</b> (errors whose position is known) can be corrected.',[R('rscalc',{n:'15',k:'9'})],['6 parity symbols · corrects 3 wrong symbols · or 6 erasures'],'(a) 3 errors · (b) 6 erasures');
+E('E23','F','Toy Reed-Solomon mod 7: the message (1, 4) means the line p(x) = 1 + 4x. Five values are sent (x = 0 … 4) and the receiver gets <b>1, 5, 2, 0, 3</b>. Find the line and the wrong position.',[R('rstoy',{mode:'dec',p:'7',msg:'1 4',n:'5',recv:'1, 5, 2, 0, 3'})],['line y = 1 + 4x (mod 7)','wrong position x = 3 (should be 6)'],'y = 1 + 4x, wrong position x = 3 (should be 6)');
+E('E24','F','The tiny LDPC code has the checks c1: b1⊕b2⊕b4, c2: b2⊕b3⊕b5, c3: b1⊕b3⊕b6. (a) Encode b1 b2 b3 = 1 1 0. (b) The word <code>111011</code> is received. Find and fix the error by bit flipping.',[R('ldpc',{mode:'enc',bits:'110'}),R('ldpc',{mode:'dec',bits:'111011'})],['codeword 110011','Flip b3','corrected codeword 110011, data 110'],'110011; error in b3; data 110');
+E('E25','F','Encode the message 1 0 0 1 (plus the 2 tail zeros) with the rate-1/2 convolutional encoder (generators 7 and 5).',[R('convenc',{bits:'1001',g1:'7',g2:'5'})],['11 10 11 11 10 11'],'11 10 11 11 10 11');
+E('E26','F','During Viterbi decoding the best path is in state 10 and the received pair is <code>01</code>. Compute the two branch costs and the states they lead to.',[R('convbr',{state:'10',recv:'01',g1:'7',g2:'5'})],['input 0: cost 2 → state 01','input 1: cost 0 → state 11'],'input 0: cost 2 → 01 · input 1: cost 0 → 11');
+E('E27','F','Frames of 1000 bits are sent on a shared 1 Mbps channel. Find (a) the frame time T, (b) the vulnerable time of pure and slotted ALOHA, (c) the best throughput in frames per second for each.',[R('aloha',{len:'1000',rate:'1M',g:''})],['T = 1 ms','vulnerable 2 ms / 1 ms','184 and 368 frames per second'],'T = 1 ms · 2 ms / 1 ms · 184 and 368 frames/s');
+E('E28','F','The offered load rises to G = 2 attempts per frame time. Compute S for pure and slotted ALOHA and explain what happens compared with the best case.',[R('aloha',{len:'',rate:'',g:'2'})],['pure S = 0.037, slotted S = 0.271'],'pure ≈ 0.037, slotted ≈ 0.271 (both below their peaks)');
+E('E29','G','Convert <code>11000000.10101000.00001011.01100100</code> to dotted decimal.',[R('ipconv',{dir:'b2d',val:'11000000.10101000.00001011.01100100'})],['192.168.11.100'],'192.168.11.100');
+E('E30','G','Write <code>172.31.0.200</code> in binary.',[R('ipconv',{dir:'d2b',val:'172.31.0.200'})],['10101100.00011111.00000000.11001000'],'10101100.00011111.00000000.11001000');
+E('E31','G','Which of these are private, which are public and which are not valid IPv4 addresses? 172.15.1.1, 172.16.1.1, 172.31.255.255, 172.32.0.1, 192.168.256.1, 10.255.0.9',[R('classify',{list:'172.15.1.1, 172.16.1.1, 172.31.255.255, 172.32.0.1, 192.168.256.1, 10.255.0.9'})],['private: 172.16.1.1, 172.31.255.255, 10.255.0.9','public: 172.15.1.1, 172.32.0.1','invalid: 192.168.256.1'],'private: 172.16.1.1, 172.31.255.255, 10.255.0.9 · public: 172.15.1.1, 172.32.0.1 · invalid: 192.168.256.1');
+E('E32','G','How many addresses are in the private block <code>172.16.0.0/12</code>, and how many class B networks (each /16) does it contain?',[R('privblock',{block:'172.16.0.0/12',sub:'16'})],['1,048,576 addresses = 16 networks of /16 (172.16.0.0 to 172.31.0.0)'],'1,048,576 addresses = 16 class B networks');
+E('E33','G','A laptop 10.0.0.7 sends a packet from port 4000. The NAT box has the public address 41.0.0.9 and chooses port 7001 for it. (a) What is the source address and port after translation? (b) What does the NAT box do with the reply?',[R('nat',{pip:'10.0.0.7',pport:'4000',pub:'41.0.0.9',pubport:'7001'})],['(a) 41.0.0.9 : 7001','rewritten to 10.0.0.7 : 4000'],'(a) 41.0.0.9 : 7001 · (b) rewritten to 10.0.0.7 : 4000');
+E('E34','G','A DHCP server on 192.168.5.0/24 has the pool 192.168.5.20 to 192.168.5.99 and gives 12-hour leases. (a) When does a client try to renew and to rebind? (b) How many addresses are in the pool? (c) 95 devices connect at once: how many are left without an address? (d) Are these addresses temporary or persistent?',[R('dhcp',{net:'192.168.5.0/24',first:'192.168.5.20',last:'192.168.5.99',lease:'12',dev:'95'})],['renew 6 h, rebind 10.5 h','80 addresses','15 left without an address','temporary'],'(a) 6 h and 10.5 h · (b) 80 · (c) 15 · (d) temporary');
+E('E35','G','Give the class and the default mask of 99.1.2.3, 150.150.0.1, 200.5.5.5, 230.1.1.1 and 250.0.0.1.',[R('classful',{list:'99.1.2.3, 150.150.0.1, 200.5.5.5, 230.1.1.1, 250.0.0.1'})],['99.1.2.3: class A','150.150.0.1: class B','200.5.5.5: class C','230.1.1.1: class D','250.0.0.1: class E'],'A, B, C, D, E in that order');
+E('E36','G','The host 141.20.77.9 uses the classful default mask. Find its class, network id, host id, broadcast address and the number of usable hosts.',[R('classful',{list:'141.20.77.9'})],['class B, network 141.20.0.0, host id 0.0.77.9, broadcast 141.20.255.255, 65,534 hosts'],'class B · 141.20.0.0 · 0.0.77.9 · 141.20.255.255 · 65,534 hosts');
+E('E37','G','A company needs 3,000 usable host addresses. (a) Which class would classful addressing give and how many addresses are wasted? (b) Which CIDR prefix and mask is most efficient and how many are wasted?',[R('hostsprefix',{hosts:'3000',claimed:''})],['/20 = 255.255.240.0 (4,094 usable hosts, 1,094 wasted)','class B, 62,534 wasted'],'(a) class B, 62,534 wasted · (b) /20 = 255.255.240.0, 1,094 wasted');
+E('E38','G','Find the mask, network id, broadcast, first and last host and the number of usable hosts for <code>10.1.1.200/26</code>.',[R('subnet',{ip:'10.1.1.200',prefix:'26',parent:''})],['mask 255.255.255.192','network 10.1.1.192','broadcast 10.1.1.255','first host 10.1.1.193','last host 10.1.1.254','62 usable hosts'],'255.255.255.192 · 10.1.1.192 · 10.1.1.255 · .193–.254 · 62 hosts');
+E('E39','G','Split 172.16.0.0/16 into 8 equal subnets. Give the new prefix, mask, hosts per subnet and the first, second, third and last subnet.',[R('split',{net:'172.16.0.0/16',count:'8'})],['/19, 255.255.224.0, 8,190 hosts per subnet; first 172.16.0.0, second 172.16.32.0, third 172.16.64.0, last 172.16.224.0'],'/19, 255.255.224.0, 8,190 hosts; 172.16.0.0, .32.0, .64.0 … .224.0');
+E('E40','G','Use VLSM on 192.168.50.0/24 for LAN-1 (60 hosts), LAN-2 (28 hosts), LAN-3 (12 hosts) and a router-to-router link (2 hosts).',[R('vlsm',{net:'192.168.50.0/24',list:'LAN-1 60\nLAN-2 28\nLAN-3 12\nRouter link 2'})],['LAN-1 192.168.50.0/26','LAN-2 192.168.50.64/27','LAN-3 192.168.50.96/28','Router link 192.168.50.112/30'],'/26 192.168.50.0 · /27 .64 · /28 .96 · /30 .112');
+E('E41','G','Summarise the eight networks 10.4.0.0/24, 10.4.1.0/24 … 10.4.7.0/24 with a single route.',[R('aggr',{list:'10.4.0.0/24 10.4.1.0/24 10.4.2.0/24 10.4.3.0/24 10.4.4.0/24 10.4.5.0/24 10.4.6.0/24 10.4.7.0/24'})],['10.4.0.0/21 (255.255.248.0)'],'10.4.0.0/21 (255.255.248.0)');
+E('E42','G','In a lecture, a student solved “How many bits and what mask for 14,047 usable hosts?” like this: “2^h = 14047 → h = 14, so the mask bits are 32 − 14 = 16.” Find the mistake and give the correct mask.',[R('hostsprefix',{hosts:'14047',claimed:'16'})],['/18 = 255.255.192.0','The slip: 32 − 14 = 18, not 16'],'prefix 18, mask 255.255.192.0');
+E('Q1','Q','Find the <b>even-parity bit</b> for the data 1100101.',[R('parity1',{mode:'gen',type:'even',bits:'1100101'})],['parity bit 0, frame 11001010'],'parity 0, send 11001010');
+E('Q2','Q','Data <code>10110110</code> arrives with <b>even parity</b> (8 bits, last bit is the parity bit). Is an error detected?',[R('parity1',{mode:'chk',type:'even',bits:'10110110'})],['yes, an error is detected'],'yes (5 ones, odd)');
+E('Q3','Q','Compute the <b>8-bit checksum</b> of the words 11110000, 00111100, 10101010.',[R('checksum',{mode:'gen',words:'11110000 00111100 10101010'})],['checksum 00101000'],'00101000');
+E('Q4','Q','Find the <b>CRC</b> for data 1011 with generator 101. What bits are transmitted?',[R('crc',{mode:'gen',data:'1011',gen:'101'})],['CRC 01, frame 101101'],'CRC 01, transmit 101101');
+E('Q5','Q','How many Hamming check bits are needed for <b>m = 7</b> data bits?',[R('hamr',{m:'7'})],['m = 7: 4 check bits, (11,7)'],'4 check bits');
+E('Q6','Q','A Hamming (7,4) code with even parity is received as <b>1100100</b>. Find the error position, correct it, and give the 4 data bits.',[R('hamming',{mode:'dec',par:'even',bits:'1100100',sent:''})],['error at position 6','corrected word 1100110','data 0110'],'position 6; 1100110; data 0110');
+E('Q7','Q','In the 4×4 grid method, checks P1 and P4 fail while P2 and P8 pass. Which cell (row, column) is wrong?',[R('hamsyn',{failed:'P1, P4',pos:''})],['position 5 = row 1, column 1'],'row 1, column 1');
+E('Q8','Q','A Reed-Solomon code RS(255, 223) is used. How many wrong symbols can it correct?',[R('rscalc',{n:'255',k:'223'})],['corrects 16 wrong symbols'],'16 symbols');
+E('Q9','Q','Pure ALOHA with G = 1. What is the throughput S? What is it for slotted ALOHA with G = 1?',[R('aloha',{len:'',rate:'',g:'1'})],['G = 1: pure S = 0.135, slotted S = 0.368'],'0.135 and 0.368');
+E('Q10','Q','Using the tiny LDPC code, the word <code>100110</code> is received. Which bit does bit-flipping change?',[R('ldpc',{mode:'dec',bits:'100110'})],['Flip b3','corrected codeword 101110'],'b3 → 101110');
+E('Q11','Q','Encode the input 1 1 (plus tail 0 0) with the rate-1/2 convolutional encoder (generators 7 and 5).',[R('convenc',{bits:'11',g1:'7',g2:'5'})],['11 01 01 11'],'11 01 01 11');
+/* ===== Home screen ===== */
+const K=(n,fn)=>[...Array(n)].map((_,i)=>fn(i)).join('');
+const VIZ={
+ bits:()=>`<div class="v-bits">${K(32,i=>`<i class="${i<24?'n':''}" style="--k:${i}"></i>`)}</div>`,
+ bars:()=>`<div class="v-bars">${[100,62,38,20].map((w,k)=>`<i style="width:${w}%;--k:${k}"></i>`).join('')}</div>`,
+ merge:()=>`<div class="v-merge">${K(4,i=>'<i></i>')}</div>`,
+ digits:()=>`<div class="v-digits">${[1,0,1,0,1,1,0,0].map((d,k)=>`<i style="--k:${k}">${d}</i>`).join('')}</div>`,
+ chips:()=>`<div class="v-chips">${['A','B','C','D','E'].map((c,k)=>`<i style="--k:${k}">${c}</i>`).join('')}</div>`,
+ chips2:()=>`<div class="v-chips">${['P1','P2','P4','P8'].map((c,k)=>`<i style="--k:${k}">${c}</i>`).join('')}</div>`,
+ packet:()=>`<div class="v-flow"><b>10.0.0.7</b><b>NAT</b><b>41.0.0.9</b><u></u></div>`,
+ dora:()=>`<div class="v-dora">${['D','O','R','A'].map((c,k)=>`<i style="--k:${k}">${c}</i>`).join('')}</div>`,
+ grid:()=>`<div class="v-grid">${K(16,i=>`<i class="${i===9?'h':''}"></i>`)}</div>`,
+ grid1:()=>`<div class="v-digits">${[1,0,1,1,0,1,0].map((d,k)=>`<i style="--k:${k}">${d}</i>`).join('')}<i style="--k:7;background:#0d302d;color:#48d597">1</i></div>`,
+ chk:()=>`<div class="v-chk">10110011<br>+01101010<br><b>↺ carry 1</b></div>`,
+ crc:()=>`<div class="v-crc"><span>1101011011 0000 1101011011 0000 1101011011 0000 1101011011 0000 </span></div>`,
+ pts:()=>`<svg class="v-svg" viewBox="0 0 120 50"><line class="dl" x1="6" y1="42" x2="114" y2="8" stroke="#48d597" stroke-width="2"/>${[[16,38],[40,30],[64,22],[100,12]].map(([x,y])=>`<circle cx="${x}" cy="${y}" r="3.5" fill="#cfe3f8"/>`).join('')}<circle class="pl" cx="82" cy="40" r="4" fill="#ff7185"/></svg>`,
+ tanner:()=>`<svg class="v-svg" viewBox="0 0 120 50"><g stroke="#48d597" stroke-width="1.4" class="dl"><path d="M15 12L25 40M15 12L60 40M45 12L25 40M45 12L95 40M75 12L60 40M105 12L95 40M75 12L95 40"/></g>${[15,45,75,105].map(x=>`<circle cx="${x}" cy="10" r="5" fill="#cfe3f8"/>`).join('')}${[25,60,95].map(x=>`<rect class="pl" x="${x-5}" y="38" width="10" height="10" rx="2" fill="#48d597"/>`).join('')}</svg>`,
+ trellis:()=>`<svg class="v-svg" viewBox="0 0 120 50">${K(5,c=>K(4,r=>`<circle cx="${12+c*24}" cy="${7+r*12}" r="2.6" fill="#4d7aa5"/>`))}<path class="dl" d="M12 7L36 19L60 7L84 31L108 43" fill="none" stroke="#48d597" stroke-width="2.2"/></svg>`,
+ aloha:()=>`<div class="v-track"><i style="top:2px;left:0;width:34px;animation-delay:0s"></i><i class="x" style="top:15px;left:20px;width:34px;animation-delay:1.1s"></i><i class="x" style="top:27px;left:30px;width:34px;animation-delay:1.3s"></i></div>`,
+ list:()=>`<div class="v-list">${['E1 · binary → decimal','E24 · LDPC repair','E40 · VLSM design'].map((t,k)=>`<i style="--k:${k}">${t}</i>`).join('')}</div>`};
+const VIZMAP={dashboard:'bits',subnet:'bits',maskconv:'bits',hostsprefix:'bars',split:'bars',vlsm:'bars',privblock:'bars',aggr:'merge',numconv:'digits',ipconv:'digits',classify:'chips',classful:'chips',nat:'packet',dhcp:'dora',parity1:'grid1',parity2:'grid',gridlab2:'grid',checksum:'chk',crc:'crc',hamming:'grid',gridlab:'grid',hamr:'chips2',hamsyn:'chips2',rstoy:'pts',rscalc:'pts',ldpc:'tanner',convenc:'trellis',convdec:'trellis',convbr:'trellis',aloha:'aloha',exercises:'list',reference:'list'};
+const SECS=[{k:'Networking',ac:'#48a8ff',sub:'addresses · subnets · VLSM',views:['cidr','ip']},{k:'Error detection',ac:'#ffc76b',sub:'parity · checksum · CRC',views:['detect']},{k:'Error correction',ac:'#48d597',sub:'Hamming · RS · LDPC · Viterbi',views:['correct']},{k:'Channel access',ac:'#c79bff',sub:'ALOHA',views:['aloha']}];
+function short(s){s=s.replace(/<[^>]+>/g,'');const i=s.indexOf('. ');return (i>0?s.slice(0,i+1):s)}
+function homeCard(c,i){return `<button class="wcard" data-go="${c.view}:${c.id||''}" data-q="${esc((c.t+' '+c.d).toLowerCase())}" style="--i:${i};--ac:${c.ac}"><span class="tag"></span><div class="wviz">${VIZ[VIZMAP[c.id||c.view]]()}</div><div class="wt">${c.t}</div><div class="wd">${c.d}</div></button>`}
+function homeHTML(){let i=0,h=`<section class="homehero"><div><div class="eyebrow">Dixars · network lab</div><h2 class="silver">Dixars SubnetLab</h2><p>Every calculator and error-coding solver as a live widget. Pick a card, or play with the two live widgets below.</p><label class="searchbar"><span>🔎</span><input id="hsearch" type="search" placeholder="Search tools — CRC, Hamming, VLSM…" autocomplete="off"></label></div>
+ <svg class="heroart" viewBox="0 0 330 150" fill="none"><defs><path id="hp1" d="M165 28L70 82"/><path id="hp2" d="M165 28L260 82"/><path id="hp3" d="M70 82L165 128"/><path id="hp4" d="M260 82L165 128"/></defs><g stroke="#4b86b8" stroke-width="2" stroke-dasharray="5 5"><use href="#hp1"/><use href="#hp2"/><use href="#hp3"/><use href="#hp4"/><path d="M70 82H260"/></g>
+ <circle cx="165" cy="28" r="17" fill="#c9d4e2"/><circle cx="70" cy="82" r="17" fill="#38d6cf"/><circle cx="260" cy="82" r="17" fill="#ffc76b"/><circle cx="165" cy="128" r="13" fill="#48d597"/><circle cx="165" cy="82" r="11" fill="#ff7185"><animate attributeName="r" values="9;14;9" dur="2s" repeatCount="indefinite"/></circle>
+ <g fill="#fff"><circle r="4"><animateMotion dur="2.6s" repeatCount="indefinite"><mpath href="#hp1"/></animateMotion></circle><circle r="4"><animateMotion dur="3.1s" repeatCount="indefinite"><mpath href="#hp2"/></animateMotion></circle><circle r="4"><animateMotion dur="2.2s" repeatCount="indefinite"><mpath href="#hp3"/></animateMotion></circle><circle r="4"><animateMotion dur="2.8s" repeatCount="indefinite"><mpath href="#hp4"/></animateMotion></circle></g>
+ <g fill="#06182b" font-size="10" font-weight="bold" text-anchor="middle"><text x="165" y="32">IP</text><text x="70" y="86">01</text><text x="260" y="86">02</text></g></svg></section>`;
+ h+=`<section class="livegrid">${liveCalcHTML()}${liveAlohaHTML()}</section><div id="homegrid">`;
+ const mk=(t,d,ac,view,id)=>({t,d,ac,view,id});
+ SECS.forEach(s=>{const cards=[];if(s.k==='Networking')cards.push(mk('Subnet calculator','Network, broadcast, hosts and a full subnet table.',s.ac,'dashboard',''));
+  s.views.forEach(v=>Object.values(TOOLS).filter(t=>t.view===v).sort((a,b)=>(a.ord||5)-(b.ord||5)).forEach(t=>cards.push(mk(t.tab,short(t.desc),s.ac,v,t.id))));
+  h+=`<div class="sechead" style="--ac:${s.ac}">${s.k} <small>${s.sub}</small></div><div class="wgrid">${cards.map(c=>homeCard(c,i++)).join('')}</div>`});
+ h+=`<div class="sechead" style="--ac:#ff7185">Study <small>practice · cheat sheet</small></div><div class="wgrid">${homeCard(mk('Exercise bank','All 42 exercises + Q1–Q11, solved step by step.','#ff7185','exercises',''),i++)}${homeCard(mk('Network reference','Formulas, class tables, recipes at a glance.','#ff7185','reference',''),i++)}</div></div><div class="nodata" id="hnone" style="display:none">No tool matches your search.</div>`;
+ return h}
+/* sliver header, parallax, ripple, bottom nav */
+const BN=[['home','⌂','Home'],['dashboard','◈','Subnet'],['detect','✓','Detect'],['correct','✚','Correct'],['exercises','✎','Practice']];
+document.body.insertAdjacentHTML('beforeend',`<nav class="bnav" id="bnav">${BN.map(b=>`<button data-view="${b[0]}"><b>${b[1]}</b>${b[2]}</button>`).join('')}</nav><button class="fab" id="fab" data-view="home" aria-label="Home">⌂</button>`);
+let tick=false;addEventListener('scroll',()=>{if(tick)return;tick=true;requestAnimationFrame(()=>{const y=scrollY;document.documentElement.style.setProperty('--sy',Math.min(y,600));document.querySelector('.top').classList.toggle('compact',y>40);tick=false})},{passive:true});
+document.addEventListener('pointerdown',e=>{const el=e.target.closest('.wcard,.btn,.tab,.smallbtn,.bnav button,.fab');if(!el||el.disabled)return;const r=el.getBoundingClientRect(),s=Math.max(r.width,r.height)*2.2,sp=document.createElement('span');sp.className='ripple';sp.style.cssText=`width:${s}px;height:${s}px;left:${e.clientX-r.left-s/2}px;top:${e.clientY-r.top-s/2}px`;el.appendChild(sp);setTimeout(()=>sp.remove(),650)});
+document.addEventListener('input',e=>{if(e.target.id!=='hsearch')return;const q=e.target.value.trim().toLowerCase();let any=false;document.querySelectorAll('#homegrid .wcard').forEach(c=>{const m=!q||c.dataset.q.includes(q);c.style.display=m?'':'none';any=any||m});
+ document.querySelectorAll('#homegrid .wgrid').forEach(g=>{const vis=[...g.children].some(c=>c.style.display!=='none');g.style.display=vis?'':'none';g.previousElementSibling.style.display=vis?'':'none'});$('hnone').style.display=any?'none':''});
+document.addEventListener('click',e=>{const c=e.target.closest('[data-go]');if(!c)return;const [v,t]=c.dataset.go.split(':');setTimeout(()=>showView(v,t||undefined),120)});
+function stagger(root){root.querySelectorAll('.sol').forEach(s=>[...s.children].forEach((c,i)=>c.style.setProperty('--i',Math.min(i,12))))}
+function onView(id){document.querySelectorAll('#bnav button').forEach(b=>b.classList.toggle('on',b.dataset.view===id));$('fab').classList.toggle('show',id!=='home');if(window.aloha)window.aloha.running=id==='home'&&!window.aloha.paused;if(window.aloha&&id==='home')window.aloha.loop()}
+/* ===== Live widgets ===== */
+function liveCalcHTML(){return `<div class="lw"><div class="lwh">Live prefix explorer <span class="pill" id="lpPill">/24</span></div><div class="lws">Drag the slider — the 32 bits and the numbers animate.</div><input type="range" id="lpR" min="0" max="32" value="24" aria-label="Prefix length"><div class="lbits" id="lpBits">${K(32,()=>'<i></i>')}</div><div class="lstats"><div><b id="lpMask"></b><span>Subnet mask</span></div><div><b id="lpHosts">0</b><span>Usable hosts</span></div><div><b id="lpBlock"></b><span>Block size</span></div></div><button class="btn" id="lpOpen">Open in calculator →</button></div>`}
+function liveAlohaHTML(){return `<div class="lw"><div class="lwh">Live ALOHA channel <span class="pill" id="alS">S = 0.000</span></div><div class="lws">3 stations share one channel. Overlapping frames collide (red); green frames get through.</div><canvas id="alC" width="640" height="170" aria-label="ALOHA simulation"></canvas><div class="lctl"><select id="alM"><option value="pure">Pure ALOHA</option><option value="slot">Slotted ALOHA</option></select><label>Load G <b id="alGv">1.0</b></label><input type="range" id="alG" min="0.1" max="3" step="0.1" value="1"><button class="smallbtn" id="alP">⏸ Pause</button><button class="smallbtn" id="alR">↺ Reset</button></div><div class="lstats" style="margin:10px 0 0"><div><b id="alOk">0</b><span>Delivered</span></div><div><b id="alCol">0</b><span>Collided</span></div><div><b id="alTh">–</b><span>Measured S · theory</span></div></div></div>`}
+let lpShown=0,lpAnim=0;
+function lpUpdate(){const p=+$('lpR').value,m=maskInt(p),h=p>=31?(p===31?2:1):2**(32-p)-2;
+ [...$('lpBits').children].forEach((e,i)=>e.classList.toggle('n',i<p));$('lpPill').textContent='/'+p;$('lpMask').textContent=intToIp(m);$('lpBlock').textContent=fmt(2**(32-p));
+ const from=lpShown,t0=performance.now();cancelAnimationFrame(lpAnim);const step=t=>{const k=Math.min(1,(t-t0)/450),e=1-Math.pow(1-k,3);lpShown=from+(h-from)*e;$('lpHosts').textContent=fmt(Math.round(lpShown));if(k<1)lpAnim=requestAnimationFrame(step)};lpAnim=requestAnimationFrame(step)}
+const AL=window.aloha={mode:'pure',G:1,t:0,fr:[],ok:0,col:0,paused:matchMedia('(prefers-reduced-motion:reduce)').matches,running:false,raf:0,last:0,slot:0,acc:0,
+ reset(){Object.assign(this,{t:0,fr:[],ok:0,col:0,slot:0,acc:0})},
+ spawn(s,a){const f={s,a,b:a+1,c:false,n:false};this.fr.forEach(o=>{if(o.s!==s&&Math.abs(o.a-a)<1){o.c=f.c=true}});if(this.fr.some(o=>o.s===s&&o.b>a))return;this.fr.push(f)},
+ step(du){const pre=this.t;this.t+=du;
+  if(this.mode==='pure'){for(let s=0;s<3;s++)if(Math.random()<this.G/3*du)this.spawn(s,this.t)}
+  else if(Math.floor(this.t)>Math.floor(pre)){const a=Math.floor(this.t);for(let s=0;s<3;s++)if(Math.random()<this.G/3)this.spawn(s,a)}
+  this.fr.forEach(f=>{if(!f.n&&this.t>=f.b){f.n=true;f.c?this.col++:this.ok++}});this.fr=this.fr.filter(f=>f.b>this.t-8);
+  if(this.t>300){this.reset()}},
+ draw(){const c=$('alC');if(!c)return;const x=c.getContext('2d'),W=c.width,H=c.height,NOW=W*.8,ppu=NOW/6,rows=[34,76,118];x.clearRect(0,0,W,H);
+  x.font='12px sans-serif';x.fillStyle='#7f9ab8';rows.forEach((y,i)=>{x.fillText('Station '+'ABC'[i],6,y-12);x.strokeStyle='#203a59';x.beginPath();x.moveTo(70,y+14);x.lineTo(W,y+14);x.stroke()});
+  if(this.mode==='slot'){x.strokeStyle='#2a4767';x.setLineDash([3,4]);for(let k=Math.floor(this.t-6);k<=Math.ceil(this.t);k++){const px=NOW+(k-this.t)*ppu;if(px>70){x.beginPath();x.moveTo(px,8);x.lineTo(px,H-10);x.stroke()}}x.setLineDash([])}
+  this.fr.forEach(f=>{const px=NOW+(f.a-this.t)*ppu,w=ppu,y=rows[f.s];if(px+w<70)return;const left=Math.max(px,70);x.fillStyle=f.c?'#ff7185':(f.n?'#48d597':'#48a8ff');x.globalAlpha=f.n?.9:1;x.beginPath();x.roundRect(left,y-6,Math.min(w,px+w-left),20,5);x.fill();x.globalAlpha=1;if(f.c&&!f.n){x.strokeStyle='#fff';x.lineWidth=1.5;x.stroke();x.lineWidth=1}});
+  x.strokeStyle='#ffc76b';x.lineWidth=2;x.beginPath();x.moveTo(NOW,4);x.lineTo(NOW,H-4);x.stroke();x.lineWidth=1;x.fillStyle='#ffc76b';x.fillText('now',NOW+5,14)},
+ stats(){const th=this.mode==='pure'?this.G*Math.exp(-2*this.G):this.G*Math.exp(-this.G),me=this.t>1?this.ok/this.t:0;$('alOk').textContent=this.ok;$('alCol').textContent=this.col;$('alTh').textContent=me.toFixed(2)+' · '+th.toFixed(2);$('alS').textContent='S ≈ '+me.toFixed(3)},
+ loop(){if(this.raf||!this.running)return;let acc=0;const f=t=>{this.raf=0;if(!this.running||document.hidden||!$('alC'))return;const dt=Math.min(.1,(t-(this.last||t))/1000);this.last=t;this.step(dt*1.1);this.draw();acc+=dt;if(acc>.25){acc=0;this.stats()}this.raf=requestAnimationFrame(f)};this.last=0;this.raf=requestAnimationFrame(f)}};
+function initLive(){lpUpdate();$('lpR').addEventListener('input',lpUpdate);
+ $('lpOpen').addEventListener('click',()=>{$('prefix').value=$('lpR').value;if(+$('parent').value>+$('prefix').value)$('parent').value=$('prefix').value;calculate();showView('dashboard')});
+ $('alM').addEventListener('change',e=>{AL.mode=e.target.value;AL.reset()});$('alG').addEventListener('input',e=>{AL.G=+e.target.value;$('alGv').textContent=AL.G.toFixed(1)});
+ $('alR').addEventListener('click',()=>{AL.reset();AL.draw();AL.stats()});
+ $('alP').addEventListener('click',()=>{AL.paused=!AL.paused;$('alP').textContent=AL.paused?'▶ Play':'⏸ Pause';AL.running=!AL.paused&&curView==='home';AL.loop()});
+ $('alP').textContent=AL.paused?'▶ Play':'⏸ Pause';AL.draw();AL.stats();document.addEventListener('visibilitychange',()=>{AL.loop()})}
+/* ===== Reference ===== */
+const REF=`<div class="refgrid">
+<section class="panel"><h3>Subnetting formulas</h3><ul><li>Host bits h = 32 − prefix; usable hosts = 2<sup>h</sup> − 2</li><li>Subnet bits s = new prefix − old prefix; subnets = 2<sup>s</sup></li><li>Block size = 256 − mask octet</li><li>Network = address AND mask; broadcast = network OR NOT mask</li><li>First host = network + 1; last host = broadcast − 1</li><li>Hosts → prefix: smallest h with 2<sup>h</sup> − 2 ≥ hosts, prefix = 32 − h (round h <b>up</b>)</li></ul>
+<div class="tw"><table class="t"><tr><th>Ones in octet</th><td>0</td><td>1</td><td>2</td><td>3</td><td>4</td><td>5</td><td>6</td><td>7</td><td>8</td></tr><tr><th>Octet value</th><td>0</td><td>128</td><td>192</td><td>224</td><td>240</td><td>248</td><td>252</td><td>254</td><td>255</td></tr></table></div></section>
+<section class="panel"><h3>Classful addressing</h3><div class="tw"><table class="t"><tr><th>Class</th><th>Leading bits</th><th>First octet</th><th>Default mask</th><th>Networks</th><th>Hosts</th></tr><tr><td>A</td><td>0</td><td>1–126</td><td>/8</td><td>126</td><td>16,777,214</td></tr><tr><td>B</td><td>10</td><td>128–191</td><td>/16</td><td>16,384</td><td>65,534</td></tr><tr><td>C</td><td>110</td><td>192–223</td><td>/24</td><td>2,097,152</td><td>254</td></tr><tr><td>D</td><td>1110</td><td>224–239</td><td>multicast</td><td>–</td><td>–</td></tr><tr><td>E</td><td>1111</td><td>240–255</td><td>reserved</td><td>–</td><td>–</td></tr></table></div><p class="hint">127.x.x.x is loopback; 169.254.x.x is link-local.</p>
+<h3 style="margin-top:14px">Private ranges</h3><div class="tw"><table class="t"><tr><th>Block</th><th>Range</th><th>Addresses</th></tr><tr><td>10.0.0.0/8</td><td>10.0.0.0 – 10.255.255.255</td><td>16,777,216</td></tr><tr><td>172.16.0.0/12</td><td>172.16.0.0 – 172.31.255.255</td><td>1,048,576</td></tr><tr><td>192.168.0.0/16</td><td>192.168.0.0 – 192.168.255.255</td><td>65,536</td></tr></table></div></section>
+<section class="panel"><h3>Which method does what</h3><div class="tw"><table class="t"><tr><th>Method</th><th>Detects</th><th>Corrects</th><th>Weakness</th><th>Used in</th></tr><tr><td>Parity (1-D)</td><td>any odd number of errors</td><td>no</td><td>misses even counts</td><td>serial ports, RAM</td></tr><tr><td>2-D parity</td><td>1, 2, 3 errors</td><td>1 error</td><td>4 errors in a rectangle</td><td>simple storage</td></tr><tr><td>Checksum</td><td>most errors</td><td>no</td><td>order swaps, compensating flips</td><td>IP, TCP, UDP</td></tr><tr><td>CRC</td><td>bursts ≤ r bits, all 1-bit</td><td>no</td><td>not designed to locate</td><td>Ethernet, Wi-Fi, ZIP</td></tr><tr><td>Hamming</td><td>2 errors (with extra bit)</td><td>1 bit</td><td>2 errors confuse it</td><td>ECC RAM</td></tr><tr><td>Reed-Solomon</td><td>up to n − k symbols</td><td>t = (n − k)/2 symbols</td><td>complex maths</td><td>CD, DVD, QR, space</td></tr><tr><td>LDPC</td><td>yes</td><td>many bits (voting)</td><td>long blocks, iterations</td><td>5G, Wi-Fi 6, SSD</td></tr><tr><td>Convolutional</td><td>path distance</td><td>yes (Viterbi)</td><td>heavy bursts, 2× overhead</td><td>GSM, satellites</td></tr><tr><td>ALOHA</td><td>collisions (no ACK)</td><td>retransmit</td><td>18 % / 37 % throughput</td><td>radio, RFID</td></tr></table></div></section>
+<section class="panel"><h3>Recipes</h3><ul><li><b>Parity:</b> even → total number of 1s even; a group fails when its count has the wrong parity.</li><li><b>Checksum:</b> add words, wrap the carry round, flip all bits; receiver sums everything → all ones.</li><li><b>CRC:</b> G has r + 1 bits; append r zeros; divide with XOR; remainder (r bits, keep leading zeros) is the CRC; receiver divides the frame as it is → 000.</li><li><b>Hamming:</b> 2<sup>r</sup> ≥ m + r + 1; check bits at 1, 2, 4, 8; P<sub>k</sub> watches every position with bit k set; failed checks added = wrong position; position = 4 × row + column.</li><li><b>Reed-Solomon:</b> t = (n − k)/2 errors, n − k erasures.</li><li><b>ALOHA:</b> pure S = G·e<sup>−2G</sup> (max 0.184 at G = 0.5), slotted S = G·e<sup>−G</sup> (max 0.368 at G = 1); vulnerable time 2T vs T.</li></ul>
+<h3 style="margin-top:14px">Common mistakes</h3><ul><li>Prefix = 32 − h; double-check the subtraction (32 − 14 = 18).</li><li>Usable hosts = 2<sup>h</sup> − 2 but subnets = 2<sup>s</sup>.</li><li>Include the check bit itself when recounting a Hamming group.</li><li>Append exactly r zeros for CRC; the receiver does not append.</li><li>One parity rule (even <i>or</i> odd) for the whole problem.</li></ul></section></div>`;
+/* ===== UI ===== */
+const VIEWS=[
+ {id:'home',icon:'⌂',label:'Home',desc:''},
+ {id:'dashboard',icon:'◈',label:'Subnet calculator'},
+ {id:'cidr',icon:'▦',label:'VLSM & CIDR planner',desc:'Hosts → prefix, equal subnets, VLSM and route aggregation with full working.'},
+ {id:'ip',icon:'⌘',label:'IP address tools',desc:'Binary/decimal/hex, IPv4 conversion, masks, classes, private/public, NAT and DHCP.'},
+ {id:'detect',icon:'✓',label:'Error detection',desc:'Parity, 2-D parity, checksum and CRC — encode, check and see every step.'},
+ {id:'correct',icon:'✚',label:'Error correction',desc:'Hamming (any size), Reed-Solomon, LDPC and convolutional codes with Viterbi decoding.'},
+ {id:'aloha',icon:'∿',label:'ALOHA channel access',desc:'Frame time, vulnerable time and throughput for pure and slotted ALOHA.'},
+ {id:'exercises',icon:'✎',label:'Exercise bank (E1–E42, Q1–Q11)',desc:'Every exercise of the study guide, solved step by step by the tools above.'},
+ {id:'reference',icon:'ⓘ',label:'Network reference',desc:'Formulas, tables and recipes at a glance.'}];
+$('navMenu').innerHTML='<div class="navcap">Dixars SubnetLab tools</div>'+VIEWS.map(v=>`<button data-view="${v.id}">${v.icon} &nbsp; ${v.label}</button>`).join('');
+const fid=(t,k)=>`f-${t}-${k}`;
+function toolPanel(t){const fs=t.fields.map(x=>{const id=fid(t.id,x.k);let inp;
+  if(x.t==='sel')inp=`<select id="${id}">${x.opts.map(o=>`<option value="${o[0]}"${o[0]===x.def?' selected':''}>${o[1]}</option>`).join('')}</select>`;
+  else if(x.t==='area')inp=`<textarea id="${id}" spellcheck="false">${esc(x.def)}</textarea>`;
+  else inp=`<input id="${id}" value="${esc(x.def)}" autocomplete="off" spellcheck="false">`;
+  return `<div class="fld${x.wide?' wide':''}"><label for="${id}">${x.label}</label>${inp}${x.hint?`<div class="hint">${x.hint}</div>`:''}</div>`}).join('');
+ const chips=(t.ex||[]).length?`<div class="chips"><span class="lbl">Load example:</span>${t.ex.map((e,i)=>`<button class="smallbtn" data-ex="${t.id}:${i}">${e.l}</button>`).join('')}</div>`:'';
+ return `<div class="tpanel" id="tp-${t.id}"><section class="panel"><h3>${t.title}</h3><p class="sub">${t.desc}</p>${chips}<div class="fields">${fs}</div><div class="btnrow inline"><button class="btn" data-run="${t.id}">Solve</button><button class="btn secondary" data-clear="${t.id}">Clear</button></div><div id="out-${t.id}"></div></section></div>`}
+function buildViews(){let h='';VIEWS.filter(v=>v.id!=='dashboard').forEach(v=>{if(v.id==='home'){h+=`<div class="toolview" id="view-home">${homeHTML()}</div>`;return}const tools=Object.values(TOOLS).filter(t=>t.view===v.id).sort((a,b)=>(a.ord||5)-(b.ord||5));
+  h+=v.id==='home'?`<div class="toolview home" id="view-home">${homeHtml()}</div>`:`<div class="toolview" id="view-${v.id}"><div class="viewhead"><h2>${v.label}</h2><p>${v.desc}</p></div>`;
+  if(v.id==='home'){}else if(v.id==='exercises')h+='<div class="exfilter" id="exfilter"></div><div id="exlist"></div>';
+  else if(v.id==='reference')h+=REF;
+  else h+=`<div class="tabs">${tools.map(t=>`<button class="tab" data-tab="${t.id}">${t.tab}</button>`).join('')}</div>`+tools.map(toolPanel).join('');
+  h+='</div>'});$("views").innerHTML=h}
+function vals(id){const v={};TOOLS[id].fields.forEach(x=>v[x.k]=$(fid(id,x.k)).value);return v}
+function setVals(id,v){TOOLS[id].fields.forEach(x=>{if(v[x.k]!==undefined)$(fid(id,x.k)).value=v[x.k]})}
+function execTool(id,v){const t=TOOLS[id],full={};t.fields.forEach(x=>full[x.k]=v&&v[x.k]!==undefined?v[x.k]:x.def);return t.run(full)}
+function runTool(id){const out=$('out-'+id);try{out.innerHTML='<div class="sol">'+TOOLS[id].run(vals(id))+'</div>';initLabs(out);stagger(out)}catch(e){if(!(e instanceof UErr)){console.error(e);e=new Error('Internal error: '+e.message)}out.innerHTML=`<div class="errbox">⚠ ${esc(e.message)}</div>`}}
+function showTab(id){const t=TOOLS[id];if(!t)return;showView(t.view,id)}
+let curView='dashboard';
+function showView(id,tool){curView=id;document.querySelectorAll('.toolview').forEach(e=>e.classList.toggle('active',e.id==='view-'+id));
+ $('hero').style.display=id==='dashboard'?'':'none';document.querySelectorAll('#navMenu button').forEach(b=>b.classList.toggle('active',b.dataset.view===id));
+ const v=$('view-'+id);const tabs=v.querySelectorAll('.tabs .tab');if(tabs.length){const first=tabs[0].dataset.tab,sel=tool&&TOOLS[tool]&&TOOLS[tool].view===id?tool:(v.dataset.cur||first);v.dataset.cur=sel;
+  tabs.forEach(b=>b.classList.toggle('active',b.dataset.tab===sel));v.querySelectorAll('.tpanel').forEach(p=>p.classList.toggle('active',p.id==='tp-'+sel));if(TOOLS[sel]&&TOOLS[sel].auto&&!$('out-'+sel).innerHTML)runTool(sel)}
+ $('navMenu').classList.remove('open');history.replaceState(null,'','#'+id+(v.dataset.cur?'/'+v.dataset.cur:''));window.scrollTo({top:0,behavior:'instant'});if(typeof onView==='function')onView(id)}
+/* exercises */
+let exSec='all';const SECN={all:'All',A:'A · Binary & networking',B:'B · Parity',C:'C · Checksum',D:'D · CRC',E:'E · Hamming',F:'F · RS, LDPC, conv., ALOHA',G:'G · Addressing',Q:'Practice Q1–Q11'};
+function renderEx(){$('exfilter').innerHTML=Object.keys(SECN).map(k=>`<button class="tab${k===exSec?' active':''}" data-sec="${k}">${SECN[k]}</button>`).join('')+'<button class="smallbtn" id="exall">Solve all shown</button>';
+ $('exlist').innerHTML=X.filter(e=>exSec==='all'||e.sec===exSec).map(e=>`<div class="ex" id="ex-${e.id}"><div class="q"><b class="id">${e.id}.</b> ${e.q}</div><div class="exbtns"><button class="btn secondary smallbtn" data-solve="${e.id}">Show solution</button><button class="smallbtn" data-open="${e.id}">Open in tool ↗</button></div><div class="exsol"></div></div>`).join('')}
+function solveEx(id){const e=X.find(x=>x.id===id),box=document.querySelector(`#ex-${id} .exsol`);let html='',txt='',errs=0;
+ e.runs.forEach((r,i)=>{try{const h=execTool(r.t,r.v);html+=`<div class="sol">${e.runs.length>1?`<div class="note"><b>Part ${i+1}:</b> ${TOOLS[r.t].title}</div>`:''}${h}</div>`;const d=document.createElement('div');d.innerHTML=h;txt+=' '+d.textContent.replace(/\s+/g,' ')}catch(x){errs++;console.error(id,x);html+=`<div class="errbox">⚠ ${esc(x.message)}</div>`}});
+ const miss=e.expect.filter(s=>!txt.includes(s));box.dataset.status=errs||miss.length?'bad':'ok';
+ box.innerHTML=html+(errs||miss.length?`<div class="badge warn">⚠ Could not confirm against the study guide's answer (${esc(e.key)})</div>`:`<div class="badge">✓ Matches the study guide's answer: ${esc(e.key)}</div>`)}
+function openEx(id){const e=X.find(x=>x.id===id),r=e.runs[0];showView(TOOLS[r.t].view,r.t);setVals(r.t,r.v);runTool(r.t)}
+document.addEventListener('click',ev=>{const b=ev.target.closest('button');if(!b){if(!ev.target.closest('.navwrap'))$('navMenu').classList.remove('open');return}
+ if(b.id==='navTrigger'){$('navMenu').classList.toggle('open');return}
+ if(b.dataset.view){showView(b.dataset.view);return}
+ if(b.dataset.tab){showView(TOOLS[b.dataset.tab].view,b.dataset.tab);return}
+ if(b.dataset.run){runTool(b.dataset.run);return}
+ if(b.dataset.clear){$('out-'+b.dataset.clear).innerHTML='';return}
+ if(b.dataset.ex){const [id,i]=b.dataset.ex.split(':');setVals(id,TOOLS[id].ex[+i].v);runTool(id);return}
+ if(b.dataset.sec){exSec=b.dataset.sec;renderEx();return}
+ if(b.id==='exall'){document.querySelectorAll('#exlist .ex').forEach(x=>solveEx(x.id.slice(3)));return}
+ if(b.dataset.solve){solveEx(b.dataset.solve);return}
+ if(b.dataset.open){openEx(b.dataset.open)}});
+document.addEventListener('keydown',ev=>{if(ev.key==='Enter'&&ev.target.matches('.fld input')){const p=ev.target.closest('.tpanel');if(p)runTool(p.id.slice(3))}if(ev.key==='Escape')$('navMenu').classList.remove('open')});
+buildViews();renderEx();initLive();
+const hs=location.hash.slice(1).split('/');if(hs[0]&&$('view-'+hs[0]))showView(hs[0],hs[1]);else showView('home');
+calculate();
+
+/* ===== PWA installation ===== */
+(() => {
+  const installBtn = document.getElementById('installBtn');
+  let deferredInstallPrompt = null;
+
+  window.addEventListener('beforeinstallprompt', event => {
+    event.preventDefault();
+    deferredInstallPrompt = event;
+    if (installBtn) installBtn.hidden = false;
+  });
+
+  installBtn?.addEventListener('click', async () => {
+    if (!deferredInstallPrompt) return;
+    deferredInstallPrompt.prompt();
+    await deferredInstallPrompt.userChoice;
+    deferredInstallPrompt = null;
+    installBtn.hidden = true;
+  });
+
+  window.addEventListener('appinstalled', () => {
+    if (installBtn) installBtn.hidden = true;
+  });
+
+  // Register the service worker only on HTTP(S), including GitHub Pages.
+  if ('serviceWorker' in navigator && /^https?:$/.test(location.protocol)) {
+    window.addEventListener('load', () => {
+      navigator.serviceWorker.register('./sw.js', { scope: './' })
+        .then(reg => console.info('SubnetLab offline worker ready:', reg.scope))
+        .catch(err => console.warn('Service worker registration failed:', err));
+    });
+  }
+})();
+
+</script>
+</body></html>
