@@ -1,18 +1,30 @@
-# Dixars SubnetLab PWA
+# Dixars SubnetLab PWA  (all files in ONE folder - no icons/ subfolder)
+
+Files to upload together to the same directory of your GitHub repository:
+  index.html            the app
+  manifest.json         install information
+  sw.js                 offline engine (service worker)
+  icon-192.png  icon-512.png  icon-512-maskable.png  apple-touch-icon.png   app icons
 
 ## Deploy to GitHub Pages
-1. Upload `index.html`, `manifest.json`, `sw.js`, and the `icons/` folder to the same directory in your GitHub repository.
-2. In GitHub, open **Settings → Pages**.
-3. Select the branch and folder containing these files (usually `main` and `/root`), then save.
-4. Open the published HTTPS URL. The first visit downloads the app shell; subsequent visits can work offline.
+1. Upload ALL the files above to the same folder (repository root is simplest).
+2. Settings -> Pages -> choose the branch (main) and the folder (/root) -> Save.
+3. Open the published https:// link. The first visit downloads the app and the offline engine.
+
+## Icon is created automatically
+When the link is opened the page draws the app icon itself (tab icon, iPhone/iPad home-screen icon) and,
+if the icon PNG files are ever missing, builds an install-ready manifest on the fly. Nothing to do by hand.
 
 ## Install
-Open the published site in a supported browser. Use the browser's **Install app / Add to Home Screen** option. The in-page Install button appears only when the browser exposes an install prompt.
+- Android / Chrome / Edge / desktop: an "Install Dixars SubnetLab" bar appears a moment after the page opens
+  (also the "+ Install app" button in the header). Tap Install. Browsers do not allow installing without a tap.
+- iPhone / iPad (Safari): tap Share -> Add to Home Screen (the bar shows this hint).
+The installed app opens in its own window with the phone status bar visible and works with no internet.
 
-## App display and phone status bar
-The installed app opens in a standalone app window that fills the available screen area while keeping the phone status/notification bar visible. It does not request immersive fullscreen. Install it from the browser menu or the in-page Install button when available.
+## Updating
+Upload the new files, then change CACHE_NAME in sw.js (v3 -> v4). Open pages refresh the cache in the background
+and show the new version on the next launch.
 
 ## Notes
-- Service workers require HTTPS (GitHub Pages provides HTTPS) or localhost.
-- Offline availability begins after the service worker has installed and cached the app shell once.
-- If you update the app, change `CACHE_NAME` in `sw.js` (for example, `v2`) to publish a new cache version.
+- Service workers need HTTPS (GitHub Pages is HTTPS) or localhost; opening index.html straight from disk still works as a normal page.
+- Offline use starts after the first successful online visit.

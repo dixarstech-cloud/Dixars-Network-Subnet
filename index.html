@@ -209,8 +209,42 @@ body { min-height:100vh; min-height:100dvh; }
 <meta name="apple-mobile-web-app-status-bar-style" content="black">
 <meta name="apple-mobile-web-app-title" content="SubnetLab">
 <meta name="mobile-web-app-capable" content="yes">
-<link rel="apple-touch-icon" href="./icons/icon-192.png">
-<link rel="icon" type="image/png" sizes="192x192" href="./icons/icon-192.png">
+<link rel="apple-touch-icon" href="./apple-touch-icon.png">
+<link rel="icon" type="image/png" sizes="192x192" href="./icon-192.png">
+<style>
+.pwa-banner{position:fixed;left:12px;right:12px;bottom:12px;z-index:90;max-width:520px;margin:auto;display:none;align-items:center;gap:12px;padding:12px 14px;border-radius:20px;background:linear-gradient(145deg,#16304e,#0c1b2f);border:1px solid #6d8fb3;box-shadow:0 14px 40px #000a;color:#eaf3ff;font:14px/1.35 system-ui,sans-serif}
+.pwa-banner.show{display:flex;animation:pwaup .45s cubic-bezier(.2,.8,.2,1)}.pwa-banner img{width:46px;height:46px;border-radius:12px;flex:none}
+.pwa-banner b{display:block}.pwa-banner span{color:#a9bdd4;font-size:12.5px}.pwa-banner .pwa-txt{flex:1;min-width:0}
+.pwa-banner button{border:0;border-radius:12px;padding:10px 14px;font-weight:750;font-size:13px;cursor:pointer}.pwa-banner .pwa-go{background:linear-gradient(135deg,#56b5ff,#37d7cd);color:#061426}.pwa-banner .pwa-x{background:#183653;color:#cfe8ff;padding:10px 12px}
+@keyframes pwaup{from{opacity:0;transform:translateY(20px)}to{opacity:1;transform:none}}
+@media(max-width:650px){.pwa-banner{bottom:84px}}
+</style>
+<script>
+/* Auto-generated app icon: drawn in the browser the moment the page opens, so the tab icon, the
+   home-screen icon (iOS) and an install-ready manifest exist even if the PNG files are missing. */
+function drawIcon(c,s,mask){var x=c.getContext('2d');x.clearRect(0,0,s,s);
+ x.beginPath();if(!mask&&x.roundRect)x.roundRect(0,0,s,s,s*.22);else x.rect(0,0,s,s);
+ var g=x.createLinearGradient(0,0,s,s);g.addColorStop(0,'#1a4a7c');g.addColorStop(1,'#071426');x.fillStyle=g;x.fill();
+ x.save();x.translate(s/2,s/2);var k=s*(mask?.6:.78)/100;x.scale(k,k);
+ var N={t:[0,-32,'#dfe7f1',10.5],l:[-34,10,'#38d6cf',9],r:[34,10,'#ffc76b',9],b:[0,36,'#48d597',8],m:[0,10,'#ff7185',6]};
+ x.strokeStyle='#6fa8d8';x.lineWidth=2.6;x.lineCap='round';x.setLineDash([5,4.5]);x.beginPath();
+ [['t','l'],['t','r'],['l','b'],['r','b'],['l','r']].forEach(function(p){x.moveTo(N[p[0]][0],N[p[0]][1]);x.lineTo(N[p[1]][0],N[p[1]][1])});x.stroke();x.setLineDash([]);
+ for(var k2 in N){var n=N[k2];x.beginPath();x.arc(n[0],n[1],n[3]+4,0,7);x.fillStyle='rgba(255,255,255,.08)';x.fill();x.beginPath();x.arc(n[0],n[1],n[3],0,7);x.fillStyle=n[2];x.fill()}
+ x.fillStyle='#071426';x.font='bold 9px sans-serif';x.textAlign='center';x.textBaseline='middle';x.fillText('IP',0,-31.5);
+ x.restore()}
+
+(function(){try{
+ var mk=function(s,m){var c=document.createElement('canvas');c.width=c.height=s;drawIcon(c,s,m);return c.toDataURL('image/png')};
+ window.__dixarsIcon=mk(192,false);
+ var set=function(rel,url,sizes){var l=document.querySelector('link[rel="'+rel+'"]');if(!l){l=document.createElement('link');l.rel=rel;document.head.appendChild(l)}l.type='image/png';if(sizes)l.sizes=sizes;l.href=url};
+ set('icon',window.__dixarsIcon,'192x192');set('apple-touch-icon',mk(180,true));
+ fetch('./icon-512.png',{cache:'no-store'}).then(function(r){if(!r.ok)throw 0}).catch(function(){
+  var base=location.href.split('#')[0].split('?')[0],dir=base.replace(/[^\/]*$/,'');
+  var m={id:dir,name:'Dixars SubnetLab \u2014 Subnetting & Error Coding Solver',short_name:'SubnetLab',start_url:base,scope:dir,display:'standalone',background_color:'#071426',theme_color:'#071426',
+   icons:[{src:mk(192,false),sizes:'192x192',type:'image/png',purpose:'any'},{src:mk(512,false),sizes:'512x512',type:'image/png',purpose:'any'},{src:mk(512,true),sizes:'512x512',type:'image/png',purpose:'maskable'}]};
+  var l=document.querySelector('link[rel="manifest"]');if(l)l.href=URL.createObjectURL(new Blob([JSON.stringify(m)],{type:'application/manifest+json'}))});
+}catch(e){console.warn('icon generation skipped',e)}})();
+</script>
 
 </head>
 <body>
@@ -966,31 +1000,43 @@ calculate();
 /* ===== PWA installation ===== */
 (() => {
   const installBtn = document.getElementById('installBtn');
-  let deferredInstallPrompt = null;
-
+  let deferred = null;
+  const standalone = () => matchMedia('(display-mode: standalone)').matches || navigator.standalone === true;
+  const ios = /iphone|ipad|ipod/i.test(navigator.userAgent) || (navigator.platform === 'MacIntel' && navigator.maxTouchPoints > 1);
+  const store = { get(k){ try{ return localStorage.getItem(k) }catch(e){ return null } }, set(k,v){ try{ localStorage.setItem(k,v) }catch(e){} } };
+  const banner = document.createElement('div');
+  banner.className = 'pwa-banner'; banner.setAttribute('role', 'dialog'); banner.setAttribute('aria-label', 'Install Dixars SubnetLab');
+  banner.innerHTML = '<img alt="" width="46" height="46"><div class="pwa-txt"><b>Install Dixars SubnetLab</b><span id="pwaMsg">Add it to your home screen and use it offline.</span></div><button class="pwa-go" type="button">Install</button><button class="pwa-x" type="button" aria-label="Not now">✕</button>';
+  document.body.appendChild(banner);
+  banner.querySelector('img').src = window.__dixarsIcon || './icon-192.png';
+  const logo = document.querySelector('.top .logo'); if (logo && window.__dixarsIcon) { logo.textContent = ''; logo.style.background = 'none'; logo.style.boxShadow = 'none'; const li = new Image(); li.src = window.__dixarsIcon; li.alt = ''; li.style.cssText = 'width:100%;height:100%;border-radius:inherit'; logo.appendChild(li); }
+  const hide = (remember) => { banner.classList.remove('show'); if (remember) store.set('dixarsInstallDismissed', String(Date.now())); };
+  const recentlyDismissed = () => Date.now() - Number(store.get('dixarsInstallDismissed') || 0) < 7 * 864e5;
+  const showBanner = () => { if (!standalone() && !recentlyDismissed()) setTimeout(() => banner.classList.add('show'), 1800); };
+  const go = banner.querySelector('.pwa-go');
+  async function install() {
+    if (deferred) { deferred.prompt(); await deferred.userChoice; deferred = null; hide(false); if (installBtn) installBtn.hidden = true; }
+    else if (ios) { banner.querySelector('#pwaMsg').innerHTML = 'Tap the <b style="display:inline">Share</b> button, then <b style="display:inline">Add to Home Screen</b>.'; go.textContent = 'Got it'; go.dataset.ios = '1'; banner.classList.add('show'); }
+  }
+  go.addEventListener('click', () => { if (go.dataset.ios) hide(true); else install(); });
+  banner.querySelector('.pwa-x').addEventListener('click', () => hide(true));
   window.addEventListener('beforeinstallprompt', event => {
-    event.preventDefault();
-    deferredInstallPrompt = event;
+    event.preventDefault(); deferred = event;
     if (installBtn) installBtn.hidden = false;
+    banner.querySelector('.pwa-go').textContent = 'Install'; showBanner();
   });
-
-  installBtn?.addEventListener('click', async () => {
-    if (!deferredInstallPrompt) return;
-    deferredInstallPrompt.prompt();
-    await deferredInstallPrompt.userChoice;
-    deferredInstallPrompt = null;
-    installBtn.hidden = true;
-  });
-
-  window.addEventListener('appinstalled', () => {
-    if (installBtn) installBtn.hidden = true;
-  });
-
-  // Register the service worker only on HTTP(S), including GitHub Pages.
+  installBtn?.addEventListener('click', install);
+  window.addEventListener('appinstalled', () => { deferred = null; hide(false); if (installBtn) installBtn.hidden = true; });
+  if (ios && !standalone()) { if (installBtn) { installBtn.hidden = false; installBtn.addEventListener('click', install); } showBanner(); }
+  // Offline engine: register the service worker on HTTP(S) (GitHub Pages) and localhost.
   if ('serviceWorker' in navigator && /^https?:$/.test(location.protocol)) {
     window.addEventListener('load', () => {
       navigator.serviceWorker.register('./sw.js', { scope: './' })
-        .then(reg => console.info('SubnetLab offline worker ready:', reg.scope))
+        .then(reg => {
+          console.info('SubnetLab offline worker ready:', reg.scope);
+          const status = document.querySelector('.status');
+          navigator.serviceWorker.ready.then(() => { if (status) status.textContent = '● OFFLINE READY · WORKS WITHOUT INTERNET'; });
+        })
         .catch(err => console.warn('Service worker registration failed:', err));
     });
   }
