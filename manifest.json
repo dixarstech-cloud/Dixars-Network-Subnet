@@ -1,7 +1,7 @@
 {
   "id": "./",
-  "name": "Dixars SubnetLab — Subnetting & Error Coding Solver",
-  "short_name": "SubnetLab",
+  "name": "Octavex — Subnetting & Error Coding Solver",
+  "short_name": "Octavex",
   "description": "An offline-ready networking learning and calculation application.",
   "lang": "en",
   "start_url": "./index.html",

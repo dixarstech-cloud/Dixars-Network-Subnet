@@ -1,7 +1,7 @@
-/* Dixars SubnetLab service worker */
+/* Octavex service worker */
 'use strict';
 
-const CACHE_NAME = 'dixars-subnetlab-v3';
+const CACHE_NAME = 'octavex-v14';
 const APP_SHELL = [
   './',
   './index.html',

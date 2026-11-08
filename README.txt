@@ -1,4 +1,4 @@
-# Dixars SubnetLab PWA  (all files in ONE folder - no icons/ subfolder)
+# Octavex PWA  (all files in ONE folder - no icons/ subfolder)
 
 Files to upload together to the same directory of your GitHub repository:
   index.html            the app
@@ -16,7 +16,7 @@ When the link is opened the page draws the app icon itself (tab icon, iPhone/iPa
 if the icon PNG files are ever missing, builds an install-ready manifest on the fly. Nothing to do by hand.
 
 ## Install
-- Android / Chrome / Edge / desktop: an "Install Dixars SubnetLab" bar appears a moment after the page opens
+- Android / Chrome / Edge / desktop: an "Install Octavex" bar appears a moment after the page opens
   (also the "+ Install app" button in the header). Tap Install. Browsers do not allow installing without a tap.
 - iPhone / iPad (Safari): tap Share -> Add to Home Screen (the bar shows this hint).
 The installed app opens in its own window with the phone status bar visible and works with no internet.
