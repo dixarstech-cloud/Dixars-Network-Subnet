@@ -1,7 +1,7 @@
 /* Octavex service worker */
 'use strict';
 
-const CACHE_NAME = 'octavex-v14';
+const CACHE_NAME = 'octavex-v17';
 const APP_SHELL = [
   './',
   './index.html',
